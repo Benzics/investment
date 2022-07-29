@@ -53,13 +53,10 @@
                 <input type="text" placeholder="Reference ID(Optional)" name="g_id" style="width:100%" style="width:100%" value="{{ old('g_id') }}" class="round">
             </div>
                     <div class="col-12 col-m-12 col-sm-12">
-                <input type="text" placeholder="First Name" required name="fname" value="{{ old('fname') }}" style="width:100%" class="round">
-                <div class="form_hint"> First name must not be empty!</div>
+                <input type="text" placeholder="Full Name" required name="name" value="{{ old('name') }}" style="width:100%" class="round">
+                <div class="form_hint"> Full name must not be empty!</div>
             </div>
-            <div class="col-12 col-m-12 col-sm-12">
-                <input type="text" placeholder="Last Name" required name="lname" value="{{ old('lname') }}" style="width:100%" class="round">
-                <div class="form_hint"> Last name must not be empty!</div>
-            </div>
+  
                     <div class="col-12 col-m-12 col-sm-12">
                 <input type="email" placeholder="Email" required name="email" value="{{ old('email') }}" style="width:100%" class="round">
                 <div class="form_hint"> Please use a valid email address.</div>
