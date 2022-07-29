@@ -1,5 +1,17 @@
 @include('includes.header')
-
+<style>
+  .tell {
+    margin-top: 1rem;
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+  }
+</style>
 <div class="banner-area center">
     <div class="area">
         <div class="bodycontainer">
@@ -26,41 +38,53 @@
                       <span class="decor_default"></span>
                 </div>
             </div>
-                    <div class="col-12 col-m-12 col-sm-12">
-                <input type="text" placeholder="Reference ID(Optional)" name="g_id" style="width:100%" style="width:100%" class="round">
+            <div class="col-12">
+                @if ($errors->any())
+                    <div class="tell">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
             </div>
                     <div class="col-12 col-m-12 col-sm-12">
-                <input type="text" placeholder="First Name" required name="fname" value="" style="width:100%" class="round">
-                
+                <input type="text" placeholder="Reference ID(Optional)" name="g_id" style="width:100%" style="width:100%" value="{{ old('g_id') }}" class="round">
+            </div>
+                    <div class="col-12 col-m-12 col-sm-12">
+                <input type="text" placeholder="First Name" required name="fname" value="{{ old('fname') }}" style="width:100%" class="round">
+                <div class="form_hint"> First name must not be empty!</div>
             </div>
             <div class="col-12 col-m-12 col-sm-12">
-                <input type="text" placeholder="Last Name" required name="lname" value="" style="width:100%" class="round">
-               
+                <input type="text" placeholder="Last Name" required name="lname" value="{{ old('lname') }}" style="width:100%" class="round">
+                <div class="form_hint"> Last name must not be empty!</div>
             </div>
                     <div class="col-12 col-m-12 col-sm-12">
-                <input type="email" placeholder="Email" required name="email" value="" style="width:100%" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$" oninput="emaila(this)" class="round">
-        
+                <input type="email" placeholder="Email" required name="email" value="{{ old('email') }}" style="width:100%" class="round">
+                <div class="form_hint"> Please use a valid email address.</div>
             </div>
             <div class="col-12 col-m-12 col-sm-12">
                 <select name="gender" id="gender" style="width:100%" class="round">
-                    <option id="male">Male</option>
-                    <option id="female">Female</option>
+                    <option value="male" @if(old('gender') == 'male' ) selected @endif>Male</option>
+                    <option value="female" @if(old('gender') == 'female' ) selected @endif >Female</option>
                 </select>
             </div>
             <div class="col-12 col-m-12 col-sm-12">
-                <input type="tel" placeholder="Mobile number" id="mobile-number" required name="phone" value="" class="round" style="width:100%;">
-                <select id="address-country" name="country" style="display:none" required></select>
+                <input type="tel" placeholder="Mobile number" id="mobile-number" required name="phone" value="{{ old('phone') }}" class="round" style="width:100%;">
+                <div class="form_hint"> Your phone number!</div>
+               
             </div>
            
             <div class="col-12 col-m-12 col-sm-12">
-                <input type="password" placeholder="Password" name="password" style="width:100%" id="password" oninput="passworda(this)" required pattern="(?=.*\d)(?=.*[A-Za-z]).{6,}" class="round">
+                <input type="password" placeholder="Password" name="password" style="width:100%" id="password" required class="round">
                
             </div>
             <div class="col-12 col-m-12 col-sm-12">
-                <input type="password" placeholder="Confirm Password" required name="password" style="width:100%" class="round" oninput="passwordca(this)">
+                <input type="password" placeholder="Confirm Password" required name="password_confirmation" style="width:100%" class="round">
             </div>
    
-            <div class="col-12 col-m-12 col-sm-12"><input type="checkbox" name="agree" required checked> I agree to Global Options FX Trade <a href="assets/info/terms" target="_blank">Terms and conditions</a>
+            <div class="col-12 col-m-12 col-sm-12"><input type="checkbox" name="agree" required checked> I agree to Global Options FX Trade <a href="/info/terms" target="_blank">Terms and conditions</a>
             </div>
           
             <div class="col-12 col-m-12 col-sm-12">

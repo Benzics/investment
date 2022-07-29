@@ -17,3 +17,4 @@ use App\Http\Controllers\RegistrationController;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/register', [RegistrationController::class, 'index']);
+Route::post('/register', [RegistrationController::class, 'store']);

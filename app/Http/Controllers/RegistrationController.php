@@ -10,4 +10,17 @@ class RegistrationController extends Controller
     {
         return view('register');
     }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'fname' => 'required',
+            'lname' => 'required',
+            'email' => 'required|email',
+            'gender' => 'required',
+            'phone' => 'required',
+            'password' => 'required|min:6|confirmed'
+
+        ]);
+    }
 }
