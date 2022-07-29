@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ProfileSeeder extends Seeder
 {
@@ -14,6 +15,14 @@ class ProfileSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('profiles')->insert([
+            'user_id' => '1',
+            'referrer' => '0',
+            'gender' => 'male',
+            'phone' => '123456789',
+            'address' => '',
+            'zip' => '',
+            'country' => '',
+        ]);
     }
 }
