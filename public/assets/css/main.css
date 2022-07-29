@@ -1215,7 +1215,7 @@ input[disabled]{ background-color:#000;}
 }
 
 /* The Close Button */
-.modal-content .close, .modal-content-small .close, {
+.modal-content .close, .modal-content-small .close {
     color: #fff;
     float: right;
     font-size: 32px;
@@ -2470,7 +2470,7 @@ img{ max-width:100%;}
 	color: #FD961A !important;
 	font-size: 10px !important;
 	line-height: 0 !important;
-    //height: 14px !important;
+    height: 14px !important;
     text-align: center !important;
 }
 .btcwdgt.btcwdgt-s-price .btcwdgt-body span, .btcwdgt.btcwdgt-text-ticker .btcwdgt-footer, .btcwdgt.btcwdgt-text-ticker .btcwdgt-edge {
