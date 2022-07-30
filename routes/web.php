@@ -18,3 +18,7 @@ use App\Http\Controllers\RegistrationController;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/register', [RegistrationController::class, 'index']);
 Route::post('/register', [RegistrationController::class, 'store']);
+
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');

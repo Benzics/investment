@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Profile;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
 
 class RegistrationController extends Controller
 {
@@ -38,6 +39,8 @@ class RegistrationController extends Controller
             'gender' => $validated['gender'],
             'phone' => $validated['phone']
         ]);
+
+        event(new Registered($user));
 
     }
 }
