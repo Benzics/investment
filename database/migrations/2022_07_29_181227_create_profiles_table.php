@@ -16,12 +16,12 @@ return new class extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->integer('referrer');
-            $table->string('gender');
-            $table->string('phone');
-            $table->string('address');
-            $table->string('zip');
-            $table->string('country');
+            $table->integer('referrer')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->string('zip')->nullable();
+            $table->string('country')->nullable();
             $table->timestamps();
         });
     }

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Profile;
+use Illuminate\Support\Facades\Hash;
 
 class RegistrationController extends Controller
 {
@@ -15,11 +18,26 @@ class RegistrationController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users',
             'gender' => 'required',
             'phone' => 'required',
-            'password' => 'required|min:6|confirmed'
+            'password' => 'required|min:5|confirmed'
 
         ]);
+
+        // create user
+        $user = User::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+        ]);
+
+        // create user profile
+        $profile = Profile::create([
+            'user_id' => $user->id,
+            'gender' => $validated['gender'],
+            'phone' => $validated['phone']
+        ]);
+
     }
 }
