@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>@isset($title) {{$title}} @endisset - {{config('app.name')}}</title>
     
 <link href="{{ asset('favicon.png') }}" rel="icon" type="image/x-icon" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -190,8 +190,22 @@
 	</li>
 	<li class="account row">
 		<div class="bodycontainer">
-			<div class="button_container"><a href="{{ url('/login') }}" class="btn"><i class="fa fa-user"></i> SIGN IN</a></div>
-				<div class="button_container"><a href="{{ url('/register') }}" class="btn v2"><i class="fa fa-user-plus"></i> REGISTER</a></div>		</div>
+            @auth
+            <div class="button_container">
+                <a href="{{ url('/user/dashboard') }}" class="btn"><i class="fa fa-user"></i> DASHBOARD</a>
+            </div>
+			<div class="button_container">
+                <a href="{{ url('/logout') }}" class="btn v2"><i class="fa fa-sign-out"></i> LOGOUT</a>
+            </div>
+            @else
+			<div class="button_container">
+                <a href="{{ url('/login') }}" class="btn"><i class="fa fa-user"></i> SIGN IN</a>
+            </div>
+			<div class="button_container">
+                <a href="{{ url('/register') }}" class="btn v2"><i class="fa fa-user-plus"></i> REGISTER</a>
+            </div>		
+            @endauth
+        </div>
 	</li>
 </ul>
 </div>

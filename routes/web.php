@@ -25,6 +25,7 @@ Route::get('/register', [RegistrationController::class, 'index'])->name('registe
 Route::post('/register', [RegistrationController::class, 'store']);
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
+Route::get('/logout', [LoginController::class, 'logout']);
 
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
