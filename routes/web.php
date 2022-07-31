@@ -34,7 +34,7 @@ Route::get('/email/verify', function () {
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
  
-    return redirect('/');
+    return redirect()->route('user.dashboard')->with('success', 'Your email has been verified.');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
  
