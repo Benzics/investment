@@ -33,7 +33,7 @@
       <div class="info-slick">
         <div>
           <h1 class="headering"><span class="text-default">BITCOIN</span> INVESTMENT<br>YOU CAN <span class="text-default">TRUST</span></h1>
-		  <a href="" class="btn">GET STARTED</a>
+		  <a href="/get-started" class="btn">GET STARTED</a>
         </div>
       </div>
     </div>
