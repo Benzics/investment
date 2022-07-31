@@ -25,7 +25,7 @@
                   <h4>Email Verification</h4>
                   <span class="decor_default"></span>
             </div>
-            @if($message) <div class="alertsuccess">{{$message}}</div> @endif
+            @if(session('message')) <div class="success">{{session('message')}}</div> @endif
             <br>
             <div class="alertdanger">An email verification link was sent to your email when you registered. Please verify your email by clicking the link.</div>
         

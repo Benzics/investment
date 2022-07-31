@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Profile;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Auth;
 
 class RegistrationController extends Controller
 {
@@ -42,7 +43,9 @@ class RegistrationController extends Controller
 
         event(new Registered($user));
 
-        return redirect()->route('login');
+        Auth::login($user);
+
+        return redirect()->route('user.dashboard');
 
     }
 }

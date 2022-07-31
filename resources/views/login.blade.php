@@ -22,7 +22,19 @@
                   <h4>Login Authentication</h4>
                   <span class="decor_default"></span>
             </div>
-                        <input type="text" placeholder="Email" required name="email" value="" style="width:100%" class="margintb round">
+
+            <div class="">
+                @if ($errors->any())
+                    <div class="danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+            </div>
+                        <input type="text" placeholder="Email" required name="email" value="{{old('email')}}" style="width:100%" class="margintb round">
     
                 <input type="password" placeholder="Password" required name="password" style="width:100%" class="margintb round">
                 <div class="row margintb">

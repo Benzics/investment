@@ -6,6 +6,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistrationController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use App\Http\Controllers\user\DashboardController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +24,7 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/register', [RegistrationController::class, 'index'])->name('register');
 Route::post('/register', [RegistrationController::class, 'store']);
 Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::post('/login', [LoginController::class, 'store']);
+Route::post('/login', [LoginController::class, 'authenticate']);
 
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
@@ -39,5 +41,10 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 Route::post('/email/verification-notification', function (Request $request) {
     $request->user()->sendEmailVerificationNotification();
  
-    return back()->with('message', 'Verification link sent!');
+    return back()->with('message', 'Verification link sent! Please check your spam folder if you can\'t find message in your inbox.');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+Route::middleware(['auth', 'verified'])->name('user.')->prefix('user')->group(function(){
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});
