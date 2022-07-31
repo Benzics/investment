@@ -19,11 +19,14 @@
         
     
     
-    <form action="" id="verify" method="POST">
+    <form action="/email/verification-notification" id="verify" method="POST">
+        @csrf
             <div class="title_container">
                   <h4>Email Verification</h4>
                   <span class="decor_default"></span>
             </div>
+            @if($message) <div class="alertsuccess">{{$message}}</div> @endif
+            <br>
             <div class="alertdanger">An email verification link was sent to your email when you registered. Please verify your email by clicking the link.</div>
         
                <button type="submit" class="btn round red margintb" style="width: 100%">Resend Email for Verification</button>
