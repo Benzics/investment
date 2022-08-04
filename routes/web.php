@@ -7,6 +7,7 @@ use App\Http\Controllers\RegistrationController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\user\DashboardController;
+use App\Http\Controllers\admin\LoginController as AdminLoginController;
 
 
 /*
@@ -29,6 +30,7 @@ Route::get('/logout', [LoginController::class, 'logout']);
 Route::get('/get-started', function(){
     return view('get-started', ['title' => 'Get Started']);
 });
+Route::get('/admin/login', [AdminLoginController::class, 'index']);
 
 Route::get('/email/verify', function () {
     return view('auth.verify-email', ['title' => 'Verify Email']);
