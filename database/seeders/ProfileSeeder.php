@@ -17,6 +17,7 @@ class ProfileSeeder extends Seeder
     {
         DB::table('profiles')->insert([
             'user_id' => '1',
+            'role_id' => '2',
             'referrer' => '0',
             'gender' => 'male',
             'phone' => '123456789',
