@@ -9,7 +9,7 @@
     <style>
         main {
             display:block;
-            max-width: 500px;
+            max-width: 500px !important;
             margin-left: auto;
             margin-right: auto;
         }
@@ -19,7 +19,18 @@
 <body>
     <header class="bg-primary p-4 mb-5 text-light">Admin Login</header>
 
-    <main class="pt-5 mb-5">
+    <main class="pt-5 mb-5 container">
+       
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        
         <form action="" method="post">
             @csrf
             <div class="form-group">
@@ -31,7 +42,11 @@
                 <input type="password" name="password" id="password" class="form-control" />
             </div>
             <div class="form-group">
-                <button class="btn btn-primary" type="submit">Login</button>
+                <input type="checkbox" name="remember" id="remember">
+                <label for="remember">Remember Me</label>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-block" type="submit">Login</button>
             </div>
         </form>
     </main>

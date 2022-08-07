@@ -31,6 +31,7 @@ Route::get('/get-started', function(){
     return view('get-started', ['title' => 'Get Started']);
 });
 Route::get('/admin/login', [AdminLoginController::class, 'index']);
+Route::post('/admin/login', [AdminLoginController::class, 'authenticate']);
 
 Route::get('/email/verify', function () {
     return view('auth.verify-email', ['title' => 'Verify Email']);
