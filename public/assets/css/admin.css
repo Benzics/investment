@@ -1,0 +1,23 @@
+ul, li {
+    padding: 0;
+    margin: 0;
+}
+a {
+    text-decoration: none;
+    transition: .3s;
+}
+
+ul.side-nav li {
+    display: block;
+    padding: 10px 20px;
+    color: #eee !important;
+}
+ul.side-nav li.active {
+    background-color: #eee;
+    color: #000 !important;
+}
+ul.side-nav li:hover {
+    background-color: #eee;
+    color:#000 !important;
+    text-decoration: none;
+}
