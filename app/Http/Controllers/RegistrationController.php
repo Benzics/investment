@@ -34,11 +34,27 @@ class RegistrationController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
+
+        // generate user ref_id
+        $ref_id = 'ZFX-'. mt_rand(111111, 999999) . $user->id;
+
+        // determine if user referal id is valid 
+        if(isset($request->input('g_id')))
+        {
+            $referer = Profile::where('ref_id', $request->input('g_id'))->get();
+
+            if($referer)
+            {
+                
+            }
+        }
+
         // create user profile
         $profile = Profile::create([
             'user_id' => $user->id,
             'gender' => $validated['gender'],
-            'phone' => $validated['phone']
+            'phone' => $validated['phone'],
+            'ref_id' => $ref_id,
         ]);
 
         event(new Registered($user));

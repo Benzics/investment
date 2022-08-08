@@ -12,11 +12,12 @@ class Profile extends Model
     protected $fillable = [
         'user_id',
         'referrer',
+        'ref_id',
         'gender',
         'phone',
         'address',
         'zip',
-        'country'
+        'country',
 
     ];
 }

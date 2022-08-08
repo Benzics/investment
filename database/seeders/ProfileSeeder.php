@@ -19,6 +19,7 @@ class ProfileSeeder extends Seeder
             'user_id' => '1',
             'role_id' => '2',
             'referrer' => '0',
+            'ref_id' => 'ZFX-100001',
             'gender' => 'male',
             'phone' => '123456789',
             'address' => '',

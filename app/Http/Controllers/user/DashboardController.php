@@ -9,6 +9,10 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('user.dashboard');
+        $data = [
+            'title' => 'My Dashboard',
+        ];
+        
+        return view('user.dashboard', $data);
     }
 }
