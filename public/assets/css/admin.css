@@ -4,20 +4,26 @@ ul, li {
 }
 a {
     text-decoration: none;
-    transition: .3s;
 }
-
+a:hover {
+    text-decoration: none;
+}
 ul.side-nav li {
     display: block;
     padding: 10px 20px;
-    color: #eee !important;
+    transition: .3s;
 }
-ul.side-nav li.active {
+ul.side-nav li.active, ul.side-nav li:hover {
     background-color: #eee;
-    color: #000 !important;
 }
-ul.side-nav li:hover {
-    background-color: #eee;
-    color:#000 !important;
-    text-decoration: none;
+
+.side-nav li a {
+    color: #eee;
+}
+.side-nav li:hover a, .side-nav li.active a {
+    color: #000;
+}
+.side-nav i {
+    display: inline-block;
+    margin-right: 5px;
 }
