@@ -15,7 +15,7 @@ class LoginController extends Controller
         return view('admin.login');
     }
 
-    public function authenticate(Request $request, User $u)
+    public function authenticate(Request $request)
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
@@ -24,11 +24,20 @@ class LoginController extends Controller
 
         $remember = $request->remember ? TRUE : FALSE;
 
+        $user = User::where('email', $credentials['email'])->first();
+
+        if(!$user || !$user->is_admin)
+        {
+            return back()->withErrors([
+                'email' => 'The provided credentials do not match our records.'
+            ])->onlyInput('email');
+        }
+
         if (Auth::attempt($credentials, $remember))
         {
             $request->session()->regenerate();
 
-            return redirect()->route('user.dashboard');
+            return redirect()->route('admin.dashboard');
         }
 
         return back()->withErrors([

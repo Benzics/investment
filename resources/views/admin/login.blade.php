@@ -13,6 +13,13 @@
             margin-left: auto;
             margin-right: auto;
         }
+        ul, li {
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            list-style-type: none;
+        }
     </style>
 
 </head>

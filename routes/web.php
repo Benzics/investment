@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\user\DashboardController;
 use App\Http\Controllers\admin\LoginController as AdminLoginController;
+use App\Http\Controllers\admin\DashboardController as AdminDashboardController;
 
 
 /*
@@ -30,6 +31,8 @@ Route::get('/logout', [LoginController::class, 'logout']);
 Route::get('/get-started', function(){
     return view('get-started', ['title' => 'Get Started']);
 });
+
+
 Route::get('/admin/login', [AdminLoginController::class, 'index']);
 Route::post('/admin/login', [AdminLoginController::class, 'authenticate']);
 
@@ -51,7 +54,15 @@ Route::post('/email/verification-notification', function (Request $request) {
     return back()->with('message', 'Verification link sent! Please check your spam folder if you can\'t find message in your inbox.');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
+
+// user routes
 Route::middleware(['auth', 'verified'])->name('user.')->prefix('user')->group(function(){
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});
+
+// admin routes
+Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function(){
+
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 });
