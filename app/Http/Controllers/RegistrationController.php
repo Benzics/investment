@@ -8,6 +8,7 @@ use App\Models\Profile;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
+use App\Services\RegistrationService;
 
 class RegistrationController extends Controller
 {
@@ -27,6 +28,8 @@ class RegistrationController extends Controller
 
         ]);
 
+        $reg_service = new RegistrationService();
+
         // create user
         $user = User::create([
             'name' => $validated['name'],
@@ -36,25 +39,21 @@ class RegistrationController extends Controller
 
 
         // generate user ref_id
-        $ref_id = 'ZFX-'. mt_rand(111111, 999999) . $user->id;
+        $ref_id = $reg_service->newRefId($user->id, 'ZFX');
 
         // determine if user referal id is valid 
-        if(isset($request->input('g_id')))
+        if($request->input('g_id'))
         {
-            $referer = Profile::where('ref_id', $request->input('g_id'))->get();
-
-            if($referer)
-            {
-                
-            }
+            $referer = $reg_service->getRefUser($request->input('g_id'));
         }
 
         // create user profile
-        $profile = Profile::create([
+        Profile::create([
             'user_id' => $user->id,
             'gender' => $validated['gender'],
             'phone' => $validated['phone'],
             'ref_id' => $ref_id,
+            'referrer' => $referer ?? 0,
         ]);
 
         event(new Registered($user));
