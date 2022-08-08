@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\user\DashboardController;
 use App\Http\Controllers\admin\LoginController as AdminLoginController;
 use App\Http\Controllers\admin\DashboardController as AdminDashboardController;
-
+use App\Http\Controllers\user\DepositController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +59,7 @@ Route::post('/email/verification-notification', function (Request $request) {
 Route::middleware(['auth', 'verified'])->name('user.')->prefix('user')->group(function(){
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/deposit', [DepositController::class, 'index'])->name('deposit');
 });
 
 // admin routes
