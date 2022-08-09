@@ -27,8 +27,15 @@ class DepositController extends Controller
             'payment_id' => 'required',
 
         ]);
-        
-        return view('user.deposit-fund', ['title' => 'Deposit', 'page_title' => 'Deposit Preview']);
+
+        $payment = Payment::find($validate['payment_id']);
+
+        if(!$payment)
+        {
+            return redirect()->route('user.deposit')->with(['error' => 'Invalid payment method']);
+        }
+
+        return view('user.deposit-fund', ['title' => 'Deposit', 'page_title' => 'Deposit Preview', 'payment' => $payment]);
     }
 
     public function store(Request $request)

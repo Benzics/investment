@@ -12,6 +12,7 @@ class Payment extends Model
     protected $fillable = [
         'name',
         'image',
+        'address',
         'status',
     ];
 }

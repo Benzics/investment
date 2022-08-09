@@ -3,18 +3,19 @@
 		<div class="white section round center" style="padding:0">
 			<div class="has-gradient-to-right-bottom padding"><h4 class="text-white">Ethereum</h4></div>
 			<ul class="listing padding">
-				<li><img src="https://globaloptionsfxtrade.com/images/1532345051h7.png"></li>
+				<li><img src="{{ $payment->image }}"></li>
 				<li>
-					<a href="https://globaloptionsfxtrade.com/account/deposit-fund" class="btn has-gradient-to-right-bottom round-xxlarge" style="font-size: 14px; padding: 5px 20px"><i class="fa fa-send"></i> GO BACK</a>
+					<a href="{{ url('/user/deposit') }}" class="btn has-gradient-to-right-bottom round-xxlarge" style="font-size: 14px; padding: 5px 20px"><i class="fa fa-send"></i> GO BACK</a>
 				</li>
 			</ul>
 		</div>
 	</div>
-	<form action="https://globaloptionsfxtrade.com/account/deposit-fund" method="POST" enctype="multipart/form-data" class="col-8 col-m-6 sticky" id="form">
-	<input type="hidden" name="method" value="Ethereum" required>
-	<input type="hidden" name="amount" value="1" required>
-	<input type="hidden" name="charges" value="1.01" required>
-	<input type="hidden" name="add_deposit" value="1" required>
+	<form action="/user/deposit" method="POST" enctype="multipart/form-data" class="col-8 col-m-6 sticky" id="form">
+        @csrf
+	
+	<input type="hidden" name="amount" value="{{ old('amount') }}" required>
+	<input type="hidden" name="charges" value="{{ old('charges') }}" required>
+	
 	<div class="white section round">
 	<h4>Deposit Preview</h4><hr>
 	<div class="row container" style="max-width: 500px">
@@ -23,7 +24,7 @@
 		</div>
 		<div class="col-8 col-m-12">
 			<div class="display-container">
-				<input type="number" name="amount" value="1" required class="bold padding" style="width: 100%; padding-right: 80px !important;" disabled>
+				<input type="number" name="amount" value="{{ old('amount') }}" required class="bold padding" style="width: 100%; padding-right: 80px !important;" disabled>
 				<span class="padding border grey display-topright" style="display: inline-block;">USD</span>
 			</div>
 		</div>
@@ -32,7 +33,7 @@
 		</div>
 		<div class="col-8 col-m-12">
 			<div class="display-container">
-				<input type="number" name="charges" value="1.01" required class="bold padding" style="width: 100%; padding-right: 80px !important;" disabled>
+				<input type="number" name="charges" value="{{ old('charges') }}" required class="bold padding" style="width: 100%; padding-right: 80px !important;" disabled>
 				<span class="padding border grey display-topright" style="display: inline-block;">USD</span>
 			</div>
 		</div>
@@ -41,7 +42,7 @@
 		</div>
 		<div class="col-8 col-m-12">
 			<div class="display-container">
-				<input type="number" name="total" value="2.01" required class="bold padding" style="width: 100%; padding-right: 80px !important;" disabled>
+				<input type="number" name="total" value="{{ old('amount') + old('charges') }}" required class="bold padding" style="width: 100%; padding-right: 80px !important;" disabled>
 				<span class="padding border grey display-topright" style="display: inline-block;">USD</span>
 			</div>
 		</div>

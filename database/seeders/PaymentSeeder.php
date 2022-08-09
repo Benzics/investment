@@ -20,18 +20,21 @@ class PaymentSeeder extends Seeder
                 'id' => '1',
                 'name' => 'Bitcoin',
                 'image' => '/assets/images/5b55bb652af1a.png',
+                'address' => 'xxx',
                 'status' => '1',
             ],
             [
                 'id' => '2',
                 'name' => 'Ethereum',
                 'image' => '/assets/images/1532345051h7.png',
+                'address' => 'xxx',
                 'status' => '1',
             ],
             [
                 'id' => '3',
                 'name' => 'Skrill',
                 'image' => 'assets/images/1532345115h7.png',
+                'address' => 'xxx',
                 'status' => '1',
             ]
             ]);
