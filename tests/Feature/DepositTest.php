@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -10,9 +11,16 @@ class DepositTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function setUp(): void {
+        parent::setUp();
+        $this->artisan('db:seed');
+    }
+
     public function test_admin_wallet_page()
     {
-        $response = $this->get('/admin/fund-wallet');
+        $user = User::find(1);
+
+        $response = $this->actingAs($user)->get('/admin/fund-wallet');
         $response->assertOk();
     }
 
@@ -23,7 +31,9 @@ class DepositTest extends TestCase
             'credit' => '20',
         ];
 
-        $response = $this->post('/admin/fund-wallet', $data);
+        $user = User::find(1);
+
+        $response = $this->actingAs($user)->post('/admin/fund-wallet', $data);
         $response->assertValid()
         ->assertRedirect('/admin/fund-wallet');
 
@@ -31,7 +41,8 @@ class DepositTest extends TestCase
 
     public function test_user_deposit_page()
     {
-        $response = $this->get('/user/deposit');
+        $user = User::find(1);
+        $response = $this->actingAs($user)->get('/user/deposit');
         $response->assertOk;
     }
 }

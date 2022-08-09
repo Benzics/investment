@@ -7,9 +7,13 @@ use App\Http\Controllers\RegistrationController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\user\DashboardController;
+use App\Http\Controllers\user\DepositController;
+
+// admin
 use App\Http\Controllers\admin\LoginController as AdminLoginController;
 use App\Http\Controllers\admin\DashboardController as AdminDashboardController;
-use App\Http\Controllers\user\DepositController;
+use App\Http\Controllers\admin\DepositController as AdminDepositController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -66,4 +70,6 @@ Route::middleware(['auth', 'verified'])->name('user.')->prefix('user')->group(fu
 Route::middleware(['auth', 'isadmin'])->name('admin.')->prefix('admin')->group(function(){
 
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/fund-wallet', [AdminDepositController::class, 'index'])->name('deposit');
+    Route::post('/fund-wallet', [AdminDepositController::class, 'store']);
 });
