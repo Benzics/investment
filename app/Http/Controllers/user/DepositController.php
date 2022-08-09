@@ -5,6 +5,8 @@ namespace App\Http\Controllers\user;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\File;
+use App\Models\Deposit;
+use App\Models\Payment;
 
 class DepositController extends Controller
 {
