@@ -28,7 +28,7 @@ class DepositTest extends TestCase
     {
         $data = [
             'email' => 'admin@site.com',
-            'credit' => '20',
+            'amount' => '20',
         ];
 
         $user = User::find(1);
@@ -43,6 +43,6 @@ class DepositTest extends TestCase
     {
         $user = User::find(1);
         $response = $this->actingAs($user)->get('/user/deposit');
-        $response->assertOk;
+        $response->assertOk();
     }
 }
