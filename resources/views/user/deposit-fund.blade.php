@@ -29,6 +29,7 @@
 	
 	<input type="hidden" name="amount" value="{{ $amount }}" required>
 	<input type="hidden" name="charges" value="{{ $charges }}" required>
+    <input type="hidden" name="payment_id" value="{{ $payment->id }}" required>
 	
 	<div class="white section round">
 	<h4>Deposit Preview</h4><hr>

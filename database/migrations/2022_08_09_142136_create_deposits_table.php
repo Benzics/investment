@@ -21,7 +21,7 @@ return new class extends Migration
             $table->float('charges')->default('0');
             $table->float('total');
             $table->string('attachment');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->integer('status')->default('0');
             $table->timestamps();
         });

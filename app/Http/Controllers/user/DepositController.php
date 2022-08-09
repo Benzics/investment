@@ -10,10 +10,6 @@ use App\Models\Payment;
 
 class DepositController extends Controller
 {
-    public function __construct()
-    {
-        $this->user = auth()->user();
-    }
 
     public function index()
     {
@@ -27,6 +23,7 @@ class DepositController extends Controller
             'payment_id' => 'required',
 
         ]);
+
 
         $payment = Payment::find($validate['payment_id']);
 
@@ -46,12 +43,14 @@ class DepositController extends Controller
         $validate = $request->validate([
             'attachment' => ['required', File::image()],
             'amount' => 'required|min:1',
+            'payment_id' => 'required',
         ]);
 
         $attachment = $request->file('attachment')->store('deposits');
+        $user = auth()->user();
 
         Deposit::create([
-            'user_id' => $this->user->id,
+            'user_id' => $user->id,
             'payment_id' => $request->payment_id,
             'attachment' => $attachment,
             'amount' => $request->amount,
