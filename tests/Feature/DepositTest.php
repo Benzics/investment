@@ -5,6 +5,8 @@ namespace Tests\Feature;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class DepositTest extends TestCase
@@ -44,5 +46,24 @@ class DepositTest extends TestCase
         $user = User::find(1);
         $response = $this->actingAs($user)->get('/user/deposit');
         $response->assertOk();
+    }
+
+    public function test_deposit_attachment()
+    {
+        $user = User::find(1);
+
+        Storage::fake('payments');
+
+        $data = [
+            'attachment' => UploadedFile::fake()->image('payment.jpg'),
+            'description' => 'A test',
+            'amount' => '10',
+            'fee' => '1',
+            'payment_id' => '1',
+        ];
+
+        $response = $this->actingAs($user)->post('/user/deposit', $data);
+        $response->assertValid()
+            ->assertRedirect('/user/deposit');
     }
 }
