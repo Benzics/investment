@@ -20,7 +20,7 @@ class WalletPolicy
         //
     }
 
-    public function fund(User $user)
+    public function fund(User $user, Wallet $wallet)
     {
         return $user->is_admin === 1;
     }

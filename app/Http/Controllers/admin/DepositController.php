@@ -15,9 +15,9 @@ class DepositController extends Controller
         return view('admin.fund-wallet');
     }
 
-    public function store(Request $request)
+    public function store(Request $request, Wallet $wallet)
     {
-        Gate::authorize('fund');
+        Gate::authorize('fund', $wallet);
 
         $validate = $request->validate([
             'email' => 'required|email',
