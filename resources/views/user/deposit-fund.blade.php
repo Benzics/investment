@@ -1,16 +1,4 @@
-<div class="udex-main" id="main">
 
-    
-<div class="row kk">
-<div class="col-12" style="padding-top: 0">
-	<div class="title_container">
-		<ul class="breadcrumb right udex-hidden">
-  <li><a href=""><i class="fa fa-home"></i> Home</a></li>
-  <li class="bold">Deposit Preview</li></ul>
-		<h4>Deposit Preview</h4>
-		<span class="decor_default"></span>
-	</div>
-</div>
 	<div class="col-4 col-m-6 sticky">
 		<div class="white section round center" style="padding:0">
 			<div class="has-gradient-to-right-bottom padding"><h4 class="text-white">Ethereum</h4></div>

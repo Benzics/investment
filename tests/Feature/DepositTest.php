@@ -66,4 +66,12 @@ class DepositTest extends TestCase
         $response->assertValid()
             ->assertRedirect('/user/deposit');
     }
+
+    public function test_deposit_preview()
+    {
+        $user = User::find(1);
+        $response = $this->post('/user/deposit-fund', ['amount' => '10', 'charges' => '1', 'payment_id' => '1' ]);
+
+        $response->assertOk();
+    }
 }
