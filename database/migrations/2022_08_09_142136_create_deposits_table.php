@@ -18,6 +18,8 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->foreignId('payment_id');
             $table->float('amount');
+            $table->float('charges')->default('0');
+            $table->float('total');
             $table->string('attachment');
             $table->text('description');
             $table->integer('status')->default('0');
