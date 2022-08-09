@@ -58,7 +58,7 @@ class DepositTest extends TestCase
             'attachment' => UploadedFile::fake()->image('payment.jpg'),
             'description' => 'A test',
             'amount' => '10',
-            'fee' => '1',
+            'charges' => '1',
             'payment_id' => '1',
         ];
 
