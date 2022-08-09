@@ -18,7 +18,7 @@
 <div class="white section round">
 	<h4>Bitcoin</h4>
 	<div class="center padding" style="border: 2px dashed #FF6600">
-		<img src="{{ asset(' /assets/images/5b55bb652af1a.png')}}" style="height:90px">
+		<img src="{{ asset('/assets/images/5b55bb652af1a.png')}}" style="height:90px">
 	</div>
 	<button class="btn has-gradient-to-right-bottom margintb trigger-btc" style="padding: 10px 20px"><i class="fa fa-send"></i> Add Fund</button>
 </div>
@@ -137,7 +137,8 @@ All photos and videos uploaded by you must comply with these requirements, other
 	</div>
 	<div class="iziModal-wrap">
 		<div class="iziModal-content">
-		<form method="POST" action="assets/account/deposit-fund" class="row">
+		<form method="POST" action="deposit-fund" class="row">
+
 			<div class="col-12">
 				<div class="danger margintb">Deposit Charge : (1 + 1%) - USD</div>
 				<div class="display-container">

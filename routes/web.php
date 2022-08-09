@@ -65,6 +65,7 @@ Route::middleware(['auth', 'verified'])->name('user.')->prefix('user')->group(fu
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/deposit', [DepositController::class, 'index'])->name('deposit');
     Route::post('/deposit', [DepositController::class, 'store']);
+    Route::post('/deposit-fund', [DepositController::class, 'deposit']);
 });
 
 // admin routes
