@@ -184,3 +184,18 @@
             <li><a href="https://globaloptionsfxtrade.com/contact"> <i class="fa fa-exclamation-circle"></i> Help</a></li>
         </ul>
     </div>
+
+    <div class="udex-main" id="main">
+
+        <script src="/assets/js/validation.js"></script>
+        
+    <div class="row kk">
+    <div class="col-12" style="padding-top: 0">
+        <div class="title_container">
+            <ul class="breadcrumb right udex-hidden">
+      <li><a href="{{ url('/user/dashboard') }}"><i class="fa fa-home"></i> Home</a></li>
+      <li class="bold"> {{$page_title ?? ''}} </li></ul>
+            <h4>{{$page_title ?? ''}}</h4>
+            <span class="decor_default"></span>
+        </div>
+    </div>

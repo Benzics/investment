@@ -17,7 +17,12 @@ class DepositController extends Controller
 
     public function index()
     {
-        return view('user.deposit');
+        return view('user.deposit', ['title' => 'Deposit', 'page_title' => 'Deposit Method']);
+    }
+
+    public function deposit(Request $request)
+    {
+        return view('user.deposit-fund', ['title' => 'Deposit', 'page_title' => 'Deposit Preview']);
     }
 
     public function store(Request $request)

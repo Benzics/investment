@@ -1,19 +1,6 @@
 @include('includes.user.header')
 
-<div class="udex-main" id="main">
 
-    <script src="/assets/js/validation.js"></script>
-    
-<div class="row kk">
-<div class="col-12" style="padding-top: 0">
-	<div class="title_container">
-		<ul class="breadcrumb right udex-hidden">
-  <li><a href="{{ url('/user/dashboard') }}"><i class="fa fa-home"></i> Home</a></li>
-  <li class="bold">Deposit Method</li></ul>
-		<h4>Deposit Method</h4>
-		<span class="decor_default"></span>
-	</div>
-</div>
 <div class="col-4 col-m-6">
 <div class="white section round">
 	<h4>Bitcoin</h4>
