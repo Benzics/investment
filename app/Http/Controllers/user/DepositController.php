@@ -22,6 +22,12 @@ class DepositController extends Controller
 
     public function deposit(Request $request)
     {
+        $validate = $request->validate([
+            'amount' => 'required',
+            'payment_id' => 'required',
+
+        ]);
+        
         return view('user.deposit-fund', ['title' => 'Deposit', 'page_title' => 'Deposit Preview']);
     }
 
