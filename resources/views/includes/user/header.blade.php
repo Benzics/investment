@@ -166,6 +166,9 @@
     #imgChange {
         position: relative;
     }
+    .mb-3 {
+        margin-bottom: 15px;
+    }
     </style>
     <div class="default cpanel_info">
         USER ID: ZCI-422248</div>

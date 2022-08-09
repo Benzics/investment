@@ -1,5 +1,32 @@
 @include('includes.user.header')
 
+@if (session('success') !== null)
+<div class="col-12">
+    <div class="success mb-3">
+        {{ session('success') }}
+    </div>
+</div>
+@endif
+
+@if (session('error') !== null)
+<div class="col-12">
+<div class="danger mb-3">
+    {{ session('error') }}
+</div>
+</div>
+@endif
+
+@if ($errors->any())
+<div class="col-12">
+    <div class="danger mb-3">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+</div>
+@endif
 
 <div class="col-4 col-m-6">
 <div class="white section round">
@@ -124,12 +151,13 @@ All photos and videos uploaded by you must comply with these requirements, other
 	</div>
 	<div class="iziModal-wrap">
 		<div class="iziModal-content">
-		<form method="POST" action="deposit-fund" class="row">
-
+		<form method="POST" action="/user/deposit-fund" class="row">
+            @csrf
+            <input type="hidden" name="payment_id" value="1">
 			<div class="col-12">
-				<div class="danger margintb">Deposit Charge : (1 + 1%) - USD</div>
+				<div class="danger margintb">Deposit Charge : 1% - USD</div>
 				<div class="display-container">
-					<input type="number" required name="bit_amount_fund" placeholder="Amount" class="padding bold" style="width: 100%; padding-right: 70px !important">
+					<input type="number" required name="amount" placeholder="Amount" class="padding bold" style="width: 100%; padding-right: 70px !important">
 					<span class="display-topright grey padding border" style="display: inline-block">USD</span>
 				</div>
 				<button class="btn default padding center" style="margin-top: 10px; width: 100%"><i class="fa fa-send"></i> CONTINUE</button>

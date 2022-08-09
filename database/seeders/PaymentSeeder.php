@@ -33,7 +33,7 @@ class PaymentSeeder extends Seeder
             [
                 'id' => '3',
                 'name' => 'Skrill',
-                'image' => 'assets/images/1532345115h7.png',
+                'image' => '/assets/images/1532345115h7.png',
                 'address' => 'xxx',
                 'status' => '1',
             ]

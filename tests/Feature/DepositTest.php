@@ -64,7 +64,8 @@ class DepositTest extends TestCase
 
         $response = $this->actingAs($user)->post('/user/deposit', $data);
         $response->assertValid()
-            ->assertRedirect('/user/deposit');
+            ->assertRedirect('/user/deposit')
+            ->assertOk();
     }
 
     public function test_deposit_preview()
