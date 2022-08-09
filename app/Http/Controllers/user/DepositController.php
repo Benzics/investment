@@ -35,6 +35,7 @@ class DepositController extends Controller
             'attachment' => $attachment,
             'amount' => $request->amount,
             'charges' => $request->charges,
+            'description' => $request->description,
             'total' => $request->amount + $request->charges,
             'status' => '0',
         ]);
