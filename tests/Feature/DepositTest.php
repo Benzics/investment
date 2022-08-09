@@ -70,7 +70,8 @@ class DepositTest extends TestCase
     public function test_deposit_preview()
     {
         $user = User::find(1);
-        $response = $this->post('/user/deposit-fund', ['amount' => '10', 'charges' => '1', 'payment_id' => '1' ]);
+        $response = $this->actingAs($user)
+            ->post('/user/deposit-fund', ['amount' => '10', 'charges' => '1', 'payment_id' => '1' ]);
 
         $response->assertOk();
     }
