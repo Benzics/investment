@@ -55,7 +55,7 @@ class WithdrawalController extends Controller
             'charges' => $charges,
         ]);
 
-        return redirect()->route('withdraw')->with(['success' => 'Withdrawal request successfully initiated, it will be processed shortly.']);
+        return redirect()->route('user.withdraw')->with(['success' => 'Withdrawal request successfully initiated, it will be processed shortly.']);
 
     }
 }

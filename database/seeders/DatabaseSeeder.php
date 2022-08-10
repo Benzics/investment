@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             ProfileSeeder::class,
             RoleSeeder::class,
             PaymentSeeder::class,
+            WalletSeeder::class,
         ]);
     }
 }
