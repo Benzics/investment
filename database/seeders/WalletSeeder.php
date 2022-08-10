@@ -21,6 +21,7 @@ class WalletSeeder extends Seeder
             'description' => 'Initial admin deposit',
             'balance' => 1000,
             'type' => '1',
+            'created_at' => now(),
         ]);
     }
 }
