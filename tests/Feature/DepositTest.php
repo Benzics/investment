@@ -75,4 +75,11 @@ class DepositTest extends TestCase
 
         $response->assertOk();
     }
+
+    public function test_admin_deposits_page()
+    {
+        $user = User::find(1);
+        $response = $this->actingAs($user)->get('/admin/deposits');
+        $response->assertOk();
+    }
 }
