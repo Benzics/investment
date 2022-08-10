@@ -16,18 +16,18 @@
         <aside class="col-md-3 col-12 col-xl-2">
             <nav class="bg-dark v10">
                 <ul class="side-nav">
-                    <li class="active">
-                        <a href="{{ url('/admin/dashboard') }}" class="{{($page_title == 'dashboard' ? 'active' : '')}}"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                    <li class="{{(isset($page_title) && $page_title == 'dashboard' ? 'active' : '')}}">
+                        <a href="{{ url('/admin/dashboard') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
                     </li>
-                    <li>
-                        <a href="{{ url('/admin/users') }}" class="{{($page_title == 'users' ? 'active' : '')}}"><i class="fas fa-users"></i> Users</a>
+                    <li class="{{(isset($page_title) && $page_title == 'users' ? 'active' : '')}}">
+                        <a href="{{ url('/admin/users') }}"><i class="fas fa-users"></i> Users</a>
                     </li>
-                    <li>
-                        <a href="{{ url('/admin/deposits') }}" class="{{($page_title == 'deposits' ? 'active' : '')}}"><i class="fas fa-money-bill"></i> Deposits</a>
+                    <li class="{{(isset($page_title) && $page_title == 'deposits' ? 'active' : '')}}">
+                        <a href="{{ url('/admin/deposits') }}"><i class="fas fa-money-bill"></i> Deposits</a>
                     </li>
 
-                    <li>
-                        <a href="{{ url('/admin/fund-wallet') }}" class="{{($page_title == 'fund_wallet' ? 'active' : '')}}"><i class="fas fa-money-bill-wave"></i> Wallet Top Up</a>
+                    <li class="{{(isset($page_title) && $page_title == 'fund_wallet' ? 'active' : '')}}">
+                        <a href="{{ url('/admin/fund-wallet') }}"><i class="fas fa-money-bill-wave"></i> Wallet Top Up</a>
                     </li>
                     <li>
                         <a href="{{ url('/admin/settings') }}"><i class="fas fa-cogs"></i> Site Settings</a>
