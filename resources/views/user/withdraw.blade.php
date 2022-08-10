@@ -38,11 +38,11 @@
 		<form method="POST" action="" class="row">
             @csrf
 			<div class="col-12">
-				<div class="danger margintb">Withdraw Charge : (25 + 2.25%) - USD</div>
+				<div class="danger margintb">Withdraw Charge : (25 + 2.25%) - {{ $currency_short }}</div>
 				<div class="display-container">
 					<input type="number" required name="amount" placeholder="Amount" class="padding bold" style="width: 100%; padding-right: 70px !important">
                     <input type="hidden" name="payment_id" value="{{ $row->id }}">
-					<span class="display-topright grey padding border" style="display: inline-block">USD</span>
+					<span class="display-topright grey padding border" style="display: inline-block">{{ $currency_short }}</span>
 				</div>
 				<button class="btn default padding center" style="margin-top: 10px; width: 100%"><i class="fa fa-send"></i> WITHDRAW NOW</button>
 			</div>
