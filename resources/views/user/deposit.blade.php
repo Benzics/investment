@@ -28,33 +28,18 @@
 </div>
 @endif
 
+@foreach($payments as $row)
 <div class="col-4 col-m-6">
 <div class="white section round">
-	<h4>Bitcoin</h4>
+	<h4>{{ $row->name }}</h4>
 	<div class="center padding" style="border: 2px dashed #FF6600">
-		<img src="{{ asset('/assets/images/5b55bb652af1a.png')}}" style="height:90px">
+		<img src="{{ asset($row->image)}}" style="height:90px">
 	</div>
-	<button class="btn has-gradient-to-right-bottom margintb trigger-payment" data-id="1" style="padding: 10px 20px"><i class="fa fa-send"></i> Add Fund</button>
+	<button class="btn has-gradient-to-right-bottom margintb trigger-payment" data-id="{{ $row->id }}" style="padding: 10px 20px"><i class="fa fa-send"></i> Add Fund</button>
 </div>
 </div>
-<div class="col-4 col-m-6">
-<div class="white section round">
-	<h4>Ethereum</h4>
-	<div class="center padding" style="border: 2px dashed #FF6600">
-		<img src="{{ asset('/assets/images/1532345051h7.png')}}" style="height:90px">
-	</div>
-	<button class="btn has-gradient-to-right-bottom margintb trigger-eth" style="padding: 10px 20px"><i class="fa fa-send"></i> Add Fund</button>
-</div>
-</div>
-<div class="col-4 col-m-6">
-<div class="white section round">
-	<h4>Skrill</h4>
-	<div class="center padding" style="border: 2px dashed #FF6600">
-		<img src="{{ asset('assets/images/1532345115h7.png')}}" style="height:90px">
-	</div>
-	<button class="btn has-gradient-to-right-bottom margintb trigger-skr" style="padding: 10px 20px"><i class="fa fa-send"></i> Add Fund</button>
-</div>
-</div>
+@endforeach
+
 </div>
 <style> 
 	.div-symbol-explanation { display: none; }
