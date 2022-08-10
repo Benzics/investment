@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             PaymentSeeder::class,
             WalletSeeder::class,
+            CurrencySeeder::class,
+            SettingSeeder::class,
         ]);
     }
 }
