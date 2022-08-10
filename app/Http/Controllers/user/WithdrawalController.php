@@ -31,7 +31,7 @@ class WithdrawalController extends Controller
 
         $debit = $validate['amount'] + $charges;
 
-        if($debit < $balance)
+        if($balance < $debit)
         {
             return back()->withErrors(['amount' => 'Amount specified is less than your available balance!']);
         }
@@ -44,6 +44,7 @@ class WithdrawalController extends Controller
             'debit' => $debit,
             'description' => $desc,
             'balance' => $balance - $debit,
+            'type' => '3',
         ]);
 
         // save withdrawal 
@@ -53,6 +54,8 @@ class WithdrawalController extends Controller
             'amount' => $validate['amount'],
             'charges' => $charges,
         ]);
+
+        return redirect()->route('withdraw')->with(['success' => 'Withdrawal request successfully initiated, it will be processed shortly.']);
 
     }
 }
