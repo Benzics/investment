@@ -1,19 +1,5 @@
 @include('includes.user.header')
 
-<div class="udex-main" id="main">
-
-    <script src="/js/validation.js"></script>
-    
-<div class="row">
-<div class="col-12">
-	<div class="title_container">
-		<ul class="breadcrumb right udex-hidden">
-  <li><a href="/account"><i class="fa fa-home"></i> Home</a></li>
-  <li class="bold">User Dashboard</li></ul>
-		<h4>User Dashboard</h4>
-		<span class="decor_default"></span>
-	</div>
-</div>
 <div class="col-4 col-m-6">
 <a href="/account/transaction-log">
 	<div class="r4_counter db_box has-gradient-to-right-bottom">

@@ -13,7 +13,19 @@ class DepositController extends Controller
 
     public function index()
     {
-        return view('user.deposit', ['title' => 'Deposit', 'page_title' => 'Deposit Method']);
+        $payments = Payment::all();
+
+        $payment_ids = [];
+
+        foreach($payments as $row)
+        {
+            $payment_ids[] = '#payment-method'. $row->id;
+        }
+
+        $payment_string = implode(',', $payment_ids);
+
+        return view('user.deposit', ['title' => 'Deposit', 'page_title' => 'Deposit Method',
+            'payments' => $payments, 'payment_string' => $payment_string]);
     }
 
     public function deposit(Request $request)

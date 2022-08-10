@@ -34,7 +34,7 @@
 	<div class="center padding" style="border: 2px dashed #FF6600">
 		<img src="{{ asset('/assets/images/5b55bb652af1a.png')}}" style="height:90px">
 	</div>
-	<button class="btn has-gradient-to-right-bottom margintb trigger-btc" style="padding: 10px 20px"><i class="fa fa-send"></i> Add Fund</button>
+	<button class="btn has-gradient-to-right-bottom margintb trigger-payment" data-id="1" style="padding: 10px 20px"><i class="fa fa-send"></i> Add Fund</button>
 </div>
 </div>
 <div class="col-4 col-m-6">
@@ -135,25 +135,19 @@ All photos and videos uploaded by you must comply with these requirements, other
 
 </div>
 <div class="udex-overlay" id="myOverlay"></div>
-{{-- <ul class="udex_footer">
-	<div class="bodycontainer2" style="max-width: 500px">
-		<li><a href="assets/account"><i class="fa fa-home"></i><span>Office</span></a></li>
-		<li><a href="assets/account/trading-view"><i class="fa fa-line-chart"></i><span>Signal</span></a></li>
-		<li><a href="assets/account/info"><i class="fa fa-gears"></i><span>Settings</span></a></li>
-		<li><a href="assets/logout"><i class="fa fa-power-off"></i><span>Logout</span></a></li>
-	</div> --}}
 
-<div id="modal-content" class="iziModal card" style="border-bottom: 3px solid #FF6600; overflow: hidden; display: none; max-width:90% !important;">
+@foreach($payments as $row)
+<div id="payment-method{{ $row->id }}" class="iziModal card" style="border-bottom: 3px solid #FF6600; overflow: hidden; display: none; max-width:90% !important;">
 	<div class="iziModal-header"style="background: #333;">
 		<i class="iziModal-header-icon icon-stack fa fa-inbox"></i>
-		<h2 class="iziModal-header-title" style="color: #fff !important">Add Fund via Bitcoin</h2>
+		<h2 class="iziModal-header-title" style="color: #fff !important">Add Fund via {{ $row->name }}</h2>
 		<a href="javascript:void(0)" class="iziModal-button-close" data-izimodal-close=""></a>
 	</div>
 	<div class="iziModal-wrap">
 		<div class="iziModal-content">
 		<form method="POST" action="/user/deposit-fund" class="row">
             @csrf
-            <input type="hidden" name="payment_id" value="1">
+            <input type="hidden" name="payment_id" value="{{ $row->id }}">
 			<div class="col-12">
 				<div class="danger margintb">Deposit Charge : 1% - USD</div>
 				<div class="display-container">
@@ -167,65 +161,8 @@ All photos and videos uploaded by you must comply with these requirements, other
 		</div>
 	</div>
 </div>
-<div id="modal-content2" class="iziModal card" style="border-bottom: 3px solid #FF6600; overflow: hidden; display: none; max-width:90% !important;">
-	<div class="iziModal-header"style="background: #333;">
-		<i class="iziModal-header-icon icon-stack fa fa-inbox"></i>
-		<h2 class="iziModal-header-title" style="color: #fff !important">Add Fund via Ethereum</h2>
-		<a href="javascript:void(0)" class="iziModal-button-close" data-izimodal-close=""></a>
-	</div>
-	<div class="iziModal-wrap">
-		<div class="iziModal-content">
-		<form method="POST" action="assets/account/deposit-fund" class="row">
-			<div class="col-12">
-				<div class="danger margintb">Deposit Charge : (1 + 1%) - USD</div>
-				<div class="display-container">
-					<input type="number" required name="eth_amount_fund" placeholder="Amount" class="padding bold" style="width: 100%; padding-right: 70px !important">
-					<span class="display-topright grey padding border" style="display: inline-block">USD</span>
-				</div>
-				<button class="btn default padding center" style="margin-top: 10px; width: 100%"><i class="fa fa-send"></i> CONTINUE</button>
-			</div>
-		</div>
-		</form>
-		</div>
-	</div>
-</div>
-<div id="modal-content3" class="iziModal card" style="border-bottom: 3px solid #FF6600; overflow: hidden; display: none; max-width:90% !important;">
-	<div class="iziModal-header"style="background: #333;">
-		<i class="iziModal-header-icon icon-stack fa fa-inbox"></i>
-		<h2 class="iziModal-header-title" style="color: #fff !important">Add Fund via Skrill</h2>
-		<a href="javascript:void(0)" class="iziModal-button-close" data-izimodal-close=""></a>
-	</div>
-	<div class="iziModal-wrap">
-		<div class="iziModal-content">
-		<form method="POST" action="assets/account/deposit-fund" class="row">
-			<div class="col-12">
-				<div class="danger margintb">Deposit Charge : (1 + 1%) - USD</div>
-				<div class="display-container">
-					<input type="number" required name="skr_amount_fund" placeholder="Amount" class="padding bold" style="width: 100%; padding-right: 70px !important">
-					<span class="display-topright grey padding border" style="display: inline-block">USD</span>
-				</div>
-				<button class="btn default padding center" style="margin-top: 10px; width: 100%"><i class="fa fa-send"></i> CONTINUE</button>
-			</div>
-		</div>
-		</form>
-		</div>
-	</div>
-</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+@endforeach
 
 <!-- ConveyThis button: -->
 <div id="conveythis-wrapper-main"><a href="https://www.conveythis.com" class="conveythis-no-translate notranslate" title="ConveyThis" >ConveyThis</a></div>
@@ -241,63 +178,6 @@ conveythis.init({source_language_id: 703, languages: [{"id":"703","active":true}
 
 
 
-
-
-
-
-
-
-<div id="modal-content4" class="iziModal card" style="border-bottom: 3px solid #FF6600; overflow: hidden; display: none; max-width:90% !important;">
-	<div class="iziModal-header"style="background: #333;">
-		<i class="iziModal-header-icon icon-stack fa fa-inbox"></i>
-		<h2 class="iziModal-header-title" style="color: #fff !important">Withdraw via Bitcoin</h2>
-		<a href="javascript:void(0)" class="iziModal-button-close" data-izimodal-close=""></a>
-	</div>
-	<div class="iziModal-wrap">
-		<div class="iziModal-content">
-		<form method="POST" action="assets/account/withdraw-request" class="row">
-			<div class="col-12">
-				<div class="danger margintb">Withdraw Charge : (25 + 2.25%) - USD</div>
-				<div class="display-container">
-					<input type="number" required name="btc_amount_withdraw" placeholder="Amount" class="padding bold" style="width: 100%; padding-right: 70px !important">
-					<span class="display-topright grey padding border" style="display: inline-block">USD</span>
-				</div>
-				<button class="btn default padding center" style="margin-top: 10px; width: 100%"><i class="fa fa-send"></i> WITHDRAW NOW</button>
-			</div>
-		</div>
-		</form>
-		</div>
-	</div>
-</div>
-<div id="modal-content5" class="iziModal card" style="border-bottom: 3px solid #FF6600; overflow: hidden; display: none; max-width:90% !important;">
-	<div class="iziModal-header"style="background: #333;">
-		<i class="iziModal-header-icon icon-stack fa fa-inbox"></i>
-		<h2 class="iziModal-header-title" style="color: #fff !important">Withdraw via Ethereum</h2>
-		<a href="javascript:void(0)" class="iziModal-button-close" data-izimodal-close=""></a>
-	</div>
-	<div class="iziModal-wrap">
-		<div class="iziModal-content">
-		<form method="POST" action="assets/account/withdraw-request" class="row">
-			<div class="col-12">
-				<div class="danger margintb">Withdraw Charge : (25 + 2.30%) - USD</div>
-				<div class="display-container">
-					<input type="number" required name="eth_amount_withdraw" placeholder="Amount" class="padding bold" style="width: 100%; padding-right: 70px !important">
-					<span class="display-topright grey padding border" style="display: inline-block">USD</span>
-				</div>
-				<button class="btn default padding center" style="margin-top: 10px; width: 100%"><i class="fa fa-send"></i> WITHDRAW NOW</button>
-			</div>
-		</div>
-		</form>
-		</div>
-	</div>
-</div>
-<div id="modal-content6" class="iziModal card" style="border-bottom: 3px solid #FF6600; overflow: hidden; display: none; max-width:90% !important;">
-	<div class="iziModal-header"style="background: #333;">
-		<i class="iziModal-header-icon icon-stack fa fa-inbox"></i>
-		<h2 class="iziModal-header-title" style="color: #fff !important">Withdraw via Skrill</h2>
-		<a href="javascript:void(0)" class="iziModal-button-close" data-izimodal-close=""></a>
-	</div>
-</div>
 <script src="{{ asset('/assets/js/iziModal.min.js')}}"></script>
 
 
@@ -315,15 +195,17 @@ if ($(window).width() > 992) {
 }
 </script>
 <script>
-$("#modal-content, #modal-content2, #modal-content3, #modal-content4, #modal-content5, #modal-content6").iziModal({
+$("{{ $payment_string ? $payment_string . ',' : ''}} #modal-content4, #modal-content5, #modal-content6").iziModal({
         overlayColor: 'rgba(0, 0, 0, 0.8)',
 		iconClass: 'icon-stack',
         width: 360,
         padding: 5
     });
-    $(document).on('click', '.trigger-btc', function (event) {
+    $(document).on('click', '.trigger-payment', function (event) {
         event.preventDefault();
-        $('#modal-content').iziModal('open');
+       
+        var payment_id = $(this).attr('data-id');
+        $('#payment-method' + payment_id).iziModal('open');
     });
     $(document).on('click', '.trigger-eth', function (event) {
         event.preventDefault();
