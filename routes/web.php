@@ -74,4 +74,5 @@ Route::middleware(['auth', 'isadmin'])->name('admin.')->prefix('admin')->group(f
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
     Route::get('/fund-wallet', [AdminDepositController::class, 'index'])->name('deposit');
     Route::post('/fund-wallet', [AdminDepositController::class, 'store']);
+    Route::get('/deposits', [AdminDepositController::class, 'deposits'])->name('deposits');
 });

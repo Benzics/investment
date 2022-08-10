@@ -49,4 +49,9 @@ class DepositController extends Controller
 
         return redirect('/admin/fund-wallet')->with(['success' => 'User wallet funded successfully']);
     }
+
+    public function deposits()
+    {
+        return view('admin.deposits');
+    }
 }
