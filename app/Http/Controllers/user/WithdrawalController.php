@@ -12,7 +12,20 @@ class WithdrawalController extends Controller
 {
     public function index()
     {
-        return view('user.withdraw');
+        $payments = Payment::where('status', '1')->get();
+        $title = 'Withdrawal';
+        $page_title = 'Withdrawal Request';
+
+        $payment_ids = [];
+
+        foreach($payments as $row)
+        {
+            $payment_ids[] = '#payment-method'. $row->id;
+        }
+
+        $payment_string = implode(',', $payment_ids);
+
+        return view('user.withdraw', compact('payments', 'title', 'page_title', 'payment_string'));
     }
 
     public function withdraw(Request $request)
@@ -36,7 +49,7 @@ class WithdrawalController extends Controller
             return back()->withErrors(['amount' => 'Amount specified is less than your available balance!']);
         }
 
-        $desc = 'Debit for withdrawal of ' . number_format($validate['amount'], 2) . ', with charges of ' . number_format($charges, 2);
+        $desc = 'Debit for withdrawal of $' . number_format($validate['amount'], 2) . ', with charges of $' . number_format($charges, 2);
 
         // debit user 
         Wallet::create([
