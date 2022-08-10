@@ -13,7 +13,7 @@ class DepositController extends Controller
 
     public function index()
     {
-        $payments = Payment::all();
+        $payments = Payment::where('status', '1')->get();
 
         $payment_ids = [];
 

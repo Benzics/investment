@@ -15,7 +15,7 @@
   
 	<div class="col-4 col-m-6 sticky">
 		<div class="white section round center" style="padding:0">
-			<div class="has-gradient-to-right-bottom padding"><h4 class="text-white">Ethereum</h4></div>
+			<div class="has-gradient-to-right-bottom padding"><h4 class="text-white">{{ $payment->name }}</h4></div>
 			<ul class="listing padding">
 				<li><img src="{{ $payment->image }}"></li>
 				<li>
