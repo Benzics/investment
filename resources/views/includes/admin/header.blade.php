@@ -14,22 +14,23 @@
     <header class="bg-primary p-2 text-light">Admin Panel</header>
     <div class="row">
         <aside class="col-md-3 col-12 col-xl-2">
-            <nav class="bg-dark">
+            <nav class="bg-dark v10">
                 <ul class="side-nav">
                     <li class="active">
-                        <a href="{{ url('/admin/dashboard') }}" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                        <a href="{{ url('/admin/dashboard') }}" class="{{($page_title == 'dashboard' ? 'active' : '')}}"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fas fa-users"></i> Users</a>
+                        <a href="{{ url('/admin/users') }}" class="{{($page_title == 'users' ? 'active' : '')}}"><i class="fas fa-users"></i> Users</a>
                     </li>
                     <li>
-                        <a href="#">Deposits</a>
+                        <a href="{{ url('/admin/deposits') }}" class="{{($page_title == 'deposits' ? 'active' : '')}}"><i class="fas fa-money-bill"></i> Deposits</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url('/admin/fund-wallet') }}" class="{{($page_title == 'fund_wallet' ? 'active' : '')}}"><i class="fas fa-money-bill-wave"></i> Wallet Top Up</a>
                     </li>
                     <li>
-                        <a href="#">All Transactions</a>
-                    </li>
-                    <li>
-                        <a href="#">Site Settings</a>
+                        <a href="{{ url('/admin/settings') }}"><i class="fas fa-cogs"></i> Site Settings</a>
                     </li>
                 </ul>
             </nav>

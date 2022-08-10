@@ -7,12 +7,16 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use App\Models\Wallet;
 use App\Models\User;
+use App\Models\Deposit;
 
 class DepositController extends Controller
 {
     public function index()
     {
-        return view('admin.fund-wallet');
+        $title = 'Fund Wallet';
+        $page_title = 'fund_wallet';
+
+        return view('admin.fund-wallet', compact('title', 'page_title'));
     }
 
     public function store(Request $request, Wallet $wallet)
@@ -52,6 +56,11 @@ class DepositController extends Controller
 
     public function deposits()
     {
-        return view('admin.deposits');
+        $title = 'Deposits';
+        $page_title = 'deposits';
+        $deposits = Deposit::orderBy('status')->get();
+
+        
+        return view('admin.deposits', compact('deposits', 'title', 'page_title'));
     }
 }
