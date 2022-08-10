@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Withdrawal extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'amount',
+        'charges',
+        'payment_id',
+        'user_id',
+        'status',
+    ];
 }

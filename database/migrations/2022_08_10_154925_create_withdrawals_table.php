@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('withdrawals', function (Blueprint $table) {
             $table->id();
             $table->foreignId('payment_id');
+            $table->foreignId('user_id');
             $table->integer('amount');
             $table->float('charges')->default('0');
             $table->string('description')->nullable();
