@@ -27,7 +27,7 @@
     </style>	
 
 @foreach($payments as $row)
-<div id="withdraw-content{{ $row->id }}" class="iziModal card" style="border-bottom: 3px solid #FF6600; overflow: hidden; display: none; max-width:90% !important;">
+<div id="payment-method{{ $row->id }}" class="iziModal card" style="border-bottom: 3px solid #FF6600; overflow: hidden; display: none; max-width:90% !important;">
 	<div class="iziModal-header"style="background: #333;">
 		<i class="iziModal-header-icon icon-stack fa fa-inbox"></i>
 		<h2 class="iziModal-header-title" style="color: #fff !important">Withdraw via {{ $row->name }}</h2>
@@ -53,6 +53,8 @@
 </div>
 @endforeach
 
+
+<script src="{{ asset('/assets/js/iziModal.min.js')}}"></script>
 <script>
 
 $("{{ $payment_string ? $payment_string : ''}}").iziModal({
@@ -65,7 +67,7 @@ $("{{ $payment_string ? $payment_string : ''}}").iziModal({
     event.preventDefault();
     var payment_id = $(this).attr('data-id');
 
-    $('#withdraw-content' + payment_id).iziModal('open');
+    $('#payment-method' + payment_id).iziModal('open');
 });
 </script>
 

@@ -177,7 +177,7 @@
             <li class="header"><a href="https://globaloptionsfxtrade.com/account"><i class="fa fa-home"></i> MY OFFICE</a></li>
             <li ><a href="https://globaloptionsfxtrade.com/account/transaction-log"> <i class="fa fa-history"></i> User Activity Log</a></li>
             <li ><a href="{{url('/user/deposit')}}"> <i class="fa fa-inbox"></i> Deposit Funds</a></li>
-            <li ><a href="https://globaloptionsfxtrade.com/account/withdraw-request"> <i class="fa fa-money"></i> Withdraw Funds</a></li>
+            <li ><a href="{{url('/user/withdrawal')}}"> <i class="fa fa-money"></i> Withdraw Funds</a></li>
             <li ><a href="https://globaloptionsfxtrade.com/account/investment-new"> <i class="fa fa-database"></i> New Investment</a></li>
             <li ><a href="https://globaloptionsfxtrade.com/account/reference-user"> <i class="fa fa-crosshairs"></i> Affiliate Program</a></li>
             <li ><a href="https://globaloptionsfxtrade.com/account/testimony"> <i class="fa fa-bullhorn"></i> Write Testimony</a></li>
@@ -202,3 +202,31 @@
             <span class="decor_default"></span>
         </div>
     </div>
+
+    @if (session('success') !== null)
+<div class="col-12">
+    <div class="success mb-3">
+        {{ session('success') }}
+    </div>
+</div>
+@endif
+
+@if (session('error') !== null)
+<div class="col-12">
+<div class="danger mb-3">
+    {{ session('error') }}
+</div>
+</div>
+@endif
+
+@if ($errors->any())
+<div class="col-12">
+    <div class="danger mb-3">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+</div>
+@endif

@@ -1,32 +1,5 @@
 @include('includes.user.header')
 
-@if (session('success') !== null)
-<div class="col-12">
-    <div class="success mb-3">
-        {{ session('success') }}
-    </div>
-</div>
-@endif
-
-@if (session('error') !== null)
-<div class="col-12">
-<div class="danger mb-3">
-    {{ session('error') }}
-</div>
-</div>
-@endif
-
-@if ($errors->any())
-<div class="col-12">
-    <div class="danger mb-3">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-</div>
-@endif
 
 @foreach($payments as $row)
 <div class="col-4 col-m-6">
