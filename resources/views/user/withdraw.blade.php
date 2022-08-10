@@ -6,9 +6,9 @@
         <div class="center">
             <div class="has-gradient-to-right-bottom padding"><h4 class="text-white">{{ $row->name }}</h4></div>
             <ul class="listing padding">
-                <li class="border margintb">Minimum - 500 USD</li>
-                <li class="border margintb">Maximum - 1000000 USD</li>
-                <li class="border margintb">Charge - 25 + 2.25 USD</li>
+                <li class="border margintb">Minimum - 500 {{ $currency_short }}</li>
+                <li class="border margintb">Maximum - 1000000 {{ $currency_short }}</li>
+                <li class="border margintb">Charge - 25 + 2.25 {{ $currency_short }}</li>
                 <li class="border margintb">Processing Time - <span class="border-green small round-xxlarge smpadding">1 Day</span></li>
                 <li>
                     <button class="btn default round-xxlarge trigger-withdraw" data-id="{{ $row->id }}" style="font-size: 14px; padding: 5px 20px"><i class="fa fa-send"></i> WITHDRAW NOW</button>
