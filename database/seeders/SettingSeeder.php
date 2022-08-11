@@ -18,6 +18,10 @@ class SettingSeeder extends Seeder
         DB::table('settings')->insert([
             ['name' => 'site-name', 'value' => 'investment'],
             ['name' => 'currency', 'value' => '1'],
+            ['name' => 'minimum-withdrawal', 'value' => '300'],
+            ['name' => 'maximum-withdrawal', 'value' => '200000'],
+            ['name' => 'withdrawal-charges', 'value' => '{"type": "1", "amount": "20"}'],
+            ['name' => 'withdrawal-time', 'value' => '1'],
         ]);
     }
 }
