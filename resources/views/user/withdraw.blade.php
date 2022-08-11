@@ -6,10 +6,10 @@
         <div class="center">
             <div class="has-gradient-to-right-bottom padding"><h4 class="text-white">{{ $row->name }}</h4></div>
             <ul class="listing padding">
-                <li class="border margintb">Minimum - 500 {{ $currency_short }}</li>
-                <li class="border margintb">Maximum - 1000000 {{ $currency_short }}</li>
-                <li class="border margintb">Charge - 25 + 2.25 {{ $currency_short }}</li>
-                <li class="border margintb">Processing Time - <span class="border-green small round-xxlarge smpadding">1 Day</span></li>
+                <li class="border margintb">Minimum - {{ $currency_short . ' ' . $minimum_withdrawal }}</li>
+                <li class="border margintb">Maximum - {{ $currency_short . ' ' . $maximum_withdrawal }}</li>
+                <li class="border margintb">Charge - {{ $charge  }}</li>
+                <li class="border margintb">Processing Time - <span class="border-green small round-xxlarge smpadding">{{ $processing_time }} Day(s)</span></li>
                 <li>
                     <button class="btn default round-xxlarge trigger-withdraw" data-id="{{ $row->id }}" style="font-size: 14px; padding: 5px 20px"><i class="fa fa-send"></i> WITHDRAW NOW</button>
                 </li>
@@ -38,7 +38,7 @@
 		<form method="POST" action="" class="row">
             @csrf
 			<div class="col-12">
-				<div class="danger margintb">Withdraw Charge : (25 + 2.25%) - {{ $currency_short }}</div>
+				<div class="danger margintb">Withdraw Charge : {{ $charge }}</div>
 				<div class="display-container">
 					<input type="number" required name="amount" placeholder="Amount" class="padding bold" style="width: 100%; padding-right: 70px !important">
                     <input type="hidden" name="payment_id" value="{{ $row->id }}">

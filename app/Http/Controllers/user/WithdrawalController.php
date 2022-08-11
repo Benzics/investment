@@ -39,6 +39,8 @@ class WithdrawalController extends Controller
         $withdrawal_charge = Setting::where('name', 'withdrawal-charges')->firstOrFail();
         $wth_charge = json_decode($withdrawal_charge->value);
 
+        $minimum_withdrawal = number_format($minimum_withdrawal, 2);
+        $maximum_withdrawal = number_format($maximum_withdrawal, 2);
         $payments = Payment::where('status', '1')->get();
         $title = 'Withdrawal';
         $page_title = 'Withdrawal Request';
@@ -46,7 +48,8 @@ class WithdrawalController extends Controller
 
         $currency_short = $this->currency_short;
 
-        $charge = ($wth_charge->type == 0) ? $wth_charge->amount . '%' : $currency_short . $wth_charge->amount;
+        $charge = ($wth_charge->type == 0) ? number_format($wth_charge->amount, 2) . '%' :
+            $currency_short . ' ' . number_format($wth_charge->amount, 2);
 
         $payment_ids = [];
 
