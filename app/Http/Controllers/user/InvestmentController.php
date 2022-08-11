@@ -75,8 +75,6 @@ class InvestmentController extends UserController
     {
         $validate = $request->validate(['amount' => 'required', 'investment_id' => 'required|numeric']);
 
-        $title = 'Preview Investment';
-        $page_title = 'Preview Investment';
         $user = auth()->user();
         $amount = $validate['amount'];
         $investment_id = $validate['investment_id'];
@@ -110,5 +108,18 @@ class InvestmentController extends UserController
         return redirect()->route('user.investments')
             ->with('success', 'Your investment has successfully been created. Happy Earnings!');
         
+    }
+
+    public function investments()
+    {
+        $title = 'My Investments';
+        $page_title = 'My Investments';
+        $user = auth()->user();
+        $ref_id = User::findOrFail($user->id)->profile->ref_id;
+        $investments = UserInvestment::where('user_id', $user->id)
+            ->join('investments', 'user_investments.id', '=', 'investments.id')
+            ->get();
+
+        return view('user.investments', compact('title', 'page_title', 'user', 'ref_id', 'investments'));
     }
 }
