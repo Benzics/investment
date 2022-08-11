@@ -76,9 +76,9 @@
     <div id="account" class="udex-animate-right">
         <ul>
             <li class="title">Account</li>
-            <li><a href="/user/account/info"><i class="fa fa-user"></i>  @isset($full_name) {{ $full_name }} @endisset </a></li>
-            <li><a href="user/account/security"><i class="fa fa-gear"></i> Safety & Security</a></li>
-            <li><a href="user/account/changepass"><i class="fa fa-lock"></i> Change Password</a></li>
+            <li><a href="#/info"><i class="fa fa-user"></i>  @isset($full_name) {{ $full_name }} @endisset </a></li>
+            <li><a href="#/security"><i class="fa fa-gear"></i> Safety & Security</a></li>
+            <li><a href="#/changepass"><i class="fa fa-lock"></i> Change Password</a></li>
                     <li><a href="{{ url('/logout') }}"><i class="fa fa-power-off"></i> Sign Out</a></li>
         </ul>
     </div>
@@ -174,17 +174,17 @@
         USER ID: ZCI-422248</div>
     <div class="udex-sidebar udex-collapse udex-animate-left" id="mySidebar">
         <ul class="udex-ul">
-            <li class="header"><a href="user/account"><i class="fa fa-home"></i> MY OFFICE</a></li>
-            <li ><a href="user/account/transaction-log"> <i class="fa fa-history"></i> User Activity Log</a></li>
+            <li class="header"><a href="#"><i class="fa fa-home"></i> MY OFFICE</a></li>
+            <li ><a href="#/transaction-log"> <i class="fa fa-history"></i> User Activity Log</a></li>
             <li ><a href="{{url('/user/deposit')}}"> <i class="fa fa-inbox"></i> Deposit Funds</a></li>
             <li ><a href="{{url('/user/withdrawal')}}"> <i class="fa fa-money"></i> Withdraw Funds</a></li>
-            <li ><a href="user/account/investment-new"> <i class="fa fa-database"></i> New Investment</a></li>
-            <li ><a href="user/account/reference-user"> <i class="fa fa-crosshairs"></i> Affiliate Program</a></li>
-            <li ><a href="user/account/testimony"> <i class="fa fa-bullhorn"></i> Write Testimony</a></li>
-            <li ><a href="user/account/info"> <i class="fa fa-gears"></i> Account Settings</a></li>
-            <li ><a href="user/account/trading-view"> <i class="fa fa-bullseye"></i> Trade View</a></li>
+            <li ><a href="#/investment-new"> <i class="fa fa-database"></i> New Investment</a></li>
+            <li ><a href="#/reference-user"> <i class="fa fa-crosshairs"></i> Affiliate Program</a></li>
+            <li ><a href="#/testimony"> <i class="fa fa-bullhorn"></i> Write Testimony</a></li>
+            <li ><a href="#/info"> <i class="fa fa-gears"></i> Account Settings</a></li>
+            <li ><a href="#/trading-view"> <i class="fa fa-bullseye"></i> Trade View</a></li>
             <li><a href="user/logout"> <i class="fa fa-power-off"></i> Logout</a></li>
-            <li><a href="user/contact"> <i class="fa fa-exclamation-circle"></i> Help</a></li>
+            <li><a href="#user/contact"> <i class="fa fa-exclamation-circle"></i> Help</a></li>
         </ul>
     </div>
 
