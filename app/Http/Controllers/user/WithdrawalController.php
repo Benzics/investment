@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Payment;
 use App\Models\Withdrawal;
 use App\Models\Wallet;
-
+use App\Http\Controllers\core\UserController;
 
 class WithdrawalController extends UserController
 {

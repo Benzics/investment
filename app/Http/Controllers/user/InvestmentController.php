@@ -4,8 +4,7 @@ namespace App\Http\Controllers\user;
 
 use App\Models\Investment;
 use Illuminate\Http\Request;
-use App\Models\Setting;
-use App\Models\Currency;
+use App\Http\Controllers\core\UserController;
 
 class InvestmentController extends UserController
 {

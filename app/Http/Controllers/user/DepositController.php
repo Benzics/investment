@@ -8,6 +8,7 @@ use Illuminate\Validation\Rules\File;
 use App\Models\Deposit;
 use App\Models\Payment;
 use App\Models\Setting;
+use App\Http\Controllers\core\UserController;
 
 class DepositController extends UserController
 {
