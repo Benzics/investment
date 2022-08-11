@@ -7,7 +7,6 @@ use App\Models\Payment;
 use App\Models\Withdrawal;
 use App\Models\Wallet;
 use App\Http\Controllers\core\UserController;
-use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
 class WithdrawalController extends UserController
@@ -44,7 +43,7 @@ class WithdrawalController extends UserController
         $payment_string = implode(',', $payment_ids);
 
         $user = auth()->user();
-        $ref_id = User::findOrFail(Auth::id())->profile->ref_id;
+        $ref_id = User::findOrFail($user->id)->profile->ref_id;
  
 
         return view('user.withdraw', compact('payments', 'title', 'page_title', 'payment_string', 'currency', 'currency_short',
@@ -59,16 +58,17 @@ class WithdrawalController extends UserController
         ]);
 
         $user = auth()->user();
-        $ref_id = User::findOrFail(Auth::id())->profile->ref_id;
+       
         $amount = $validate['amount'];
         $wallet = Wallet::where('user_id', $user->id)->latest()->first();
+        $balance = ($wallet) ? $wallet->balance : 0;
 
         $withdrawal_charge =  $this->_get_setting('withdrawal-charges');
         $wth_charge = json_decode($withdrawal_charge);
 
         $charges = ($wth_charge->type == 0) ? ($wth_charge->amount / 100) * $amount : $wth_charge->amount;
 
-        $balance = ($wallet) ? $wallet->balance : 0;
+        
 
         $debit = $amount + $charges;
 

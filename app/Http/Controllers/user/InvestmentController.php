@@ -6,7 +6,9 @@ use App\Models\Investment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\core\UserController;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+use App\Models\UserInvestment;
+use App\Models\Wallet;
+
 class InvestmentController extends UserController
 {
     public $investment_plans;
@@ -25,7 +27,7 @@ class InvestmentController extends UserController
         $user = auth()->user();
    
 
-        $ref_id = User::findOrFail(Auth::id())->profile->ref_id;
+        $ref_id = User::findOrFail($user->id)->profile->ref_id;
       
         $investment_plans = $this->investment_plans;
 
@@ -60,12 +62,53 @@ class InvestmentController extends UserController
         $page_title = 'Preview Investment';
         $user = auth()->user();
        
-        $ref_id = User::findOrFail(Auth::id())->profile->ref_id;
+        $ref_id = User::findOrFail($user->id)->profile->ref_id;
 
         $validate = $request->validate(['investment_id' => 'required|numeric']);
         
         $investment = Investment::findOrFail($validate['investment_id']);
 
         return view('user.preview-investment', compact('title', 'page_title', 'investment', 'user', 'ref_id'));
+    }
+
+    public function invest(Request $request)
+    {
+        $validate = $request->validate(['amount' => 'required', 'investment_id' => 'required|numeric']);
+
+        $title = 'Preview Investment';
+        $page_title = 'Preview Investment';
+        $user = auth()->user();
+        $amount = $validate['amount'];
+        $investment_id = $validate['investment_id'];
+
+        $investment = Investment::findOrFail($investment_id);
+
+        $wallet = Wallet::where('user_id', $user->id)->latest()->first();
+        $balance = ($wallet) ? $wallet->balance : 0;
+
+        if($balance < $amount)
+        {
+            return back()->withErrors(['amount' => 'Amount specified is less than your available balance! You need to make a deposit.']);
+        }
+
+        $desc = 'Debit for investment plan ' . $investment->name;
+        // debit user 
+        Wallet::create([
+        'user_id' => $user->id,
+        'debit' => $amount,
+        'description' => $desc,
+        'balance' => $balance - $amount,
+        'type' => '4',
+        ]);
+
+        UserInvestment::create([
+            'user_id' => $user->id,
+            'investment_id' => $investment_id,
+            'amount' => $amount,
+        ]);
+
+        return redirect()->route('user.investments')
+            ->with('success', 'Your investment has successfully been created. Happy Earnings!');
+        
     }
 }

@@ -13,7 +13,7 @@ class DashboardController extends UserController
     public function index()
     {
         $user = auth()->user();
-        $ref_id = User::findOrFail(Auth::id())->profile->ref_id;
+        $ref_id = User::findOrFail($user->id)->profile->ref_id;
         $title = 'My Dashboard';
         $page_title = 'My Dashboard';
        

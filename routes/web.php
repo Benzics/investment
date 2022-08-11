@@ -71,6 +71,8 @@ Route::middleware(['auth', 'verified'])->name('user.')->prefix('user')->group(fu
     Route::post('/withdrawal', [WithdrawalController::class, 'withdraw']);
     Route::get('/new-investment', [InvestmentController::class, 'index'])->name('new_investment');
     Route::post('/new-investment', [InvestmentController::class, 'preview']);
+    Route::post('/invest', [InvestmentController::class, 'invest']);
+    Route::get('/investments', [InvestmentController::class, 'investments'])->name('investments');
 });
 
 // admin routes

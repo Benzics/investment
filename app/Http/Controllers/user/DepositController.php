@@ -10,7 +10,6 @@ use App\Models\Payment;
 use App\Models\Setting;
 use App\Http\Controllers\core\UserController;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 
 class DepositController extends UserController
 {
@@ -38,7 +37,7 @@ class DepositController extends UserController
 
         $user = auth()->user();
 
-        $ref_id = User::findOrFail(Auth::id())->profile->ref_id;
+        $ref_id = User::findOrFail($user->id)->profile->ref_id;
 
 
         return view('user.deposit', ['title' => 'Deposit', 'page_title' => 'Deposit Method',
@@ -73,7 +72,7 @@ class DepositController extends UserController
 
         $user = auth()->user();
 
-        $ref_id = User::findOrFail(Auth::id())->profile->ref_id;
+        $ref_id = User::findOrFail($user->id)->profile->ref_id;
 
         return view('user.deposit-fund', ['title' => 'Deposit', 'page_title' => 'Deposit Preview', 
             'payment' => $payment, 'amount' => $request->amount, 'charges' => $charges, 'currency' => $currency_short,
