@@ -13,6 +13,7 @@ use App\Http\Controllers\user\DepositController;
 use App\Http\Controllers\admin\LoginController as AdminLoginController;
 use App\Http\Controllers\admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\admin\DepositController as AdminDepositController;
+use App\Http\Controllers\user\InvestmentController;
 use App\Http\Controllers\user\WithdrawalController;
 
 /*
@@ -68,6 +69,7 @@ Route::middleware(['auth', 'verified'])->name('user.')->prefix('user')->group(fu
     Route::post('/deposit-fund', [DepositController::class, 'deposit']);
     Route::get('/withdrawal', [WithdrawalController::class, 'index'])->name('withdraw');
     Route::post('/withdrawal', [WithdrawalController::class, 'withdraw']);
+    Route::get('/new-investment', [InvestmentController::class, 'index'])->name('new_investment');
 });
 
 // admin routes
