@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('user_investments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('investment_id');
+            $table->foreignId('user_id');
+            $table->float('amount');
+            $table->date('last_payout')->nullable();
+            $table->date('next_payout')->nullable();
+            $table->integer('payout_times')->nullable();
+            $table->integer('status')->default('1');
             $table->timestamps();
         });
     }
