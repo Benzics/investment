@@ -32,6 +32,12 @@ class WithdrawalController extends Controller
     }
     public function index()
     {
+        // rettrieve the withdrawal settings 
+        $minimum_withdrawal = Setting::where('name', 'minimum-withdrawal')->firstOrFail()->value;
+        $maximum_withdrawal = Setting::where('name', 'maximum-withdrawal')->firstOrFail()->value;
+        $processing_time = Setting::where('name', 'withdrawal-time')->firstOrFail()->value;
+        $withdrawal_charge = Setting::where('name', 'withdrawal-charges')->firstOrFail();
+        $wth_charge = json_decode($withdrawal_charge->value);
 
         $payments = Payment::where('status', '1')->get();
         $title = 'Withdrawal';
@@ -39,6 +45,8 @@ class WithdrawalController extends Controller
         $currency = $this->currency;
 
         $currency_short = $this->currency_short;
+
+        $charge = ($wth_charge->type == 0) ? $wth_charge->amount . '%' : $currency_short . $wth_charge->amount;
 
         $payment_ids = [];
 
@@ -49,7 +57,8 @@ class WithdrawalController extends Controller
 
         $payment_string = implode(',', $payment_ids);
 
-        return view('user.withdraw', compact('payments', 'title', 'page_title', 'payment_string', 'currency', 'currency_short'));
+        return view('user.withdraw', compact('payments', 'title', 'page_title', 'payment_string', 'currency', 'currency_short',
+            'charge', 'processing_time', 'minimum_withdrawal', 'maximum_withdrawal'));
     }
 
     public function withdraw(Request $request)
