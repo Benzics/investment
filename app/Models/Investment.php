@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Investment extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'commission',
+        'commission_type',
+        'minimum',
+        'maximum',
+        'type',
+        'times',
+        'status',
+    ];
 }
