@@ -9,6 +9,8 @@ use App\Models\Deposit;
 use App\Models\Payment;
 use App\Models\Setting;
 use App\Http\Controllers\core\UserController;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class DepositController extends UserController
 {
@@ -34,9 +36,14 @@ class DepositController extends UserController
 
         $payment_string = implode(',', $payment_ids);
 
-        $full_name = $this->_full_name;
+        $user = auth()->user();
+
+        $ref_id = User::findOrFail(Auth::id())->profile->ref_id;
+
+
         return view('user.deposit', ['title' => 'Deposit', 'page_title' => 'Deposit Method',
-            'payments' => $payments, 'payment_string' => $payment_string, 'currency' => $currency_short, 'charges' => $charge]);
+            'payments' => $payments, 'payment_string' => $payment_string, 'currency' => $currency_short, 'charges' => $charge,
+            'user' => $user, 'ref_id' => $ref_id]);
     }
 
     public function deposit(Request $request)
@@ -64,8 +71,13 @@ class DepositController extends UserController
             return redirect()->route('user.deposit')->with(['error' => 'Invalid payment method']);
         }
 
+        $user = auth()->user();
+
+        $ref_id = User::findOrFail(Auth::id())->profile->ref_id;
+
         return view('user.deposit-fund', ['title' => 'Deposit', 'page_title' => 'Deposit Preview', 
-            'payment' => $payment, 'amount' => $request->amount, 'charges' => $charges, 'currency' => $currency_short]);
+            'payment' => $payment, 'amount' => $request->amount, 'charges' => $charges, 'currency' => $currency_short,
+            'user' => $user, 'ref_id' => $ref_id]);
     }
 
     public function store(Request $request)

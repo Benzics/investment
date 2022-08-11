@@ -7,12 +7,14 @@ use App\Models\Payment;
 use App\Models\Withdrawal;
 use App\Models\Wallet;
 use App\Http\Controllers\core\UserController;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class WithdrawalController extends UserController
 {
     public function index()
     {
-        // rettrieve the withdrawal settings 
+        // retrieve the withdrawal settings 
         $minimum_withdrawal = $this->_get_setting('minimum-withdrawal');
         $maximum_withdrawal =  $this->_get_setting('maximum-withdrawal');
         $processing_time =  $this->_get_setting('withdrawal-time');
@@ -40,10 +42,13 @@ class WithdrawalController extends UserController
         }
 
         $payment_string = implode(',', $payment_ids);
-        $full_name = $this->_full_name;
+
+        $user = auth()->user();
+        $ref_id = User::findOrFail(Auth::id())->profile->ref_id;
+ 
 
         return view('user.withdraw', compact('payments', 'title', 'page_title', 'payment_string', 'currency', 'currency_short',
-            'charge', 'processing_time', 'minimum_withdrawal', 'maximum_withdrawal', 'full_name'));
+            'charge', 'processing_time', 'minimum_withdrawal', 'maximum_withdrawal', 'user', 'ref_id'));
     }
 
     public function withdraw(Request $request)
@@ -54,6 +59,7 @@ class WithdrawalController extends UserController
         ]);
 
         $user = auth()->user();
+        $ref_id = User::findOrFail(Auth::id())->profile->ref_id;
         $amount = $validate['amount'];
         $wallet = Wallet::where('user_id', $user->id)->latest()->first();
 
@@ -92,7 +98,7 @@ class WithdrawalController extends UserController
 
         return redirect()->route('user.withdraw')
             ->with([
-                'success' => 'Withdrawal request successfully initiated, it will be processed shortly. <a href="/user/withdrawals">View withdrawal history</a>'
+                'success' => 'Withdrawal request successfully initiated, it will be processed shortly.'
             ]);
 
     }

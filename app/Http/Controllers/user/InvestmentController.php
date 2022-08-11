@@ -5,7 +5,8 @@ namespace App\Http\Controllers\user;
 use App\Models\Investment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\core\UserController;
-
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 class InvestmentController extends UserController
 {
     public $investment_plans;
@@ -21,7 +22,11 @@ class InvestmentController extends UserController
     {
         $title = 'New Investment';
         $page_title = 'New Investment';
-        $full_name = $this->_full_name;
+        $user = auth()->user();
+   
+
+        $ref_id = User::findOrFail(Auth::id())->profile->ref_id;
+      
         $investment_plans = $this->investment_plans;
 
         /** 
@@ -46,19 +51,21 @@ class InvestmentController extends UserController
             ];
         }
 
-        return view('user.new-investment', compact('title', 'page_title', 'investments', 'full_name'));
+        return view('user.new-investment', compact('title', 'page_title', 'investments', 'user', 'ref_id'));
     }
 
     public function preview(Request $request)
     {
         $title = 'Preview Investment';
         $page_title = 'Preview Investment';
-        $full_name = $this->_full_name;
+        $user = auth()->user();
+       
+        $ref_id = User::findOrFail(Auth::id())->profile->ref_id;
 
         $validate = $request->validate(['investment_id' => 'required|numeric']);
         
         $investment = Investment::findOrFail($validate['investment_id']);
 
-        return view('user.preview-investment', compact('title', 'page_title', 'investment', 'full_name'));
+        return view('user.preview-investment', compact('title', 'page_title', 'investment', 'user', 'ref_id'));
     }
 }

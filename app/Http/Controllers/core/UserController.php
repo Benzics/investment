@@ -9,11 +9,7 @@ use App\Models\Setting;
 
 class UserController extends Controller
 {
-    /**
-     * Users full name
-     */
-    public $_full_name;
-
+   
      /**
      * Currency symbol enabled in settings
      */
@@ -36,7 +32,7 @@ class UserController extends Controller
 
         $this->_currency = $currency->symbol;
         $this->_currency_short = $currency->short_code; 
-        $this->_user = auth()->user();   
+    
     }
 
     /**

@@ -76,7 +76,7 @@
     <div id="account" class="udex-animate-right">
         <ul>
             <li class="title">Account</li>
-            <li><a href="#/info"><i class="fa fa-user"></i>  @isset($full_name) {{ $full_name }} @endisset </a></li>
+            <li><a href="#/info"><i class="fa fa-user"></i>  @isset($user) {{ $user->name }} @endisset </a></li>
             <li><a href="#/security"><i class="fa fa-gear"></i> Safety & Security</a></li>
             <li><a href="#/changepass"><i class="fa fa-lock"></i> Change Password</a></li>
                     <li><a href="{{ url('/logout') }}"><i class="fa fa-power-off"></i> Sign Out</a></li>
@@ -171,7 +171,7 @@
     }
     </style>
     <div class="default cpanel_info">
-        USER ID: ZCI-422248</div>
+        USER ID: @isset($ref_id) {{ $ref_id }} @endisset </div>
     <div class="udex-sidebar udex-collapse udex-animate-left" id="mySidebar">
         <ul class="udex-ul">
             <li class="header"><a href="#"><i class="fa fa-home"></i> MY OFFICE</a></li>
