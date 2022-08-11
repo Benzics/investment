@@ -107,10 +107,10 @@ All photos and videos uploaded by you must comply with these requirements, other
             @csrf
             <input type="hidden" name="payment_id" value="{{ $row->id }}">
 			<div class="col-12">
-				<div class="danger margintb">Deposit Charge : 1% - USD</div>
+				<div class="danger margintb">Deposit Charge : {{ $charges }}</div>
 				<div class="display-container">
 					<input type="number" required name="amount" placeholder="Amount" class="padding bold" style="width: 100%; padding-right: 70px !important">
-					<span class="display-topright grey padding border" style="display: inline-block">USD</span>
+					<span class="display-topright grey padding border" style="display: inline-block">{{ $currency }}</span>
 				</div>
 				<button class="btn default padding center" style="margin-top: 10px; width: 100%"><i class="fa fa-send"></i> CONTINUE</button>
 			</div>
