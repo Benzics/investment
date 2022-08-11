@@ -2,23 +2,17 @@
 
 namespace App\Http\Controllers\user;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class DashboardController extends UserController
 {
-    public $full_name;
 
-    public function __construct()
-    {
-        $user = auth()->user();
-        $this->full_name = $user->full_name;
-    }
     public function index()
     {
         $data = [
             'title' => 'My Dashboard',
             'page_title' => 'My Dashboard',
+            'full_name' => $this->_full_name,
         ];
         
         return view('user.dashboard', $data);

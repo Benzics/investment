@@ -2,44 +2,25 @@
 
 namespace App\Http\Controllers\user;
 
-use App\Http\Controllers\Controller;
-use App\Models\Currency;
+// use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\File;
 use App\Models\Deposit;
 use App\Models\Payment;
 use App\Models\Setting;
 
-class DepositController extends Controller
+class DepositController extends UserController
 {
 
-    /**
-     * Currency symbol enabled in settings
-     */
-    private $currency;
-
-    /**
-     * Currency short code in settings
-     */
-    private $currency_short;
-
-    public function __construct()
-    {
-        $site_currency = Setting::where('name', 'currency')->firstOrFail();
-        $currency = Currency::findOrFail($site_currency->value);
-
-        $this->currency = $currency->symbol;
-        $this->currency_short = $currency->short_code;
-    }
 
     public function index()
     {
         $payments = Payment::where('status', '1')->get();
 
-        $deposit_charge = Setting::where('name', 'deposit-charges')->firstOrFail();
-        $dep_charge = json_decode($deposit_charge->value);
+        $deposit_charge = $this->_get_setting('deposit-charges');
+        $dep_charge = json_decode($deposit_charge);
 
-        $currency_short = $this->currency_short;
+        $currency_short = $this->_currency_short;
 
         $charge = ($dep_charge->type == 0) ? number_format($dep_charge->amount, 2) . '%' :
             $currency_short . ' ' . number_format($dep_charge->amount, 2);
@@ -52,6 +33,7 @@ class DepositController extends Controller
 
         $payment_string = implode(',', $payment_ids);
 
+        $full_name = $this->_full_name;
         return view('user.deposit', ['title' => 'Deposit', 'page_title' => 'Deposit Method',
             'payments' => $payments, 'payment_string' => $payment_string, 'currency' => $currency_short, 'charges' => $charge]);
     }
@@ -67,9 +49,8 @@ class DepositController extends Controller
         $deposit_charge = Setting::where('name', 'deposit-charges')->firstOrFail();
         $dep_charge = json_decode($deposit_charge->value);
 
-        // $currency = $this->currency;
 
-        $currency_short = $this->currency_short;
+        $currency_short = $this->_currency_short;
 
         $payment = Payment::find($validate['payment_id']);
 

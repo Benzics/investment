@@ -2,47 +2,27 @@
 
 namespace App\Http\Controllers\user;
 
-use App\Http\Controllers\Controller;
 use App\Models\Investment;
 use Illuminate\Http\Request;
 use App\Models\Setting;
 use App\Models\Currency;
 
-class InvestmentController extends Controller
+class InvestmentController extends UserController
 {
     public $investment_plans;
-
-    /**
-     * Currency symbol enabled in settings
-     */
-    private $currency;
-
-    public $full_name;
-
-    /**
-     * Currency short code in settings
-     */
-    private $currency_short;
 
     public function __construct()
     {
         $investments = Investment::where('status', '1')->get();
         $this->investment_plans = $investments;
-        $site_currency = Setting::where('name', 'currency')->firstOrFail();
-        $currency = Currency::findOrFail($site_currency->value);
 
-        $user = auth()->user();
-        $this->full_name = $user->name;
-
-        $this->currency = $currency->symbol;
-        $this->currency_short = $currency->short_code;
     }
 
     public function index()
     {
         $title = 'New Investment';
         $page_title = 'New Investment';
-        $full_name = $this->full_name;
+        $full_name = $this->_full_name;
         $investment_plans = $this->investment_plans;
 
         /** 
@@ -53,7 +33,7 @@ class InvestmentController extends Controller
         foreach($investment_plans as $row)
         {
             // if commission type is 1 it means its a flat fee, otherwise it is a percentage
-            $commission = ($row->commission_type == 1) ? $this->currency_short . ' ' . $row->commission :
+            $commission = ($row->commission_type == 1) ? $this->_currency_short . ' ' . $row->commission :
                 $row->commission . '%';
             
             $investments[] = (object) [
@@ -74,7 +54,7 @@ class InvestmentController extends Controller
     {
         $title = 'Preview Investment';
         $page_title = 'Preview Investment';
-        $full_name = $this->full_name;
+        $full_name = $this->_full_name;
 
         $validate = $request->validate(['investment_id' => 'required|numeric']);
         

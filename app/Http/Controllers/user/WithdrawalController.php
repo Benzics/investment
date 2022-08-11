@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\user;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Payment;
 use App\Models\Withdrawal;
@@ -26,9 +25,9 @@ class WithdrawalController extends UserController
         $title = 'Withdrawal';
         $page_title = 'Withdrawal Request';
 
-        $currency = $this->currency;
+        $currency = $this->_currency;
 
-        $currency_short = $this->currency_short;
+        $currency_short = $this->_currency_short;
 
         $charge = ($wth_charge->type == 0) ? number_format($wth_charge->amount, 2) . '%' :
             $currency_short . ' ' . number_format($wth_charge->amount, 2);
@@ -41,9 +40,10 @@ class WithdrawalController extends UserController
         }
 
         $payment_string = implode(',', $payment_ids);
+        $full_name = $this->_full_name;
 
         return view('user.withdraw', compact('payments', 'title', 'page_title', 'payment_string', 'currency', 'currency_short',
-            'charge', 'processing_time', 'minimum_withdrawal', 'maximum_withdrawal'));
+            'charge', 'processing_time', 'minimum_withdrawal', 'maximum_withdrawal', 'full_name'));
     }
 
     public function withdraw(Request $request)
@@ -71,7 +71,7 @@ class WithdrawalController extends UserController
             return back()->withErrors(['amount' => 'Amount specified is less than your available balance!']);
         }
 
-        $desc = 'Debit for withdrawal of ' . $this->currency_short . number_format($amount, 2) . ', with charges of ' . $this->currency_short . number_format($charges, 2);
+        $desc = 'Debit for withdrawal of ' . $this->_currency_short . number_format($amount, 2) . ', with charges of ' . $this->_currency_short . number_format($charges, 2);
 
         // debit user 
         Wallet::create([
@@ -90,7 +90,10 @@ class WithdrawalController extends UserController
             'charges' => $charges,
         ]);
 
-        return redirect()->route('user.withdraw')->with(['success' => 'Withdrawal request successfully initiated, it will be processed shortly.']);
+        return redirect()->route('user.withdraw')
+            ->with([
+                'success' => 'Withdrawal request successfully initiated, it will be processed shortly. <a href="/user/withdrawals">View withdrawal history</a>'
+            ]);
 
     }
 }

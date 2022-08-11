@@ -12,25 +12,31 @@ class UserController extends Controller
     /**
      * Users full name
      */
-    public $full_name;
+    public $_full_name;
 
      /**
      * Currency symbol enabled in settings
      */
-    public $currency;
+    public $_currency;
 
     /**
      * Currency short code in settings
      */
-    public $currency_short;
+    public $_currency_short;
+
+    /**
+     * React with the user database
+     */
+    public $_user;
 
     public function __construct()
     {
         $site_currency = $this->_get_setting('currency');
         $currency = Currency::findOrFail($site_currency);
 
-        $this->currency = $currency->symbol;
-        $this->currency_short = $currency->short_code;    
+        $this->_currency = $currency->symbol;
+        $this->_currency_short = $currency->short_code; 
+        $this->_user = auth()->user();   
     }
 
     /**
