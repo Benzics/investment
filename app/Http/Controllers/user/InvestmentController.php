@@ -69,8 +69,25 @@ class InvestmentController extends UserController
         $validate = $request->validate(['investment_id' => 'required|numeric']);
         
         $investment = Investment::findOrFail($validate['investment_id']);
+        $currency = $this->_currency_short;
+        $currency_sign = $this->_currency;
 
-        return view('user.preview-investment', compact('title', 'page_title', 'investment', 'user', 'ref_id'));
+        $wallet = Wallet::where('user_id', $user->id)->latest()->first();
+        $balance = ($wallet) ? $wallet->balance : 0;
+
+        $low_balance = ($balance < $investment->minimum) ?: false;
+
+        $commission = ($investment->commission_type == 1) ? $currency . ' ' . number_format($investment->commission, 2) :
+            $investment->commission . '%';
+        $name = $investment->name;
+        $minimum = number_format($investment->minimum, 2) . ' ' . $currency;
+        $maximum = number_format($investment->maximum, 2) . ' ' . $currency;
+        $times = $investment->times;
+        $type = $investment->type;
+        
+
+        return view('user.preview-investment', compact('title', 'page_title', 'investment', 'user', 'ref_id', 'currency',
+            'name', 'minimum', 'maximum', 'commission', 'type', 'times', 'balance', 'low_balance', 'currency_sign'));
     }
 
     public function invest(Request $request)
@@ -86,7 +103,7 @@ class InvestmentController extends UserController
         $wallet = Wallet::where('user_id', $user->id)->latest()->first();
         $balance = ($wallet) ? $wallet->balance : 0;
 
-        if($balance < $amount)
+        if($balance < $amount || $amount < $investment->minimum)
         {
             return back()->withErrors(['amount' => 'Amount specified is less than your available balance! You need to make a deposit.']);
         }
