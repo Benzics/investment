@@ -7,43 +7,25 @@ use Illuminate\Http\Request;
 use App\Models\Payment;
 use App\Models\Withdrawal;
 use App\Models\Wallet;
-use App\Models\Currency;
-use App\Models\Setting;
 
-class WithdrawalController extends Controller
+
+class WithdrawalController extends UserController
 {
-    /**
-     * Currency symbol enabled in settings
-     */
-    private $currency;
-
-    /**
-     * Currency short code in settings
-     */
-    private $currency_short;
-
-    public function __construct()
-    {
-        $site_currency = Setting::where('name', 'currency')->firstOrFail();
-        $currency = Currency::findOrFail($site_currency->value);
-
-        $this->currency = $currency->symbol;
-        $this->currency_short = $currency->short_code;
-    }
     public function index()
     {
         // rettrieve the withdrawal settings 
-        $minimum_withdrawal = Setting::where('name', 'minimum-withdrawal')->firstOrFail()->value;
-        $maximum_withdrawal = Setting::where('name', 'maximum-withdrawal')->firstOrFail()->value;
-        $processing_time = Setting::where('name', 'withdrawal-time')->firstOrFail()->value;
-        $withdrawal_charge = Setting::where('name', 'withdrawal-charges')->firstOrFail();
-        $wth_charge = json_decode($withdrawal_charge->value);
+        $minimum_withdrawal = $this->_get_setting('minimum-withdrawal');
+        $maximum_withdrawal =  $this->_get_setting('maximum-withdrawal');
+        $processing_time =  $this->_get_setting('withdrawal-time');
+        $withdrawal_charge =  $this->_get_setting('withdrawal-charges');
+        $wth_charge = json_decode($withdrawal_charge);
 
         $minimum_withdrawal = number_format($minimum_withdrawal, 2);
         $maximum_withdrawal = number_format($maximum_withdrawal, 2);
         $payments = Payment::where('status', '1')->get();
         $title = 'Withdrawal';
         $page_title = 'Withdrawal Request';
+
         $currency = $this->currency;
 
         $currency_short = $this->currency_short;
@@ -75,8 +57,8 @@ class WithdrawalController extends Controller
         $amount = $validate['amount'];
         $wallet = Wallet::where('user_id', $user->id)->latest()->first();
 
-        $withdrawal_charge = Setting::where('name', 'withdrawal-charges')->firstOrFail();
-        $wth_charge = json_decode($withdrawal_charge->value);
+        $withdrawal_charge =  $this->_get_setting('withdrawal-charges');
+        $wth_charge = json_decode($withdrawal_charge);
 
         $charges = ($wth_charge->type == 0) ? ($wth_charge->amount / 100) * $amount : $wth_charge->amount;
 

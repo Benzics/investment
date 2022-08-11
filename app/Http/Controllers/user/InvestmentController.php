@@ -17,6 +17,8 @@ class InvestmentController extends Controller
      */
     private $currency;
 
+    public $full_name;
+
     /**
      * Currency short code in settings
      */
@@ -29,6 +31,9 @@ class InvestmentController extends Controller
         $site_currency = Setting::where('name', 'currency')->firstOrFail();
         $currency = Currency::findOrFail($site_currency->value);
 
+        $user = auth()->user();
+        $this->full_name = $user->name;
+
         $this->currency = $currency->symbol;
         $this->currency_short = $currency->short_code;
     }
@@ -37,6 +42,7 @@ class InvestmentController extends Controller
     {
         $title = 'New Investment';
         $page_title = 'New Investment';
+        $full_name = $this->full_name;
         $investment_plans = $this->investment_plans;
 
         /** 
@@ -61,18 +67,19 @@ class InvestmentController extends Controller
             ];
         }
 
-        return view('user.new-investment', compact('title', 'page_title', 'investments'));
+        return view('user.new-investment', compact('title', 'page_title', 'investments', 'full_name'));
     }
 
     public function preview(Request $request)
     {
         $title = 'Preview Investment';
         $page_title = 'Preview Investment';
+        $full_name = $this->full_name;
 
         $validate = $request->validate(['investment_id' => 'required|numeric']);
         
         $investment = Investment::findOrFail($validate['investment_id']);
 
-        return view('user.preview-investment', compact('title', 'page_title', 'investment'));
+        return view('user.preview-investment', compact('title', 'page_title', 'investment', 'full_name'));
     }
 }
