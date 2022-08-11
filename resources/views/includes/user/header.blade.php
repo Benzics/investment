@@ -178,7 +178,7 @@
             <li ><a href="#/transaction-log"> <i class="fa fa-history"></i> User Activity Log</a></li>
             <li ><a href="{{url('/user/deposit')}}"> <i class="fa fa-inbox"></i> Deposit Funds</a></li>
             <li ><a href="{{url('/user/withdrawal')}}"> <i class="fa fa-money"></i> Withdraw Funds</a></li>
-            <li ><a href="#/investment-new"> <i class="fa fa-database"></i> New Investment</a></li>
+            <li ><a href="{{url('/user/new-investment')}}"> <i class="fa fa-database"></i> New Investment</a></li>
             <li ><a href="#/reference-user"> <i class="fa fa-crosshairs"></i> Affiliate Program</a></li>
             <li ><a href="#/testimony"> <i class="fa fa-bullhorn"></i> Write Testimony</a></li>
             <li ><a href="#/info"> <i class="fa fa-gears"></i> Account Settings</a></li>

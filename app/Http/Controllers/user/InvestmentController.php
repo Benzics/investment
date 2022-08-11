@@ -39,7 +39,7 @@ class InvestmentController extends UserController
         foreach($investment_plans as $row)
         {
             // if commission type is 1 it means its a flat fee, otherwise it is a percentage
-            $commission = ($row->commission_type == 1) ? $this->_currency_short . ' ' . $row->commission :
+            $commission = ($row->commission_type == 1) ? $this->_currency_short . ' ' . number_format($row->commission, 2) :
                 $row->commission . '%';
             
             $investments[] = (object) [
@@ -48,12 +48,14 @@ class InvestmentController extends UserController
                 'commission' => $commission,
                 'times' => $row->times,
                 'type' => $row->type,
-                'minimum' => $row->minimum,
-                'maximum' => $row->maximum,
+                'minimum' => number_format($row->minimum, 2),
+                'maximum' => number_format($row->maximum, 2),
             ];
         }
 
-        return view('user.new-investment', compact('title', 'page_title', 'investments', 'user', 'ref_id'));
+        $currency = $this->_currency_short;
+
+        return view('user.new-investment', compact('title', 'page_title', 'investments', 'user', 'ref_id', 'currency'));
     }
 
     public function preview(Request $request)
