@@ -20,7 +20,7 @@ class SettingSeeder extends Seeder
             ['name' => 'currency', 'value' => '1'],
             ['name' => 'minimum-withdrawal', 'value' => '300'],
             ['name' => 'maximum-withdrawal', 'value' => '200000'],
-            ['name' => 'withdrawal-charges', 'value' => '{"type": "1", "amount": "0"}'],
+            ['name' => 'withdrawal-charges', 'value' => '{"type": "0", "amount": "2"}'],
             ['name' => 'withdrawal-time', 'value' => '1'],
         ]);
     }

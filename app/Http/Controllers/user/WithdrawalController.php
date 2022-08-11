@@ -72,20 +72,24 @@ class WithdrawalController extends Controller
         ]);
 
         $user = auth()->user();
+        $amount = $validate['amount'];
         $wallet = Wallet::where('user_id', $user->id)->latest()->first();
 
-        $charges = 0;
+        $withdrawal_charge = Setting::where('name', 'withdrawal-charges')->firstOrFail();
+        $wth_charge = json_decode($withdrawal_charge->value);
+
+        $charges = ($wth_charge->type == 0) ? ($wth_charge->amount / 100) * $amount : $wth_charge->amount;
 
         $balance = ($wallet) ? $wallet->balance : 0;
 
-        $debit = $validate['amount'] + $charges;
+        $debit = $amount + $charges;
 
         if($balance < $debit)
         {
             return back()->withErrors(['amount' => 'Amount specified is less than your available balance!']);
         }
 
-        $desc = 'Debit for withdrawal of ' . $this->currency_short . number_format($validate['amount'], 2) . ', with charges of ' . $this->currency_short . number_format($charges, 2);
+        $desc = 'Debit for withdrawal of ' . $this->currency_short . number_format($amount, 2) . ', with charges of ' . $this->currency_short . number_format($charges, 2);
 
         // debit user 
         Wallet::create([
@@ -100,7 +104,7 @@ class WithdrawalController extends Controller
         Withdrawal::create([
             'user_id' => $user->id,
             'payment_id' => $validate['payment_id'],
-            'amount' => $validate['amount'],
+            'amount' => $amount,
             'charges' => $charges,
         ]);
 
