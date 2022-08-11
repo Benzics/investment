@@ -63,4 +63,16 @@ class InvestmentController extends Controller
 
         return view('user.new-investment', compact('title', 'page_title', 'investments'));
     }
+
+    public function preview(Request $request)
+    {
+        $title = 'Preview Investment';
+        $page_title = 'Preview Investment';
+
+        $validate = $request->validate(['investment_id' => 'required|numeric']);
+        
+        $investment = Investment::findOrFail($validate['investment_id']);
+
+        return view('user.preview-investment', compact('title', 'page_title', 'investment'));
+    }
 }
