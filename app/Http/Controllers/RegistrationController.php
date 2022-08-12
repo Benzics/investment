@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use App\Services\RegistrationService;
+use Illuminate\Support\Facades\Log;
+use Throwable;
 
 class RegistrationController extends Controller
 {
@@ -56,7 +58,12 @@ class RegistrationController extends Controller
             'referrer' => $referer ?? 0,
         ]);
 
-        event(new Registered($user));
+        try {
+            event(new Registered($user));
+        } catch (Throwable $e) {
+            report($e);
+            return back()->withErrors(['email' => 'Sorry there is an internal server issue. Please contact the admin.']);
+        }
 
         Auth::login($user);
 

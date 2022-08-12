@@ -169,6 +169,11 @@
     .mb-3 {
         margin-bottom: 15px;
     }
+    @media (min-width: 768px) {
+        .udex-main {
+            min-height: 100vh !important;
+        }
+    }
     </style>
     <div class="default cpanel_info">
         USER ID: @isset($ref_id) {{ $ref_id }} @endisset </div>
