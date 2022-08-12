@@ -68,7 +68,7 @@
     <header class="cpanel_header row" id="cpanel_header">
         <ul>
             <li class="bar"><a id="menu_btn"><i class="fa fa-align-left"></i></a></li>
-            <li class="brand"><img src="{{ asset('/assets/images/bitcoinn.png') }}" title="Global Options FX Trade"/></li>
+            <li class="brand"><img src="{{ asset('/assets/images/bitcoin-15.png') }}" title="Global Options FX Trade"/></li>
             <li class="user"><a href="#" id="open_account"><i class="fa fa-user"></i></a>
             </li>
         </ul>
