@@ -10,6 +10,7 @@ use App\Models\UserInvestment;
 use App\Models\Wallet;
 use Illuminate\Support\Facades\DB;
 use App\Events\Invested;
+use Throwable;
 
 class InvestmentController extends UserController
 {
@@ -123,15 +124,18 @@ class InvestmentController extends UserController
         'type' => '4',
         ]);
 
-        UserInvestment::create([
+        $user_investment = UserInvestment::create([
             'user_id' => $user->id,
             'investment_id' => $investment_id,
             'amount' => $amount,
         ]);
 
         // mail the admin
-        Invested::dispatch();
-
+        try {
+            Invested::dispatch($user_investment, $user->email);
+        } catch (Throwable $e) {
+            report($e);
+        }
         return redirect()->route('user.investments')
             ->with('success', 'Your investment has successfully been created. Happy Earnings!');
         

@@ -8,6 +8,7 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 use Illuminate\Support\Facades\Event;
 
 use App\Listeners\SendAdminInvestNotification;
+use App\Listeners\SendUserInvestNotification;
 use App\Listeners\SendAdminRegisterNotification;
 use App\Events\Invested;
 
@@ -26,6 +27,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         Invested::class => [
             SendAdminInvestNotification::class,
+            SendUserInvestNotification::class,
         ]
     ];
 

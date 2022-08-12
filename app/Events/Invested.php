@@ -3,6 +3,7 @@
 namespace App\Events;
 
 use App\Models\User;
+use App\Models\UserInvestment;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -16,14 +17,18 @@ class Invested
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
 
+    public $investment;
+    public $user_mail;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(UserInvestment $invest, $user_mail)
     {
 
+        $this->investment = $invest;
+        $this->user_mail = $user_mail;
     }
 
     /**

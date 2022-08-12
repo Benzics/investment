@@ -29,6 +29,7 @@ class NewInvestmentAdmin extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.new-investment-admin');
+        return $this->markdown('emails.new-investment-admin')
+            ->subject('A new investment was made');
     }
 }

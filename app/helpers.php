@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
+
 /**
  * Map investment status
  * @param int $status
@@ -38,4 +40,15 @@ function map_status_class($status)
         default:
             return 'red';
     }
+}
+
+/**
+ * Retrieve a setting from the database
+ * @param int $setting_name
+ */
+function setting($setting_name)
+{
+    $setting = DB::table('settings')->where('name', $setting_name)->first();
+
+    return $setting ? $setting->value : false;
 }
