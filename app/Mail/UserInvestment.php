@@ -17,6 +17,7 @@ class UserInvestment extends Mailable
     public $investment;
     public $investment_name;
     public $user;
+    public $currency;
 
     /**
      * Create a new message instance.
@@ -32,6 +33,7 @@ class UserInvestment extends Mailable
 
         $user = User::find($investment->user_id);
         $this->user = $user->name;
+        $this->currency = currency_symbol();
 
     }
 
