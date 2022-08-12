@@ -20,7 +20,7 @@ class WithdrawTest extends TestCase
     {
         $user = User::find(1);
         $response = $this->actingAs($user)->get('/user/withdrawal');
-        $response->assertOk();
+        $response->assertOk()->assertValid();
     }
 
     public function test_user_withdraw_function()

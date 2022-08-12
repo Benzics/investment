@@ -23,7 +23,7 @@ class DepositTest extends TestCase
         $user = User::find(1);
 
         $response = $this->actingAs($user)->get('/admin/fund-wallet');
-        $response->assertOk();
+        $response->assertOk()->assertValid();
     }
 
     public function test_wallet_funding()
@@ -45,7 +45,7 @@ class DepositTest extends TestCase
     {
         $user = User::find(1);
         $response = $this->actingAs($user)->get('/user/deposit');
-        $response->assertOk();
+        $response->assertOk()->assertValid();
     }
 
     public function test_deposit_attachment()
@@ -73,13 +73,13 @@ class DepositTest extends TestCase
         $response = $this->actingAs($user)
             ->post('/user/deposit-fund', ['amount' => '10', 'charges' => '1', 'payment_id' => '1' ]);
 
-        $response->assertOk();
+        $response->assertOk()->assertValid();
     }
 
     public function test_admin_deposits_page()
     {
         $user = User::find(1);
         $response = $this->actingAs($user)->get('/admin/deposits');
-        $response->assertOk();
+        $response->assertOk()->assertValid();
     }
 }

@@ -22,7 +22,7 @@ class InvestmentTest extends TestCase
 
         $response = $this->actingAs($user)->get('/user/new-investment');
 
-        $response->assertOk();
+        $response->assertOk()->assertValid();
     }
 
     public function test_user_investment_preview()
@@ -55,6 +55,6 @@ class InvestmentTest extends TestCase
 
         $response = $this->actingAs($user)->get('/user/investments');
 
-        $response->assertOk();
+        $response->assertOk()->assertValid();
     }
 }
