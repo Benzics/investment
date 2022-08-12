@@ -144,7 +144,7 @@ class InvestmentController extends UserController
             ->where('user_id', $user->id)
             ->join('investments', 'user_investments.investment_id', '=', 'investments.id')
             ->select('user_investments.*', 'investments.name')
-            ->paginate(1);
+            ->paginate(15);
 
         $currency = $this->_currency_short;
 

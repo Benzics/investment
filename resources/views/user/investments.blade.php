@@ -12,7 +12,11 @@
                 <th style="min-width: 100px">Amount</th>
                 <th style="min-width: 100px">Investment Plan</th>
             </tr>
-            
+            @if(count($investments) == 0)
+            <tr>
+                <td colspan="5">You have no investments. <a href="{{url('/user/new-investment')}}">Click Here</a> to start a new investment.</td>
+            </tr>
+            @endif
             @foreach($investments as $row)
             @php
             $id = 0;
@@ -33,8 +37,7 @@
             <tr>
                 <td colspan="5">
                    
-                    {{ $investments->links('vendor.pagination.custom-user') }}
-                    
+                    {{ $investments->links('vendor.pagination.custom-user') }} 
                   
                 </td>
             </tr>
