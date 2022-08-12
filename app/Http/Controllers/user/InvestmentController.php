@@ -8,6 +8,7 @@ use App\Http\Controllers\core\UserController;
 use App\Models\User;
 use App\Models\UserInvestment;
 use App\Models\Wallet;
+use Illuminate\Support\Facades\DB;
 
 class InvestmentController extends UserController
 {
@@ -135,10 +136,13 @@ class InvestmentController extends UserController
         $page_title = 'My Investments';
         $user = auth()->user();
         $ref_id = User::findOrFail($user->id)->profile->ref_id;
-        $investments = UserInvestment::where('user_id', $user->id)
+        $investments = DB::table('user_investments')
+            ->where('user_id', $user->id)
             ->join('investments', 'user_investments.id', '=', 'investments.id')
+            ->select('user_investments.*', 'investments.name')
             ->get();
+        $currency = $this->_currency_short;
 
-        return view('user.investments', compact('title', 'page_title', 'user', 'ref_id', 'investments'));
+        return view('user.investments', compact('title', 'page_title', 'user', 'ref_id', 'investments', 'currency'));
     }
 }

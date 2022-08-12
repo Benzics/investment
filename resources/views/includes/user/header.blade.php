@@ -179,18 +179,19 @@
             <li ><a href="{{url('/user/deposit')}}"> <i class="fa fa-inbox"></i> Deposit Funds</a></li>
             <li ><a href="{{url('/user/withdrawal')}}"> <i class="fa fa-money"></i> Withdraw Funds</a></li>
             <li ><a href="{{url('/user/new-investment')}}"> <i class="fa fa-database"></i> New Investment</a></li>
+            <li ><a href="{{url('/user/investments')}}"> <i class="fa fa-database"></i> My Investments</a></li>
             <li ><a href="#/reference-user"> <i class="fa fa-crosshairs"></i> Affiliate Program</a></li>
             <li ><a href="#/testimony"> <i class="fa fa-bullhorn"></i> Write Testimony</a></li>
             <li ><a href="#/info"> <i class="fa fa-gears"></i> Account Settings</a></li>
             <li ><a href="#/trading-view"> <i class="fa fa-bullseye"></i> Trade View</a></li>
-            <li><a href="user/logout"> <i class="fa fa-power-off"></i> Logout</a></li>
+            <li><a href="{{url('/user/logout')}}"> <i class="fa fa-power-off"></i> Logout</a></li>
             <li><a href="#user/contact"> <i class="fa fa-exclamation-circle"></i> Help</a></li>
         </ul>
     </div>
 
     <div class="udex-main" id="main">
 
-        <script src="/assets/js/validation.js"></script>
+        {{-- <script src="/assets/js/validation.js"></script> --}}
         
     <div class="row kk">
     <div class="col-12" style="padding-top: 0">
