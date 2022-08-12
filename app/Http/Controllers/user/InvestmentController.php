@@ -16,8 +16,11 @@ class InvestmentController extends UserController
 
     public function __construct()
     {
+        parent::__construct();
+
         $investments = Investment::where('status', '1')->get();
         $this->investment_plans = $investments;
+
 
     }
 
@@ -138,9 +141,10 @@ class InvestmentController extends UserController
         $ref_id = User::findOrFail($user->id)->profile->ref_id;
         $investments = DB::table('user_investments')
             ->where('user_id', $user->id)
-            ->join('investments', 'user_investments.id', '=', 'investments.id')
+            ->join('investments', 'user_investments.investment_id', '=', 'investments.id')
             ->select('user_investments.*', 'investments.name')
             ->get();
+
         $currency = $this->_currency_short;
 
         return view('user.investments', compact('title', 'page_title', 'user', 'ref_id', 'investments', 'currency'));
