@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\UserInvestment;
 use App\Models\Wallet;
 use Illuminate\Support\Facades\DB;
+use App\Events\Invested;
 
 class InvestmentController extends UserController
 {
@@ -127,6 +128,9 @@ class InvestmentController extends UserController
             'investment_id' => $investment_id,
             'amount' => $amount,
         ]);
+
+        // mail the admin
+        Invested::dispatch();
 
         return redirect()->route('user.investments')
             ->with('success', 'Your investment has successfully been created. Happy Earnings!');

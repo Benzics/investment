@@ -3,6 +3,8 @@
 namespace App\Listeners;
 
 use App\Events\Invested;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewInvestmentAdmin;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
@@ -26,6 +28,7 @@ class SendAdminInvestNotification
      */
     public function handle(Invested $event)
     {
-        //
+        $event;
+        Mail::to('benjaminnicholas29@gmail.com')->send(new NewInvestmentAdmin());
     }
 }

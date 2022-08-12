@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -14,6 +15,7 @@ class Invested
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+
     /**
      * Create a new event instance.
      *
@@ -21,7 +23,7 @@ class Invested
      */
     public function __construct()
     {
-        //
+
     }
 
     /**
