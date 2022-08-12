@@ -131,9 +131,12 @@ class InvestmentController extends UserController
         ]);
 
         // mail the admin
-        try {
+        try 
+        {
             Invested::dispatch($user_investment, $user->email);
-        } catch (Throwable $e) {
+        } 
+        catch (Throwable $e) 
+        {
             report($e);
         }
         return redirect()->route('user.investments')

@@ -11,6 +11,9 @@ use App\Listeners\SendAdminInvestNotification;
 use App\Listeners\SendUserInvestNotification;
 use App\Listeners\SendAdminRegisterNotification;
 use App\Events\Invested;
+use App\Events\NewDeposit;
+use App\Listeners\SendAdminDepositNotification;
+use App\Listeners\SendUserDepositNotification;
 
 
 class EventServiceProvider extends ServiceProvider
@@ -28,6 +31,10 @@ class EventServiceProvider extends ServiceProvider
         Invested::class => [
             SendAdminInvestNotification::class,
             SendUserInvestNotification::class,
+        ],
+        NewDeposit::class => [
+            SendAdminDepositNotification::class,
+            SendUserDepositNotification::class,
         ]
     ];
 

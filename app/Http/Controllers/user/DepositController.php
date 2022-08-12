@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\user;
 
 // use App\Http\Controllers\Controller;
+
+use App\Events\NewDeposit;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\File;
 use App\Models\Deposit;
@@ -10,6 +12,7 @@ use App\Models\Payment;
 use App\Models\Setting;
 use App\Http\Controllers\core\UserController;
 use App\Models\User;
+use Throwable;
 
 class DepositController extends UserController
 {
@@ -97,7 +100,7 @@ class DepositController extends UserController
         $attachment = $request->file('attachment')->store('deposits');
         $user = auth()->user();
 
-        Deposit::create([
+        $deposit = Deposit::create([
             'user_id' => $user->id,
             'payment_id' => $request->payment_id,
             'attachment' => $attachment,
@@ -107,6 +110,16 @@ class DepositController extends UserController
             'total' => $request->amount + $request->charges,
             'status' => '0',
         ]);
+
+        try 
+        {
+            event(new NewDeposit($deposit));
+        }
+        catch (Throwable $e)
+        {
+            report($e);
+        }
+
 
         return redirect()->route('user.deposit')
             ->with(['success' => 'Your proof has been uploaded. Please wait, it will be reviewed shortly.']);

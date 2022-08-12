@@ -8,5 +8,5 @@ LOGIN NOW
 @endcomponent
 
 This is an auto-generated email.<br>
-{{ config('app.name') }}
+{{ setting('site-name') }}
 @endcomponent
