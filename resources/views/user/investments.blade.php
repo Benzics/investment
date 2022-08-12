@@ -15,7 +15,7 @@
             
             @foreach($investments as $row)
             @php
-            $id = 1;
+            $id = 0;
             $id++;
             @endphp
             <tr>
@@ -29,6 +29,15 @@
                 <td>{{$row->name}}</td>
             </tr>
             @endforeach
+
+            <tr>
+                <td colspan="5">
+                   
+                    {{ $investments->links('vendor.pagination.custom-user') }}
+                    
+                  
+                </td>
+            </tr>
                 
                  </table>
     </div>

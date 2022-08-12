@@ -139,11 +139,12 @@ class InvestmentController extends UserController
         $page_title = 'My Investments';
         $user = auth()->user();
         $ref_id = User::findOrFail($user->id)->profile->ref_id;
+
         $investments = DB::table('user_investments')
             ->where('user_id', $user->id)
             ->join('investments', 'user_investments.investment_id', '=', 'investments.id')
             ->select('user_investments.*', 'investments.name')
-            ->get();
+            ->paginate(1);
 
         $currency = $this->_currency_short;
 
