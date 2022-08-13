@@ -182,6 +182,7 @@
             <li class="header"><a href="{{url('/user/dashboard')}}"><i class="fa fa-home"></i> MY OFFICE</a></li>
             <li ><a href="{{url('/user/transaction-log')}}"> <i class="fa fa-history"></i> My Transactions</a></li>
             <li ><a href="{{url('/user/deposit')}}"> <i class="fa fa-inbox"></i> Deposit Funds</a></li>
+            <li ><a href="{{url('/user/deposits')}}"> <i class="fa fa-inbox"></i> My Deposits</a></li>
             <li ><a href="{{url('/user/withdrawal')}}"> <i class="fa fa-money"></i> Withdraw Funds</a></li>
             <li ><a href="{{url('/user/withdrawals')}}"> <i class="fa fa-money"></i> My Withdrawals</a></li>
             <li ><a href="{{url('/user/new-investment')}}"> <i class="fa fa-database"></i> New Investment</a></li>

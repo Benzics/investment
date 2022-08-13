@@ -77,7 +77,7 @@
 </a>
 </div>
 <div class="col-4 col-m-6">
-<a href="/account/investment-history">
+<a href="{{url('/user/investments')}}">
 	<div class="r4_counter db_box">
 		<div class="icon-after">
 			<img src="/assets/images/exchange-icon-lg.png" alt="">
