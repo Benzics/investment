@@ -12,6 +12,7 @@ use App\Models\Payment;
 use App\Models\Setting;
 use App\Http\Controllers\core\UserController;
 use App\Models\User;
+use App\Services\UserService;
 use Throwable;
 
 class DepositController extends UserController
@@ -127,5 +128,19 @@ class DepositController extends UserController
 
         return redirect()->route('user.deposit')
             ->with(['success' => 'Your proof has been uploaded. Please wait, it will be reviewed shortly.']);
+    }
+
+    public function deposits(UserService $user_service)
+    {
+        $title = 'My Deposits';
+        $page_title = $title;
+        $user = auth()->user();
+        $currency = $this->_currency_short;
+
+        $ref_id = User::findOrFail($user->id)->profile->ref_id;
+
+        $deposits = $user_service->get_user_deposits($user->id);
+
+        return view('user.deposits', compact('title', 'page_title', 'user', 'ref_id', 'currency', 'deposits'));
     }
 }

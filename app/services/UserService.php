@@ -66,7 +66,7 @@ class UserService {
      * @param $user_id
      * @return
      */
-    public function get_referrals($user_id)
+    public function get_referrals(int $user_id)
     {
         $user_ref = Profile::where('referrer', $user_id)->count();
 
@@ -74,20 +74,55 @@ class UserService {
     }
 
     /**
-     * Get 5 investments from a user
+     * Get latest investments from a user
      * @param $user_id
+     * @param? $limit
      * @return
      */
-    public function get_latest_investments($user_id)
+    public function get_latest_investments(int $user_id, int $limit = 5)
     {
         $investments = DB::table('user_investments')
             ->where('user_id', $user_id)
             ->join('investments', 'user_investments.investment_id', '=', 'investments.id')
             ->select('user_investments.*', 'investments.name')
             ->latest()
-            ->limit(5)
+            ->limit($limit)
             ->get();
         
         return $investments;
+    }
+
+    /**
+     * Get all investments from a user
+     * @param $user_id
+     * @return
+     */
+    public function get_user_investments(int $user_id, int $limit = 15)
+    {
+        $investments = DB::table('user_investments')
+            ->where('user_id', $user_id)
+            ->join('investments', 'user_investments.investment_id', '=', 'investments.id')
+            ->select('user_investments.*', 'investments.name')
+            ->latest()
+            ->paginate($limit);
+        
+        return $investments;
+    }
+
+     /**
+     * Get all investments from a user
+     * @param $user_id
+     * @return
+     */
+    public function get_user_deposits(int $user_id, int $limit = 15)
+    {
+        $deposits = DB::table('deposits')
+            ->where('user_id', $user_id)
+            ->join('payments', 'deposits.payment_id', '=', 'payments.id')
+            ->select('deposits.*', 'payments.name')
+            ->latest()
+            ->paginate($limit);
+        
+        return $deposits;
     }
 }

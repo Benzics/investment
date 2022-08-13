@@ -67,6 +67,7 @@ Route::middleware(['auth', 'verified'])->name('user.')->prefix('user')->group(fu
     Route::get('/', [DashboardController::class, 'index']);
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/deposit', [DepositController::class, 'index'])->name('deposit');
+    Route::get('/deposits', [DepositController::class, 'deposits'])->name('deposits');
     Route::post('/deposit', [DepositController::class, 'store']);
     Route::post('/deposit-fund', [DepositController::class, 'deposit']);
     Route::get('/withdrawal', [WithdrawalController::class, 'index'])->name('withdraw');

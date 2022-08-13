@@ -10,6 +10,7 @@ use App\Models\UserInvestment;
 use App\Models\Wallet;
 use Illuminate\Support\Facades\DB;
 use App\Events\Invested;
+use App\Services\UserService;
 use Throwable;
 
 class InvestmentController extends UserController
@@ -148,19 +149,14 @@ class InvestmentController extends UserController
         
     }
 
-    public function investments()
+    public function investments(UserService $user_service)
     {
         $title = 'My Investments';
         $page_title = 'My Investments';
         $user = auth()->user();
         $ref_id = User::findOrFail($user->id)->profile->ref_id;
 
-        $investments = DB::table('user_investments')
-            ->where('user_id', $user->id)
-            ->join('investments', 'user_investments.investment_id', '=', 'investments.id')
-            ->select('user_investments.*', 'investments.name')
-            ->latest()
-            ->paginate(15);
+        $investments = $user_service->get_user_investments($user->id);
 
         $currency = $this->_currency_short;
 
