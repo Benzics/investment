@@ -36,8 +36,8 @@
 		</div>
 		<i class="pull-left fa fa-users icon-md mt-10"></i>
 		<div class="stats">
-			<h3 class="color-white mb-5">0</h3>
-			<span>Reference</span>
+			<h3 class="color-white mb-5">{{ $total_referrals }}</h3>
+			<span>Referrals</span>
 		</div>
 	</div>
 </a>

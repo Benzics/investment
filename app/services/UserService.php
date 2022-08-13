@@ -3,6 +3,8 @@ namespace App\Services;
 
 use App\Models\UserInvestment;
 use App\Models\Deposit;
+use App\Models\Profile;
+use App\Models\User;
 use App\Models\Wallet;
 use App\Models\Withdrawal;
 
@@ -56,5 +58,17 @@ class UserService {
         $investments = UserInvestment::where('user_id', $user_id)->sum('amount');
 
         return $investments;
+    }
+
+    /**
+     * Get the number of referrals a user has
+     * @param $user_id
+     * @return
+     */
+    public function get_referrals($user_id)
+    {
+        $user_ref = Profile::where('referrer', $user_id)->count();
+        
+        return $user_ref;
     }
 }
