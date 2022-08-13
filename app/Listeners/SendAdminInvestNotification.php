@@ -29,6 +29,6 @@ class SendAdminInvestNotification
     public function handle(Invested $event)
     {
         $event;
-        Mail::to('benjaminnicholas29@gmail.com')->send(new NewInvestmentAdmin());
+        Mail::to(setting('admin-mail'))->send(new NewInvestmentAdmin());
     }
 }

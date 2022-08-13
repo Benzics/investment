@@ -3,8 +3,11 @@
 namespace App\Listeners;
 
 use App\Events\NewDeposit;
+use App\Mail\NewDepositUser;
+use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\Mail;
 
 class SendUserDepositNotification
 {
@@ -26,6 +29,8 @@ class SendUserDepositNotification
      */
     public function handle(NewDeposit $event)
     {
-        //
+        $user = User::find($event->deposit->user_id);
+        Mail::to($user)->send(new NewDepositUser($event->deposit));
+
     }
 }

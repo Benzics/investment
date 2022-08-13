@@ -29,7 +29,7 @@ class SendAdminDepositNotification
      */
     public function handle(NewDeposit $event)
     {
-        $user = User::find($event->deposit->user_id);
-        Mail::to($user)->send(new NewDepositAdmin($event->deposit));
+       
+        Mail::to(setting('admin-mail'))->send(new NewDepositAdmin($event->deposit));
     }
 }

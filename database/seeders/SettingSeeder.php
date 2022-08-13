@@ -23,6 +23,7 @@ class SettingSeeder extends Seeder
             ['name' => 'withdrawal-charges', 'value' => '{"type": "0", "amount": "2"}'],
             ['name' => 'withdrawal-time', 'value' => '1'],
             ['name' => 'deposit-charges', 'value' => '{"type": "1", "amount": "12"}'],
+            ['name' => 'admin-mail', 'value' => 'benjaminnicholas29@gmail.com'],
         ]);
     }
 }
