@@ -59,4 +59,15 @@ class UserInvestmentService
         return $investments;
     }
 
+    /**
+     * Get an investment
+     * @param $investment_id
+     * @return
+     */
+    public function get_investment($investment_id)
+    {
+        $investment = Investment::find($investment_id);
+
+        return $investment;
+    }
 }
