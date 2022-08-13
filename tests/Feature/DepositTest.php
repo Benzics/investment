@@ -82,4 +82,11 @@ class DepositTest extends TestCase
         $response = $this->actingAs($user)->get('/admin/deposits');
         $response->assertOk()->assertValid();
     }
+
+    public function test_user_deposit_list()
+    {
+        $user = User::find(1);
+        $response = $this->actingAs($user)->get('/user/deposits');
+        $response->assertOk();
+    }
 }

@@ -1,7 +1,7 @@
 @include('includes.user.header')
 
 <div class="col-4 col-m-6">
-<a href="/account/transaction-log">
+<a href="{{url('/user/transaction-log')}}">
 	<div class="r4_counter db_box has-gradient-to-right-bottom">
 		<div class="icon-after">
 			<img src="/assets/images/cryptonia-ico-lg.png" alt="">
@@ -15,7 +15,7 @@
 </a>
 </div>
 <div class="col-4 col-m-6">
-<a href="/account/repeat-history">
+<a href="#/account/repeat-history">
 	<div class="r4_counter db_box">
 		<div class="icon-after">
 			<img src="/assets/images/cryptonia-ico-lg.png" alt="">
@@ -29,7 +29,7 @@
 </a>
 </div>
 <div class="col-4 col-m-6">
-<a href="/account/reference-user">
+<a href="#/account/reference-user">
 	<div class="r4_counter db_box">
 		<div class="icon-after">
 			<img src="/assets/images/cryptonia-ico-lg.png" alt="">
@@ -43,7 +43,7 @@
 </a>
 </div>
 <div class="col-4 col-m-6">
-<a href="/account/deposit-history">
+<a href="{{url('/user/deposits')}}">
 	<div class="r4_counter db_box">
 		<div class="icon-after">
 			<img src="/assets/images/sell-icon-lg.png" alt="">
@@ -60,7 +60,7 @@
 </a>
 </div>
 <div class="col-4 col-m-6">
-<a href="/account/withdraw-log">
+<a href="{{url('/user/withdrawals')}}">
 	<div class="r4_counter db_box">
 		<div class="icon-after">
 			<img src="/assets/images/buy-icon-lg.png" alt="">
