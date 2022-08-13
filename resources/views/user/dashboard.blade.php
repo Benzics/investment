@@ -8,7 +8,7 @@
 		</div>
 		<i class="pull-left fa fa-usd icon-md icon-white mt-10"></i>
 		<div class="stats">
-			<h3 class="color-white mb-5">0 USD</h3>
+			<h3 class="color-white mb-5">{{$balance . ' ' . $currency}} </h3>
 			<span>Balance</span>
 		</div>
 	</div>
