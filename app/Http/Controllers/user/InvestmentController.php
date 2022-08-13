@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers\user;
 
-use App\Models\Investment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\core\UserController;
-use App\Models\UserInvestment;
-use App\Models\Wallet;
+
 
 use App\Events\Invested;
 use App\Services\UserInvestmentService;
-use App\Services\UserService;
 use Throwable;
 
 class InvestmentController extends UserController

@@ -2,14 +2,9 @@
 
 namespace App\Http\Controllers\user;
 
-// use App\Http\Controllers\Controller;
-
 use App\Events\NewDeposit;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\File;
-use App\Models\Deposit;
-use App\Models\Payment;
-use App\Models\Setting;
 use App\Http\Controllers\core\UserController;
 use App\Services\PaymentService;
 use Throwable;

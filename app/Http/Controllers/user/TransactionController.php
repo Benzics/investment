@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\core\UserController;
-use Illuminate\Http\Request;
-use App\Models\Wallet;
 use App\Services\WalletService;
 
 class TransactionController extends UserController

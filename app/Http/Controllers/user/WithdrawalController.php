@@ -8,7 +8,7 @@ use App\Models\Payment;
 use App\Models\Withdrawal;
 use App\Models\Wallet;
 use App\Http\Controllers\core\UserController;
-use App\Models\User;
+use App\Services\PaymentService;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 
@@ -25,7 +25,10 @@ class WithdrawalController extends UserController
 
         $minimum_withdrawal = number_format($minimum_withdrawal, 2);
         $maximum_withdrawal = number_format($maximum_withdrawal, 2);
-        $payments = Payment::where('status', '1')->get();
+
+        $payment_service = new PaymentService();
+
+        $payments = $payment_service->get_active_payments();
         $title = 'Withdrawal';
         $page_title = 'Withdrawal Request';
 
@@ -46,7 +49,7 @@ class WithdrawalController extends UserController
         $payment_string = implode(',', $payment_ids);
 
         $user = auth()->user();
-       $ref_id = $this->_user_service->get_profile($user->id)?->ref_id;
+        $ref_id = $this->_user_service->get_profile($user->id)?->ref_id;
  
 
         return view('user.withdraw', compact('payments', 'title', 'page_title', 'payment_string', 'currency', 'currency_short',
@@ -64,8 +67,7 @@ class WithdrawalController extends UserController
         $user = auth()->user();
        
         $amount = $validate['amount'];
-        $wallet = Wallet::where('user_id', $user->id)->latest()->first();
-        $balance = ($wallet) ? $wallet->balance : 0;
+        $balance = $this->_user_service->get_balance($user->id);
 
         $withdrawal_charge =  $this->_user_service->get_setting('withdrawal-charges');
         $minimum = $this->_user_service->get_setting('minimum-withdrawal');
@@ -84,14 +86,9 @@ class WithdrawalController extends UserController
 
         $desc = 'Debit for withdrawal of ' . $this->_currency_short . number_format($amount, 2) . ', with charges of ' . $this->_currency_short . number_format($charges, 2);
 
-        // debit user 
-        Wallet::create([
-            'user_id' => $user->id,
-            'debit' => $debit,
-            'description' => $desc,
-            'balance' => $balance - $debit,
-            'type' => '3',
-        ]);
+        // debit user
+        
+        $this->_user_service->debit_user($user->id, $debit, 3, $desc);
 
         // save withdrawal 
         $withdrawal = Withdrawal::create([
