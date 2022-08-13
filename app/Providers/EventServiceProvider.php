@@ -14,6 +14,9 @@ use App\Events\Invested;
 use App\Events\NewDeposit;
 use App\Listeners\SendAdminDepositNotification;
 use App\Listeners\SendUserDepositNotification;
+use App\Events\NewWithdrawal;
+use App\Listeners\SendUserWithdrawalNotification;
+use App\Listeners\SendAdminWithdrawalNotification;
 
 
 class EventServiceProvider extends ServiceProvider
@@ -35,6 +38,10 @@ class EventServiceProvider extends ServiceProvider
         NewDeposit::class => [
             SendAdminDepositNotification::class,
             SendUserDepositNotification::class,
+        ],
+        NewWithdrawal::class => [
+            SendUserWithdrawalNotification::class,
+            SendAdminWithdrawalNotification::class,
         ]
     ];
 

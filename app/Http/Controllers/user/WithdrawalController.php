@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\user;
 
+use App\Events\NewWithdrawal;
 use Illuminate\Http\Request;
 use App\Models\Payment;
 use App\Models\Withdrawal;
 use App\Models\Wallet;
 use App\Http\Controllers\core\UserController;
 use App\Models\User;
+use Throwable;
 
 class WithdrawalController extends UserController
 {
@@ -89,12 +91,24 @@ class WithdrawalController extends UserController
         ]);
 
         // save withdrawal 
-        Withdrawal::create([
+        $withdrawal = Withdrawal::create([
             'user_id' => $user->id,
             'payment_id' => $validate['payment_id'],
             'amount' => $amount,
             'charges' => $charges,
         ]);
+
+        try 
+        {
+            if(setting('withdrawal-notification'))
+            {
+                event(new NewWithdrawal($withdrawal));
+            }
+        }
+        catch (Throwable $e)
+        {
+            report($e);
+        }
 
         return redirect()->route('user.withdraw')
             ->with([
