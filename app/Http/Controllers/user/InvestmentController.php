@@ -57,7 +57,7 @@ class InvestmentController extends UserController
         $page_title = 'Preview Investment';
         $user = auth()->user();
        
-       $ref_id = $this->_user_service->get_profile($user->id)?->ref_id;
+        $ref_id = $this->_user_service->get_profile($user->id)?->ref_id;
 
         $validate = $request->validate(['investment_id' => 'required|numeric']);
         
@@ -70,22 +70,24 @@ class InvestmentController extends UserController
 
         $low_balance = ($balance < $investment->minimum) ?: false;
 
-        $commission = ($investment->commission_type == 1) ? $currency . ' ' . number_format($investment->commission, 2) :
-            $investment->commission . '%';
+        $commission = ($investment->commission_type == 1) ? $currency . ' ' . num_format($investment->commission) : $investment->commission . '%';
         $name = $investment->name;
         $minimum = number_format($investment->minimum, 2) . ' ' . $currency;
         $maximum = number_format($investment->maximum, 2) . ' ' . $currency;
         $times = $investment->times;
         $type = $investment->type;
         
+        $view_data = ['title', 'page_title', 'investment', 'user', 'ref_id', 'currency', 'name', 'minimum', 'maximum', 'commission', 'type', 'times', 'balance', 'low_balance', 'currency_sign'];
 
-        return view('user.preview-investment', compact('title', 'page_title', 'investment', 'user', 'ref_id', 'currency',
-            'name', 'minimum', 'maximum', 'commission', 'type', 'times', 'balance', 'low_balance', 'currency_sign'));
+        return view('user.preview-investment', compact($view_data));
     }
 
     public function invest(Request $request)
     {
-        $validate = $request->validate(['amount' => 'required', 'investment_id' => 'required|numeric']);
+        $validate = $request->validate([
+            'amount' => 'required',
+            'investment_id' => 'required|numeric',
+        ]);
 
         $user = auth()->user();
         $amount = $validate['amount'];
@@ -93,8 +95,8 @@ class InvestmentController extends UserController
 
         $investment = Investment::findOrFail($investment_id);
 
-        $wallet = Wallet::where('user_id', $user->id)->latest()->first();
-        $balance = ($wallet) ? $wallet->balance : 0;
+      
+        $balance = $this->_user_service->get_balance($user->id);
 
         if($balance < $amount || $amount < $investment->minimum)
         {
@@ -106,7 +108,7 @@ class InvestmentController extends UserController
 
         $this->_user_service->debit_user($user->id, $amount, 4, $desc);
 
-        $user_investment = UserInvestment::create([
+        $user_investment = $this->_investment_service->create([
             'user_id' => $user->id,
             'investment_id' => $investment_id,
             'amount' => $amount,
@@ -135,12 +137,14 @@ class InvestmentController extends UserController
         $title = 'My Investments';
         $page_title = 'My Investments';
         $user = auth()->user();
-       $ref_id = $this->_user_service->get_profile($user->id)?->ref_id;
+        $ref_id = $this->_user_service->get_profile($user->id)?->ref_id;
 
         $investments = $user_service->get_user_investments($user->id);
 
         $currency = $this->_currency_short;
 
-        return view('user.investments', compact('title', 'page_title', 'user', 'ref_id', 'investments', 'currency'));
+        $view_data = ['title', 'page_title', 'user', 'ref_id', 'investments', 'currency'];
+
+        return view('user.investments', compact($view_data));
     }
 }
