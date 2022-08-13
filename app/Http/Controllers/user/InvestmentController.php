@@ -134,14 +134,14 @@ class InvestmentController extends UserController
         
     }
 
-    public function investments(UserService $user_service)
+    public function investments()
     {
         $title = 'My Investments';
         $page_title = 'My Investments';
         $user = auth()->user();
         $ref_id = $this->_user_service->get_profile($user->id)?->ref_id;
 
-        $investments = $user_service->get_user_investments($user->id);
+        $investments = $this->_user_service->get_user_investments($user->id);
 
         $currency = $this->_currency_short;
 
