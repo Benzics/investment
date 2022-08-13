@@ -36,4 +36,11 @@ class WithdrawTest extends TestCase
             ->assertRedirect('/user/withdrawal')
             ->assertSessionHas('success');
     }
+
+    public function test_withdrawal_list()
+    {
+        $user = User::find(1);
+        $response = $this->actingAs($user)->get('/user/withdrawals');
+        $response->assertValid()->assertOk();
+    }
 }
