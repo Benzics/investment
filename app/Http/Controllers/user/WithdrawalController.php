@@ -66,6 +66,7 @@ class WithdrawalController extends UserController
         $balance = ($wallet) ? $wallet->balance : 0;
 
         $withdrawal_charge =  $this->_get_setting('withdrawal-charges');
+        $minimum = $this->_get_setting('minimum-withdrawal');
         $wth_charge = json_decode($withdrawal_charge);
 
         $charges = ($wth_charge->type == 0) ? ($wth_charge->amount / 100) * $amount : $wth_charge->amount;
@@ -74,9 +75,9 @@ class WithdrawalController extends UserController
 
         $debit = $amount + $charges;
 
-        if($balance < $debit)
+        if($balance < $debit || $amount < $minimum )
         {
-            return back()->withErrors(['amount' => 'Amount specified is less than your available balance!']);
+            return back()->withErrors(['amount' => 'Amount specified is less than your available balance or the minimum withdrawal!']);
         }
 
         $desc = 'Debit for withdrawal of ' . $this->_currency_short . number_format($amount, 2) . ', with charges of ' . $this->_currency_short . number_format($charges, 2);

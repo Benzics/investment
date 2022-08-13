@@ -27,7 +27,7 @@ class WithdrawTest extends TestCase
     {
         $user = User::find(1);
         $data = [
-            'amount' => '10',
+            'amount' => '300',
             'payment_id' => '1',
         ];
         $response = $this->actingAs($user)->post('/user/withdrawal', $data);
