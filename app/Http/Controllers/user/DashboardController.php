@@ -24,8 +24,9 @@ class DashboardController extends UserController
         $total_referrals = $this->_user_service->get_referrals($user->id);
         $investments = $this->_user_service->get_latest_investments($user->id);
 
-        
-        return view('user.dashboard', compact('user', 'ref_id', 'title', 'page_title', 'currency', 'balance', 'total_deposit',
-            'total_withdrawals', 'total_investments', 'total_referrals', 'investments'));
+        $view_data = ['user', 'ref_id', 'title', 'page_title', 'currency', 'balance', 'total_deposit', 'total_withdrawals', 
+            'total_investments', 'total_referrals', 'investments'];
+
+        return view('user.dashboard', compact($view_data));
     }
 }

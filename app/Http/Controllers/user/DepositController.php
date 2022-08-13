@@ -11,25 +11,35 @@ use App\Models\Deposit;
 use App\Models\Payment;
 use App\Models\Setting;
 use App\Http\Controllers\core\UserController;
-use App\Models\User;
-use App\Services\UserService;
+use App\Services\PaymentService;
 use Throwable;
 
 class DepositController extends UserController
 {
 
+    public $_payment_service;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->_payment_service = new PaymentService();
+
+    }
 
     public function index()
     {
-        $payments = Payment::where('status', '1')->get();
+        $payments = $this->_payment_service->get_active_payments();
 
         $deposit_charge = $this->_user_service->get_setting('deposit-charges');
         $dep_charge = json_decode($deposit_charge);
 
         $currency_short = $this->_currency_short;
 
-        $charge = ($dep_charge->type == 0) ? number_format($dep_charge->amount, 2) . '%' :
+        $charge = ($dep_charge->type == 0) ?
+            number_format($dep_charge->amount, 2) . '%' :
             $currency_short . ' ' . number_format($dep_charge->amount, 2);
+
         $payment_ids = [];
 
         foreach($payments as $row)
@@ -43,10 +53,18 @@ class DepositController extends UserController
 
        $ref_id = $this->_user_service->get_profile($user->id)?->ref_id;
 
+       $view_data = [
+            'title' => 'Deposit', 
+            'page_title' => 'Deposit Method',
+            'payments' => $payments,
+            'payment_string' => $payment_string,
+            'currency' => $currency_short,
+            'charges' => $charge,
+            'user' => $user,
+            'ref_id' => $ref_id,
+        ];
 
-        return view('user.deposit', ['title' => 'Deposit', 'page_title' => 'Deposit Method',
-            'payments' => $payments, 'payment_string' => $payment_string, 'currency' => $currency_short, 'charges' => $charge,
-            'user' => $user, 'ref_id' => $ref_id]);
+        return view('user.deposit', $view_data);
     }
 
     public function deposit(Request $request)
@@ -57,13 +75,13 @@ class DepositController extends UserController
 
         ]);
 
-        $deposit_charge = Setting::where('name', 'deposit-charges')->firstOrFail();
-        $dep_charge = json_decode($deposit_charge->value);
+        $deposit_charge = setting('deposit-charges');
+        $dep_charge = json_decode($deposit_charge);
 
 
         $currency_short = $this->_currency_short;
 
-        $payment = Payment::find($validate['payment_id']);
+        $payment = $this->_payment_service->get_payment($validate['payment_id']);
 
         $amount = $validate['amount'];
 
@@ -77,10 +95,18 @@ class DepositController extends UserController
         $user = auth()->user();
 
        $ref_id = $this->_user_service->get_profile($user->id)?->ref_id;
+       $view_data = [
+            'title' => 'Deposit',
+            'page_title' => 'Deposit Preview',
+            'payment' => $payment,
+            'amount' => $request->amount,
+            'charges' => $charges,
+            'currency' => $currency_short,
+            'user' => $user,
+            'ref_id' => $ref_id,
+        ];
 
-        return view('user.deposit-fund', ['title' => 'Deposit', 'page_title' => 'Deposit Preview', 
-            'payment' => $payment, 'amount' => $request->amount, 'charges' => $charges, 'currency' => $currency_short,
-            'user' => $user, 'ref_id' => $ref_id]);
+        return view('user.deposit-fund', $view_data);
     }
 
     public function store(Request $request)
@@ -93,15 +119,15 @@ class DepositController extends UserController
 
          // rettrieve the deposit settings 
       
-        $deposit_charge = Setting::where('name', 'deposit-charges')->firstOrFail();
-        $dep_charge = json_decode($deposit_charge->value);
+        $deposit_charge = setting('deposit-charges');
+        $dep_charge = json_decode($deposit_charge);
         
         $charges = ($dep_charge->type == 0) ? ($dep_charge->amount / 100) * $request->amount : $dep_charge->amount;
         
         $attachment = $request->file('attachment')->store('deposits');
         $user = auth()->user();
 
-        $deposit = Deposit::create([
+        $deposit = $this->_payment_service->make_deposit([
             'user_id' => $user->id,
             'payment_id' => $request->payment_id,
             'attachment' => $attachment,
