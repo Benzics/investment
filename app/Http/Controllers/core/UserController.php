@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Currency;
 use App\Models\Setting;
+use App\Services\UserService;
 
 class UserController extends Controller
 {
@@ -25,25 +26,16 @@ class UserController extends Controller
      */
     public $_user;
 
+    public $_user_service;
+
     public function __construct()
     {
-        $site_currency = $this->_get_setting('currency');
-        $currency = Currency::findOrFail($site_currency);
+        $this->_user_service = new UserService();
 
-        $this->_currency = $currency->symbol;
-        $this->_currency_short = $currency->short_code; 
+        $this->_currency = currency_symbol();
+        $this->_currency_short = currency_short(); 
     
     }
 
-    /**
-     * Retrieve a setting from the settings database
-     * @param $setting the setting name you want to retrieve
-     * @return
-     */
-    public function _get_setting(String $setting)
-    {
-        $get_setting = Setting::where('name', $setting)->firstOrFail();
-
-        return $get_setting->value;
-    }
+   
 }

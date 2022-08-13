@@ -4,6 +4,7 @@ namespace App\Services;
 use App\Models\UserInvestment;
 use App\Models\Deposit;
 use App\Models\Profile;
+use App\Models\Setting;
 use App\Models\User;
 use App\Models\Wallet;
 use App\Models\Withdrawal;
@@ -124,5 +125,50 @@ class UserService {
             ->paginate($limit);
         
         return $deposits;
+    }
+
+    /**
+     * Returns the user profile
+     * @param $user_id
+     */
+    public function get_profile(int $user_id)
+    {
+        $user = User::findOrFail($user_id)->profile;
+
+        return $user;
+    }
+
+     /**
+     * Retrieve a setting from the settings database
+     * @param $setting the setting name you want to retrieve
+     * @return
+     */
+    public function get_setting(string $setting)
+    {
+        $get_setting = Setting::where('name', $setting)->first();
+
+        return $get_setting?->value;
+    }
+
+    /**
+     * Debits a user
+     * @param $user_id
+     * @param $amount
+     * @param $type
+     * @param? $description
+     */
+    public function debit_user(int $user_id, float $amount, int $type, string $description = '')
+    {
+        $balance = $this->get_balance($user_id);
+        
+        $debit = Wallet::create([
+            'user_id' => $user_id,
+            'debit' => $amount,
+            'description' => $description,
+            'balance' => $balance - $amount,
+            'type' => $type,
+            ]);
+        
+        return $debit;
     }
 }

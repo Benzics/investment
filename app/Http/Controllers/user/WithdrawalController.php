@@ -17,10 +17,10 @@ class WithdrawalController extends UserController
     public function index()
     {
         // retrieve the withdrawal settings 
-        $minimum_withdrawal = $this->_get_setting('minimum-withdrawal');
-        $maximum_withdrawal =  $this->_get_setting('maximum-withdrawal');
-        $processing_time =  $this->_get_setting('withdrawal-time');
-        $withdrawal_charge =  $this->_get_setting('withdrawal-charges');
+        $minimum_withdrawal = $this->_user_service->get_setting('minimum-withdrawal');
+        $maximum_withdrawal =  $this->_user_service->get_setting('maximum-withdrawal');
+        $processing_time =  $this->_user_service->get_setting('withdrawal-time');
+        $withdrawal_charge =  $this->_user_service->get_setting('withdrawal-charges');
         $wth_charge = json_decode($withdrawal_charge);
 
         $minimum_withdrawal = number_format($minimum_withdrawal, 2);
@@ -46,7 +46,7 @@ class WithdrawalController extends UserController
         $payment_string = implode(',', $payment_ids);
 
         $user = auth()->user();
-        $ref_id = User::findOrFail($user->id)->profile->ref_id;
+       $ref_id = $this->_user_service->get_profile($user->id)?->ref_id;
  
 
         return view('user.withdraw', compact('payments', 'title', 'page_title', 'payment_string', 'currency', 'currency_short',
@@ -67,8 +67,8 @@ class WithdrawalController extends UserController
         $wallet = Wallet::where('user_id', $user->id)->latest()->first();
         $balance = ($wallet) ? $wallet->balance : 0;
 
-        $withdrawal_charge =  $this->_get_setting('withdrawal-charges');
-        $minimum = $this->_get_setting('minimum-withdrawal');
+        $withdrawal_charge =  $this->_user_service->get_setting('withdrawal-charges');
+        $minimum = $this->_user_service->get_setting('minimum-withdrawal');
         $wth_charge = json_decode($withdrawal_charge);
 
         $charges = ($wth_charge->type == 0) ? ($wth_charge->amount / 100) * $amount : $wth_charge->amount;
@@ -126,7 +126,7 @@ class WithdrawalController extends UserController
         $title = 'My Withdrawals';
         $page_title = 'My Withdrawals';
         $user = auth()->user();
-        $ref_id = User::findOrFail($user->id)->profile->ref_id;
+       $ref_id = $this->_user_service->get_profile($user->id)?->ref_id;
         $currency = $this->_currency_short;
         $withdrawals = DB::table('withdrawals')
         ->where('user_id', $user->id)

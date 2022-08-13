@@ -14,7 +14,7 @@ class TransactionController extends UserController
         $title = 'My Transactions';
         $page_title = 'My Transactions';
         $user = auth()->user();
-        $ref_id = User::findOrFail($user->id)->profile->ref_id;
+       $ref_id = $this->_user_service->get_profile($user->id)?->ref_id;
         $transactions = Wallet::where('user_id', $user->id)->latest()->paginate(15);
         $currency = $this->_currency;
 

@@ -23,7 +23,7 @@ class DepositController extends UserController
     {
         $payments = Payment::where('status', '1')->get();
 
-        $deposit_charge = $this->_get_setting('deposit-charges');
+        $deposit_charge = $this->_user_service->get_setting('deposit-charges');
         $dep_charge = json_decode($deposit_charge);
 
         $currency_short = $this->_currency_short;
@@ -41,7 +41,7 @@ class DepositController extends UserController
 
         $user = auth()->user();
 
-        $ref_id = User::findOrFail($user->id)->profile->ref_id;
+       $ref_id = $this->_user_service->get_profile($user->id)?->ref_id;
 
 
         return view('user.deposit', ['title' => 'Deposit', 'page_title' => 'Deposit Method',
@@ -76,7 +76,7 @@ class DepositController extends UserController
 
         $user = auth()->user();
 
-        $ref_id = User::findOrFail($user->id)->profile->ref_id;
+       $ref_id = $this->_user_service->get_profile($user->id)?->ref_id;
 
         return view('user.deposit-fund', ['title' => 'Deposit', 'page_title' => 'Deposit Preview', 
             'payment' => $payment, 'amount' => $request->amount, 'charges' => $charges, 'currency' => $currency_short,
@@ -85,7 +85,7 @@ class DepositController extends UserController
 
     public function store(Request $request)
     {
-        $validate = $request->validate([
+        $request->validate([
             'attachment' => ['required', File::image()],
             'amount' => 'required|min:1',
             'payment_id' => 'required',
@@ -130,16 +130,16 @@ class DepositController extends UserController
             ->with(['success' => 'Your proof has been uploaded. Please wait, it will be reviewed shortly.']);
     }
 
-    public function deposits(UserService $user_service)
+    public function deposits()
     {
         $title = 'My Deposits';
         $page_title = $title;
         $user = auth()->user();
         $currency = $this->_currency_short;
 
-        $ref_id = User::findOrFail($user->id)->profile->ref_id;
+        $ref_id = $this->_user_service->get_profile($user->id)?->ref_id;
 
-        $deposits = $user_service->get_user_deposits($user->id);
+        $deposits = $this->_user_service->get_user_deposits($user->id);
 
         return view('user.deposits', compact('title', 'page_title', 'user', 'ref_id', 'currency', 'deposits'));
     }

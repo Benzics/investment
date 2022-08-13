@@ -5,24 +5,27 @@ namespace App\Http\Controllers\user;
 use App\Models\Investment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\core\UserController;
-use App\Models\User;
 use App\Models\UserInvestment;
 use App\Models\Wallet;
-use Illuminate\Support\Facades\DB;
+
 use App\Events\Invested;
+use App\Services\UserInvestmentService;
 use App\Services\UserService;
 use Throwable;
 
 class InvestmentController extends UserController
 {
-    public $investment_plans;
+    public $_investment_plans;
+    public $_investment_service;
 
     public function __construct()
     {
         parent::__construct();
 
-        $investments = Investment::where('status', '1')->get();
-        $this->investment_plans = $investments;
+        $this->_investment_service = new UserInvestmentService();
+
+        $investments = $this->_investment_service->get_active_plans();
+        $this->_investment_plans = $investments;
 
 
     }
@@ -34,31 +37,14 @@ class InvestmentController extends UserController
         $user = auth()->user();
    
 
-        $ref_id = User::findOrFail($user->id)->profile->ref_id;
+       $ref_id = $this->_user_service->get_profile($user->id)?->ref_id;
       
-        $investment_plans = $this->investment_plans;
+        $_investment_plans = $this->_investment_plans;
 
         /** 
          * we'll pull all the investment plans and save it in this array 
          */ 
-        $investments = [];
-
-        foreach($investment_plans as $row)
-        {
-            // if commission type is 1 it means its a flat fee, otherwise it is a percentage
-            $commission = ($row->commission_type == 1) ? $this->_currency_short . ' ' . number_format($row->commission, 2) :
-                $row->commission . '%';
-            
-            $investments[] = (object) [
-                'id' => $row->id,
-                'name' => $row->name,
-                'commission' => $commission,
-                'times' => $row->times,
-                'type' => $row->type,
-                'minimum' => number_format($row->minimum, 2),
-                'maximum' => number_format($row->maximum, 2),
-            ];
-        }
+        $investments = $this->_investment_service->get_user_readable_plans();
 
         $currency = $this->_currency_short;
 
@@ -71,7 +57,7 @@ class InvestmentController extends UserController
         $page_title = 'Preview Investment';
         $user = auth()->user();
        
-        $ref_id = User::findOrFail($user->id)->profile->ref_id;
+       $ref_id = $this->_user_service->get_profile($user->id)?->ref_id;
 
         $validate = $request->validate(['investment_id' => 'required|numeric']);
         
@@ -117,13 +103,8 @@ class InvestmentController extends UserController
 
         $desc = 'Debit for investment plan ' . $investment->name;
         // debit user 
-        Wallet::create([
-        'user_id' => $user->id,
-        'debit' => $amount,
-        'description' => $desc,
-        'balance' => $balance - $amount,
-        'type' => '4',
-        ]);
+
+        $this->_user_service->debit_user($user->id, $amount, 4, $desc);
 
         $user_investment = UserInvestment::create([
             'user_id' => $user->id,
@@ -154,7 +135,7 @@ class InvestmentController extends UserController
         $title = 'My Investments';
         $page_title = 'My Investments';
         $user = auth()->user();
-        $ref_id = User::findOrFail($user->id)->profile->ref_id;
+       $ref_id = $this->_user_service->get_profile($user->id)?->ref_id;
 
         $investments = $user_service->get_user_investments($user->id);
 

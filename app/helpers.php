@@ -112,7 +112,8 @@ function map_transaction_type(int $type)
 
 /**
  * Retrieve a setting from the database
- * @param int $setting_name
+ * @param $setting_name
+ * @return
  */
 function setting(string $setting_name)
 {
