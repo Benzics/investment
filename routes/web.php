@@ -14,6 +14,7 @@ use App\Http\Controllers\admin\LoginController as AdminLoginController;
 use App\Http\Controllers\admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\admin\DepositController as AdminDepositController;
 use App\Http\Controllers\user\InvestmentController;
+use App\Http\Controllers\user\TransactionController;
 use App\Http\Controllers\user\WithdrawalController;
 
 /*
@@ -74,6 +75,7 @@ Route::middleware(['auth', 'verified'])->name('user.')->prefix('user')->group(fu
     Route::post('/new-investment', [InvestmentController::class, 'preview']);
     Route::post('/invest', [InvestmentController::class, 'invest']);
     Route::get('/investments', [InvestmentController::class, 'investments'])->name('investments');
+    Route::get('/transaction-log', [TransactionController::class, 'index']);
 });
 
 // admin routes

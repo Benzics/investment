@@ -179,8 +179,8 @@
         USER ID: @isset($ref_id) {{ $ref_id }} @endisset </div>
     <div class="udex-sidebar udex-collapse udex-animate-left" id="mySidebar">
         <ul class="udex-ul">
-            <li class="header"><a href="#"><i class="fa fa-home"></i> MY OFFICE</a></li>
-            <li ><a href="#/transaction-log"> <i class="fa fa-history"></i> User Activity Log</a></li>
+            <li class="header"><a href="{{url('/user/dashboard')}}"><i class="fa fa-home"></i> MY OFFICE</a></li>
+            <li ><a href="{{url('/user/transaction-log')}}"> <i class="fa fa-history"></i> My Transactions</a></li>
             <li ><a href="{{url('/user/deposit')}}"> <i class="fa fa-inbox"></i> Deposit Funds</a></li>
             <li ><a href="{{url('/user/withdrawal')}}"> <i class="fa fa-money"></i> Withdraw Funds</a></li>
             <li ><a href="{{url('/user/withdrawals')}}"> <i class="fa fa-money"></i> My Withdrawals</a></li>

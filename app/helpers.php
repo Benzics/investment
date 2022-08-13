@@ -85,6 +85,32 @@ function map_withdrawal_status_class($status)
 }
 
 /**
+ * Map the transaction type
+ * @param $type
+ * @return
+ */
+function map_transaction_type($type)
+{
+    switch($type)
+    {
+        case 1:
+            return 'Top Up';
+            break;
+        case 2:
+            return 'Referral Bonus';
+            break;
+        case 3:
+            return 'Withdrawal';
+            break;
+        case 4:
+            return 'Investment';
+            break;
+        default:
+            return 'Reference';
+    }
+}
+
+/**
  * Retrieve a setting from the database
  * @param int $setting_name
  */
