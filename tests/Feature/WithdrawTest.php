@@ -29,6 +29,7 @@ class WithdrawTest extends TestCase
         $data = [
             'amount' => '300',
             'payment_id' => '1',
+            'address' => 'xxxx',
         ];
         $response = $this->actingAs($user)->post('/user/withdrawal', $data);
         $response->assertValid()

@@ -57,6 +57,7 @@ class WithdrawalController extends UserController
         $validate = $request->validate([
             'amount' => 'required|min:1',
             'payment_id' => 'required',
+            'address' => 'required',
         ]);
 
         $user = auth()->user();
@@ -96,6 +97,7 @@ class WithdrawalController extends UserController
             'user_id' => $user->id,
             'payment_id' => $validate['payment_id'],
             'amount' => $amount,
+            'address' => $validate['address'],
             'charges' => $charges,
         ]);
 

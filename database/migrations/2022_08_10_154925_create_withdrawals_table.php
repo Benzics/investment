@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->integer('amount');
             $table->float('charges')->default('0');
+            $table->string('address')->nullable();
             $table->string('description')->nullable();
             $table->integer('status')->default('0');
             $table->timestamps();
