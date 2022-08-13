@@ -132,6 +132,7 @@ class WithdrawalController extends UserController
         ->where('user_id', $user->id)
         ->join('payments', 'withdrawals.payment_id', '=', 'payments.id')
         ->select('withdrawals.*', 'payments.name')
+        ->latest()
         ->paginate(15);
 
         return view('user.withdrawals', compact('title', 'page_title', 'user', 'ref_id', 'withdrawals', 'currency'));
