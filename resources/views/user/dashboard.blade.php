@@ -70,7 +70,7 @@
 			<img src="/assets/images/buy-icon-sw.png" class="ico-icon-w" alt="">
 		</i>
 		<div class="stats" style="padding: 0 20px;border-left: 1px solid #eeebeb;">
-			<h3 class="color-white mb-5">$0</h3>
+			<h3 class="color-white mb-5">{{ $total_withdrawals }}</h3>
 			<span>Total Withdrawal(s)</span>
 		</div>
 	</div>

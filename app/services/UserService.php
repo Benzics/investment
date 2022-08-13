@@ -3,6 +3,7 @@ namespace App\Services;
 
 use App\Models\Deposit;
 use App\Models\Wallet;
+use App\Models\Withdrawal;
 
 class UserService {
 
@@ -28,6 +29,18 @@ class UserService {
     public function get_total_deposits(int $user_id)
     {
         $deposits = Deposit::where(['user_id' => $user_id, 'status' => '1'])->sum('amount');
+
         return $deposits;
+    }
+
+    /**
+     * Get user total withdrawals
+     * @param $user_id
+     */
+    public function get_total_withdrawals(int $user_id)
+    {
+        $withdrawals = Withdrawal::where('user_id', $user_id)->sum('amount');
+        
+        return $withdrawals;
     }
 }
