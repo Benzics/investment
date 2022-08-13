@@ -8,7 +8,7 @@
 		</div>
 		<i class="pull-left fa fa-usd icon-md icon-white mt-10"></i>
 		<div class="stats">
-			<h3 class="color-white mb-5">{{$balance . ' ' . $currency}} </h3>
+			<h3 class="color-white mb-5">{{$balance}} </h3>
 			<span>Balance</span>
 		</div>
 	</div>
@@ -53,7 +53,7 @@
 			<img src="/assets/images/sell-icon-sw.png" class="ico-icon-w" alt="">
 		</i>
 		<div class="stats" style="padding: 0 20px;border-left: 1px solid #eeebeb;">
-			<h3 class="color-white mb-5">$0</h3>
+			<h3 class="color-white mb-5">{{ $total_deposit }}</h3>
 			<span>Total Deposit(s)</span>
 		</div>
 	</div>

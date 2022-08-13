@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
  * @param int $status
  * @return string
  */
-function map_investment_status($status)
+function map_investment_status(int $status)
 {
     switch($status)
     {
@@ -29,7 +29,7 @@ function map_investment_status($status)
  * @param int $status
  * @return string
  */
-function map_withdrawal_status($status)
+function map_withdrawal_status(int $status)
 {
     switch($status)
     {
@@ -49,7 +49,7 @@ function map_withdrawal_status($status)
  * @param int $status
  * @return string
  */
-function map_status_class($status)
+function map_status_class(int $status)
 {
     switch($status)
     {
@@ -69,7 +69,7 @@ function map_status_class($status)
  * @param int $status
  * @return string
  */
-function map_withdrawal_status_class($status)
+function map_withdrawal_status_class(int $status)
 {
     switch($status)
     {
@@ -89,7 +89,7 @@ function map_withdrawal_status_class($status)
  * @param $type
  * @return
  */
-function map_transaction_type($type)
+function map_transaction_type(int $type)
 {
     switch($type)
     {
@@ -114,7 +114,7 @@ function map_transaction_type($type)
  * Retrieve a setting from the database
  * @param int $setting_name
  */
-function setting($setting_name)
+function setting(string $setting_name)
 {
     $setting = DB::table('settings')->where('name', $setting_name)->first();
 
@@ -159,4 +159,13 @@ function currency_short()
         report($e);
         return 'USD';
     }
+}
+
+/**
+ * Formats number into two decimal places
+ * @param $number
+ */
+function num_format(float $number)
+{
+    return number_format($number, 2);
 }

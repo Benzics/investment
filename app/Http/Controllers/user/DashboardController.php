@@ -18,9 +18,12 @@ class DashboardController extends UserController
         $title = 'My Dashboard';
         $page_title = 'My Dashboard';
         $currency = $this->_currency_short;
-        $balance = $user_service->get_balance($user->id);
+        $currency_symbol = $this->_currency;
+        $balance = num_format($user_service->get_balance($user->id)) . ' ' . $currency;
+        $total_deposit = $currency_symbol . num_format($user_service->get_total_deposits($user->id));
 
         
-        return view('user.dashboard', compact('user', 'ref_id', 'title', 'page_title', 'currency', 'balance'));
+        return view('user.dashboard', compact('user', 'ref_id', 'title', 'page_title', 'currency', 'balance', 'total_deposit',
+        ));
     }
 }
