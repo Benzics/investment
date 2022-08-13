@@ -113,7 +113,11 @@ class DepositController extends UserController
 
         try 
         {
-            event(new NewDeposit($deposit));
+            if(setting('deposit-notification'))
+            {
+                event(new NewDeposit($deposit));
+            }
+            
         }
         catch (Throwable $e)
         {

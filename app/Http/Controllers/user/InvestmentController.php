@@ -133,7 +133,11 @@ class InvestmentController extends UserController
         // mail the admin
         try 
         {
-            Invested::dispatch($user_investment, $user->email);
+            if(setting('investment-notification'))
+            {
+                Invested::dispatch($user_investment, $user->email);
+            }
+           
         } 
         catch (Throwable $e) 
         {
