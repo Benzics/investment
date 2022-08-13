@@ -9,6 +9,7 @@ use App\Models\Withdrawal;
 use App\Models\Wallet;
 use App\Http\Controllers\core\UserController;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Throwable;
 
 class WithdrawalController extends UserController
@@ -118,5 +119,21 @@ class WithdrawalController extends UserController
                 'success' => 'Withdrawal request successfully initiated, it will be processed shortly.'
             ]);
 
+    }
+
+    public function withdrawals()
+    {
+        $title = 'My Withdrawals';
+        $page_title = 'My Withdrawals';
+        $user = auth()->user();
+        $ref_id = User::findOrFail($user->id)->profile->ref_id;
+        $currency = $this->_currency_short;
+        $withdrawals = DB::table('withdrawals')
+        ->where('user_id', $user->id)
+        ->join('payments', 'withdrawals.payment_id', '=', 'payments.id')
+        ->select('withdrawals.*', 'payments.name')
+        ->paginate(15);
+
+        return view('user.withdrawals', compact('title', 'page_title', 'user', 'ref_id', 'withdrawals', 'currency'));
     }
 }

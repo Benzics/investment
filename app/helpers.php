@@ -25,6 +25,26 @@ function map_investment_status($status)
 }
 
 /**
+ * Map withdrawal status
+ * @param int $status
+ * @return string
+ */
+function map_withdrawal_status($status)
+{
+    switch($status)
+    {
+        case 1:
+            return 'Processed';
+            break;
+        case 2: 
+            return 'Rejected';
+            break;
+        default:
+            return 'Pending';
+    }
+}
+
+/**
  * Appropriate CSS class names for status
  * @param int $status
  * @return string
@@ -41,6 +61,26 @@ function map_status_class($status)
             break;
         default:
             return 'red';
+    }
+}
+
+/**
+ * Appropriate CSS class names for withdrawal status
+ * @param int $status
+ * @return string
+ */
+function map_withdrawal_status_class($status)
+{
+    switch($status)
+    {
+        case 1:
+            return 'green';
+            break;
+        case 2:
+            return 'red';
+            break;
+        default:
+            return 'orange';
     }
 }
 
