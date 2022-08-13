@@ -7,6 +7,7 @@ use App\Models\Profile;
 use App\Models\User;
 use App\Models\Wallet;
 use App\Models\Withdrawal;
+use Illuminate\Support\Facades\DB;
 
 class UserService {
 
@@ -68,7 +69,25 @@ class UserService {
     public function get_referrals($user_id)
     {
         $user_ref = Profile::where('referrer', $user_id)->count();
-        
+
         return $user_ref;
+    }
+
+    /**
+     * Get 5 investments from a user
+     * @param $user_id
+     * @return
+     */
+    public function get_latest_investments($user_id)
+    {
+        $investments = DB::table('user_investments')
+            ->where('user_id', $user_id)
+            ->join('investments', 'user_investments.investment_id', '=', 'investments.id')
+            ->select('user_investments.*', 'investments.name')
+            ->latest()
+            ->limit(5)
+            ->get();
+        
+        return $investments;
     }
 }

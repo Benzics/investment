@@ -100,16 +100,37 @@
 			<div style="overflow-y: auto;" class="margint">
 				<table style="width:100%" class="striped">
 					<tr style="background: #F9F9FA; border-top: 1px solid #F1F1F1">
-						<th style="min-width: 120px">Date</th><th>Plan</th><th style="min-width: 120px">Amount</th><th>Rate</th><th style="min-width: 140px">Status</th>
+						<th style="min-width: 120px">Date</th><th>Plan</th><th style="min-width: 120px">Amount</th><th style="min-width: 140px">Status</th>
 					</tr>
+
+					@if(count($investments) == 0)
+					<tr>
+						<td colspan="5">You have no investments. <a href="{{url('/user/new-investment')}}">Click Here</a> to start a new investment.</td>
+					</tr>
+					@endif
+					@foreach($investments as $row)
+					
+					<tr>
+						
+						<td>{{ $row->created_at }}</td>
+						<td>{{$row->name}}</td>
+						<td>{{$row->amount}} - {{ $currency }}</td>
+						<td>
+							<span class="{{ map_status_class($row->status) }}" style="padding: 4px 10px">
+							<span class="small">{{ map_investment_status($row->status) }}</span></span>
+						</td>
+						
+						
+					</tr>
+					@endforeach
 				</table>
 			</div>
 		</div>
 		<div class="col-6 col-m-6" style="padding: 10px 20px">
-			<a href="/account/investment-history" class="has-gradient-to-right-bottom dash_btn padding center">View All</a>
+			<a href="{{url('/user/investments')}}" class="has-gradient-to-right-bottom dash_btn padding center">View All</a>
 		</div>
 		<div class="col-6 col-m-6" style="padding: 10px 20px">
-			<a href="/account/repeat-history" class="has-gradient-to-right-bottom dash_btn padding center">Profit History</a>
+			<a href="#/account/repeat-history" class="has-gradient-to-right-bottom dash_btn padding center">Profit History</a>
 		</div>
 	</div>
 </div>
