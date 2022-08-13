@@ -189,7 +189,7 @@
             <li ><a href="#/testimony"> <i class="fa fa-bullhorn"></i> Write Testimony</a></li>
             <li ><a href="#/info"> <i class="fa fa-gears"></i> Account Settings</a></li>
             <li ><a href="#/trading-view"> <i class="fa fa-bullseye"></i> Trade View</a></li>
-            <li><a href="{{url('/user/logout')}}"> <i class="fa fa-power-off"></i> Logout</a></li>
+            <li><a href="{{url('/logout')}}"> <i class="fa fa-power-off"></i> Logout</a></li>
             <li><a href="#user/contact"> <i class="fa fa-exclamation-circle"></i> Help</a></li>
         </ul>
     </div>
