@@ -9,11 +9,19 @@ use App\Models\Withdrawal;
 use App\Models\Wallet;
 use App\Http\Controllers\core\UserController;
 use App\Services\PaymentService;
+use App\Services\WithdrawalService;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 
 class WithdrawalController extends UserController
 {
+    public $_withdrawal_service;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->_withdrawal_service = new WithdrawalService();
+    }
     public function index()
     {
         // retrieve the withdrawal settings 
@@ -90,8 +98,9 @@ class WithdrawalController extends UserController
         
         $this->_user_service->debit_user($user->id, $debit, 3, $desc);
 
+
         // save withdrawal 
-        $withdrawal = Withdrawal::create([
+        $withdrawal = $this->_withdrawal_service->make_withdrawal([
             'user_id' => $user->id,
             'payment_id' => $validate['payment_id'],
             'amount' => $amount,
@@ -123,14 +132,9 @@ class WithdrawalController extends UserController
         $title = 'My Withdrawals';
         $page_title = 'My Withdrawals';
         $user = auth()->user();
-       $ref_id = $this->_user_service->get_profile($user->id)?->ref_id;
+        $ref_id = $this->_user_service->get_profile($user->id)?->ref_id;
         $currency = $this->_currency_short;
-        $withdrawals = DB::table('withdrawals')
-        ->where('user_id', $user->id)
-        ->join('payments', 'withdrawals.payment_id', '=', 'payments.id')
-        ->select('withdrawals.*', 'payments.name')
-        ->latest()
-        ->paginate(15);
+        $withdrawals = $this->_withdrawal_service->get_user_withdrawals($user->id);
 
         return view('user.withdrawals', compact('title', 'page_title', 'user', 'ref_id', 'withdrawals', 'currency'));
     }
