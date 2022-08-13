@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Payment;
 use App\Models\User;
 use App\Models\Withdrawal;
 use Illuminate\Bus\Queueable;
@@ -15,6 +16,7 @@ class NewWithdrawalUser extends Mailable
 
     public $withdrawal;
     public $user_name;
+    public $payment_name;
     /**
      * Create a new message instance.
      *
@@ -25,6 +27,9 @@ class NewWithdrawalUser extends Mailable
         $this->withdrawal = $withdrawal;
         $user = User::find($withdrawal->user_id);
         $this->user_name = $user->name;
+
+        $payment = Payment::find($withdrawal->payment_id);
+        $this->payment_name = $payment->name;
     }
 
     /**

@@ -14,6 +14,7 @@ class Withdrawal extends Model
         'charges',
         'payment_id',
         'user_id',
+        'address',
         'status',
     ];
 }
