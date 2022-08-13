@@ -1,7 +1,7 @@
 @component('mail::message')
 # A new withdrawal was made.
 
-User with email {{$user_mail}} just initiated a withdrawal of {{currency_symbol() . number_format($withdrawal->amount, 2)}}.
+User with email {{$user_mail}} just initiated a withdrawal of <b>{{currency_symbol() . number_format($withdrawal->amount, 2)}}</b>.
 
 Login to manage withdrawals.
 

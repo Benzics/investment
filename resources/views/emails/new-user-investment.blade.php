@@ -3,7 +3,7 @@
 
 Hi {{ ucwords($user) }},
 
-You have successfully invested in the {{$investment_name}} plan with {{$currency . number_format($investment->amount, 2)}}.
+You have successfully invested in the {{$investment_name}} plan with <b>{{$currency . number_format($investment->amount, 2)}}</b>.
 
 <br>
 You can login below to view your earnings.
