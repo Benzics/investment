@@ -22,9 +22,10 @@ class DashboardController extends UserController
         $balance = num_format($user_service->get_balance($user->id)) . ' ' . $currency;
         $total_deposit = $currency_symbol . num_format($user_service->get_total_deposits($user->id));
         $total_withdrawals = $currency_symbol . num_format($user_service->get_total_withdrawals($user->id));
+        $total_investments = $currency_symbol . num_format($user_service->get_total_investments($user->id));
 
         
         return view('user.dashboard', compact('user', 'ref_id', 'title', 'page_title', 'currency', 'balance', 'total_deposit',
-            'total_withdrawals'));
+            'total_withdrawals', 'total_investments'));
     }
 }

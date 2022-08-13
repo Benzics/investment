@@ -1,6 +1,7 @@
 <?php
 namespace App\Services;
 
+use App\Models\UserInvestment;
 use App\Models\Deposit;
 use App\Models\Wallet;
 use App\Models\Withdrawal;
@@ -36,11 +37,24 @@ class UserService {
     /**
      * Get user total withdrawals
      * @param $user_id
+     * @return
      */
     public function get_total_withdrawals(int $user_id)
     {
         $withdrawals = Withdrawal::where('user_id', $user_id)->sum('amount');
         
         return $withdrawals;
+    }
+
+    /**
+     * Get the total investments of a user
+     * @param $user_id
+     * @return
+     */
+    public function get_total_investments(int $user_id)
+    {
+        $investments = UserInvestment::where('user_id', $user_id)->sum('amount');
+
+        return $investments;
     }
 }
