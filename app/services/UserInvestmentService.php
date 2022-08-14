@@ -4,6 +4,7 @@ namespace App\Services;
 use App\Models\Investment;
 use App\Models\UserInvestment;
 use DateTime;
+use Illuminate\Support\Facades\Log;
 
 class UserInvestmentService extends UserService
 {
@@ -148,7 +149,7 @@ class UserInvestmentService extends UserService
                 return;
             }
 
-            $commission = ($investment->commission_type) ? $investment->commission : ($investment->commisson / 100) * $user_investment->amount;
+            $commission = ($investment->commission_type == 0) ? ($investment->commission / 100) * $user_investment->amount : $investment->commission;
 
             $desc = currency_symbol() . $commission . ' daily commission for ' . currency_symbol() . $user_investment->amount . ' ' . $investment->name . ' plan';
 
@@ -181,8 +182,10 @@ class UserInvestmentService extends UserService
                 return;
             }
 
-            $commission = ($investment->commission_type) ? $investment->commission : ($investment->commisson / 100) * $user_investment->amount;
+            $commission = ($investment->commission_type == 0) ? ($investment->commission / 100) * $user_investment->amount : $investment->commission;
 
+            Log::info('commission: ' . $investment->commission . 'Type: ' . $investment->commission_type . ' User Investment: ' . $user_investment->amount
+            . ' generated ' . $commission . 'commisiion id: ' . $investment->id . ' C$investment');
             $desc = currency_symbol() . $commission . ' daily commission for ' . currency_symbol() . $user_investment->amount . ' ' . $investment->name . ' plan';
 
             // determine the next payout date

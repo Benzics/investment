@@ -19,7 +19,7 @@ class UserService {
      */
     public function get_balance(int $user_id)
     {
-        $wallet = Wallet::where('user_id', $user_id)->latest()->first();
+        $wallet = Wallet::where('user_id', $user_id)->latest('id')->first();
 
         $balance = ($wallet) ? $wallet->balance : 0;
 

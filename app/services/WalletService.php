@@ -13,11 +13,11 @@ class WalletService {
     public function get_user_transactions(int $user_id, int $paginate = 15)
     {
         $transactions = Wallet::where('user_id', $user_id)
-        ->latest()
+        ->latest('id')
         ->paginate($paginate);
 
         return $transactions;
     }
 
-    
+
 }
