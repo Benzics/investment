@@ -15,7 +15,7 @@
 </a>
 </div>
 <div class="col-4 col-m-6">
-<a href="{{url('/user/profit')}}">
+<a href="{{url('/user/profits')}}">
 	<div class="r4_counter db_box">
 		<div class="icon-after">
 			<img src="/assets/images/cryptonia-ico-lg.png" alt="">

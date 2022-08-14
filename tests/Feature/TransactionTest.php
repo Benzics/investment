@@ -22,4 +22,11 @@ class TransactionTest extends TestCase
         $response = $this->actingAs($user)->get('/user/transaction-log');
         $response->assertOk();
     }
+
+    public function test_user_profit_log()
+    {
+        $user = User::find(1);
+        $response = $this->actingAs($user)->get('/user/profits');
+        $response->assertOk();
+    }
 }

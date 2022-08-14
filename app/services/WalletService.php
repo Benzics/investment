@@ -19,5 +19,19 @@ class WalletService {
         return $transactions;
     }
 
+     /**
+     * Get user's latest profits
+     * @param $user_id
+     * @param? $paginate
+     */
+    public function get_user_profits(int $user_id, int $paginate = 15)
+    {
+        $profits = Wallet::where(['user_id' => $user_id, 'type' => '5'])
+        ->latest('id')
+        ->paginate($paginate);
+
+        return $profits;
+    }
+
 
 }

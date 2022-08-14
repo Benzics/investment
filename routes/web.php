@@ -78,6 +78,7 @@ Route::middleware(['auth', 'verified', 'investment.commission'])->name('user.')-
     Route::post('/invest', [InvestmentController::class, 'invest']);
     Route::get('/investments', [InvestmentController::class, 'investments'])->name('investments');
     Route::get('/transaction-log', [TransactionController::class, 'index']);
+    Route::get('/profits', [TransactionController::class, 'profits']);
 });
 
 // admin routes
