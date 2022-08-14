@@ -16,7 +16,7 @@
             </tr>
             @if(count($transactions) == 0)
             <tr>
-                <td colspan="5">You have no transactions.</td>
+                <td colspan="7">You have no transactions.</td>
             </tr>
             @endif
             @foreach($transactions as $row)

@@ -14,6 +14,7 @@ use App\Http\Controllers\admin\LoginController as AdminLoginController;
 use App\Http\Controllers\admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\admin\DepositController as AdminDepositController;
 use App\Http\Controllers\user\InvestmentController;
+use App\Http\Controllers\user\ReferralController;
 use App\Http\Controllers\user\TransactionController;
 use App\Http\Controllers\user\WithdrawalController;
 use App\Services\UserService;
@@ -86,6 +87,7 @@ Route::middleware(['auth', 'verified', 'investment.commission'])->name('user.')-
     Route::get('/investments', [InvestmentController::class, 'investments'])->name('investments');
     Route::get('/transaction-log', [TransactionController::class, 'index']);
     Route::get('/profits', [TransactionController::class, 'profits']);
+    Route::get('/referrals', [ReferralController::class, 'index']);
 });
 
 // admin routes

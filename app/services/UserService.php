@@ -259,4 +259,21 @@ class UserService {
 
         return $profile;
     }
+
+    /**
+     * Get users referral list
+     * @param $user_id
+     * @return
+     */
+    public function get_referral_list(int $user_id, int $limit = 15)
+    {
+        $users = DB::table('profiles')
+        ->where('referrer', $user_id)
+        ->join('users', 'profiles.user_id', '=', 'users.id')
+        ->select(['profiles.*', 'users.email', 'users.email_verified_at'])
+        ->latest()
+        ->paginate($limit);
+
+        return $users;
+    }
 }

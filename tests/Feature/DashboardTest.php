@@ -23,4 +23,11 @@ class DashboardTest extends TestCase
         $response = $this->actingAs($user)->get('/user/dashboard');
         $response->assertOk();
     }
+
+    public function test_referrals_page()
+    {
+        $user = User::find(1);
+        $response = $this->actingAs($user)->get('/user/referrals');
+        $response->assertOk();
+    }
 }

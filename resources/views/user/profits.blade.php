@@ -16,7 +16,7 @@
             </tr>
             @if(count($profits) == 0)
             <tr>
-                <td colspan="5">You have no profits.</td>
+                <td colspan="7">You have no profits.</td>
             </tr>
             @endif
             @foreach($profits as $row)
