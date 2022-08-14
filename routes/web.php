@@ -62,7 +62,7 @@ Route::post('/email/verification-notification', function (Request $request) {
 
 
 // user routes
-Route::middleware(['auth', 'verified'])->name('user.')->prefix('user')->group(function(){
+Route::middleware(['auth', 'verified', 'investment.commission'])->name('user.')->prefix('user')->group(function(){
 
     Route::get('/', [DashboardController::class, 'index']);
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
