@@ -29,14 +29,14 @@ Amount
 
 <div class="display-container">
 	<input type="number" name="amount" min="{{$investment->minimum}}" required placeholder="Enter Investment Amount" class="bold padding" 
-    style="width: 100%; padding-left: 60px !important; padding-right: 80px !important;" 
+    style="width: 100%; padding-left: 60px !important; padding-right: 80px !important; outline:none;" 
     @if($low_balance) disabled @endif>
 	<span class="padding border grey display-topleft" style="display: inline-block;">{{ $currency_sign ?? ''}}</span>
 	<span class="padding border grey display-topright" style="display: inline-block;">{{ $currency ?? ''}}</span>
 
     @if(!$low_balance)
         <br>
-        <button class="btn has-gradient-to-right-bottom round-xxlarge" style="font-size: 14px; padding: 5px 20px"><i class="fa fa-send"></i> INVEST NOW</button>
+        <button class="btn has-gradient-to-right-bottom round-xxlarge" style="font-size: 14px; padding: 5px 20px; margin-top: 10px;"><i class="fa fa-send"></i> INVEST NOW</button>
   
     @endif
 </div>

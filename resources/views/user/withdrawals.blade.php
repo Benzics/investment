@@ -14,7 +14,7 @@
             </tr>
             @if(count($withdrawals) == 0)
             <tr>
-                <td colspan="5">You have no withdrawals. <a href="{{url('/user/withdraw')}}">Click Here</a> to make a withdrawal.</td>
+                <td colspan="5">You have no withdrawals. <a href="{{url('/user/withdrawal')}}">Click Here</a> to make a withdrawal.</td>
             </tr>
             @endif
             @foreach($withdrawals as $row)

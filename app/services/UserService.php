@@ -5,6 +5,7 @@ use App\Models\UserInvestment;
 use App\Models\Deposit;
 use App\Models\Profile;
 use App\Models\Setting;
+use App\Models\Testimony;
 use App\Models\User;
 use App\Models\Wallet;
 use App\Models\Withdrawal;
@@ -275,5 +276,17 @@ class UserService {
         ->paginate($limit);
 
         return $users;
+    }
+
+    /**
+     * creates a new testimony
+     * @param $testimony
+     * @param $user_id
+     */
+    public function write_testimony($testimony, $user_id)
+    {
+        $testimony = Testimony::create(['testimony' => $testimony, 'user_id' => $user_id]);
+
+        return $testimony;
     }
 }

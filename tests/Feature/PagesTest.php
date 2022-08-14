@@ -27,7 +27,7 @@ class PagesTest extends TestCase
     {
         $data = ['testimony' => 'A testimony'];
 
-        $response = $this->actingAs($this->user)->post('/user/testimony');
+        $response = $this->actingAs($this->user)->post('/user/testimony', $data);
         $response->assertValid()
             ->assertSessionHas('success');
     }
