@@ -205,4 +205,58 @@ class UserService {
         
         return $credit;
     }
+
+    /**
+     * credits user for referral
+     * @param $user_id
+     * @param $referral_id
+     */
+    public function reward_referral(int $user_id, int $referral_id)
+    {
+        $referral_bonus = setting('referral-bonus');
+
+        if(!$referral_bonus)
+        {
+            return;
+        }
+
+        $user = $this->get_user($user_id);
+
+        $description = currency_symbol() . num_format($referral_bonus) . ' referral bonus from ' . $user?->email;
+
+        $this->credit_user($referral_id, $referral_bonus, 2, $description);
+    }
+
+    /**
+     * Get a user
+     * @param $user_id
+     */
+    public function get_user(int $user_id)
+    {
+        $user = User::find($user_id);
+
+        return $user;
+    }
+
+    /**
+     * Create a user
+     * @param $data
+     */
+    public function create_user(array $data)
+    {
+        $user = User::create($data);
+
+        return $user;
+    }
+
+    /**
+     * Create a user profile
+     * @param $data
+     */
+    public function create_profile(array $data)
+    {
+        $profile = Profile::create($data);
+
+        return $profile;
+    }
 }

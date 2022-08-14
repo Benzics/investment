@@ -27,6 +27,7 @@ class SettingSeeder extends Seeder
             ['name' => 'deposit-notification', 'value' => '1'],
             ['name' => 'investment-notification', 'value' => '1'],
             ['name' => 'withdrawal-notification', 'value' => '1'],
+            ['name' => 'referral-bonus', 'value' => '10']
         ]);
     }
 }

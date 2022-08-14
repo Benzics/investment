@@ -165,7 +165,7 @@ class UserInvestmentService extends UserService
             // if this is the last payout, update investment as complete
             if(($user_investment->payout_times + 1) >= $investment->times)
             {
-                $this->set_investment_status($user_investment->id, 2, $user_id);
+                $this->set_investment_status($user_investment->id, 2);
             }
 
             $this->daily_commission($user_id, $user_investment->id);
@@ -192,8 +192,6 @@ class UserInvestmentService extends UserService
 
             $commission = ($investment->commission_type == 0) ? ($investment->commission / 100) * $user_investment->amount : $investment->commission;
 
-            Log::info('commission: ' . $investment->commission . 'Type: ' . $investment->commission_type . ' User Investment: ' . $user_investment->amount
-            . ' generated ' . $commission . 'commisiion id: ' . $investment->id . ' C$investment');
             $desc = currency_symbol() . $commission . ' daily commission for ' . currency_symbol() . $user_investment->amount . ' ' . $investment->name . ' plan';
 
             // determine the next payout date
@@ -208,7 +206,7 @@ class UserInvestmentService extends UserService
             // if this is the last payout, update investment as complete
             if(($user_investment->payout_times + 1) >= $investment->times)
             {
-                $this->set_investment_status($user_investment->id, 2, $user_id);
+                $this->set_investment_status($user_investment->id, 2);
             }
 
             $this->daily_commission($user_id, $user_investment->id);
@@ -251,11 +249,10 @@ class UserInvestmentService extends UserService
      * Set user investment status
      * @param $investment id
      * @param $status
-     * @param $user_id
      */
-    public function set_investment_status(int $investment_id, int $status, int $user_id)
+    public function set_investment_status(int $investment_id, int $status)
     {
-        $status = UserInvestment::where(['id' => $investment_id, 'user_id' => $user_id])
+        $status = UserInvestment::where(['id' => $investment_id])
             ->update(['status' => $status]);
         
         return $status;

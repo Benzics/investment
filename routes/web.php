@@ -16,6 +16,7 @@ use App\Http\Controllers\admin\DepositController as AdminDepositController;
 use App\Http\Controllers\user\InvestmentController;
 use App\Http\Controllers\user\TransactionController;
 use App\Http\Controllers\user\WithdrawalController;
+use App\Services\UserService;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,12 @@ Route::get('/email/verify', function () {
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
  
+    $user_service = new UserService();
+    // check if user has a referrer and reward referrer
+    if($ref = $user_service->get_profile($request->user()->id)?->referrer != 0)
+    {
+        $user_service->reward_referral($request->user()->id, $ref);
+    }
     return redirect()->route('user.dashboard')->with('success', 'Your email has been verified.');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 

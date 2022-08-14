@@ -9,14 +9,17 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use App\Services\RegistrationService;
+use App\Services\UserService;
 use Illuminate\Support\Facades\Log;
 use Throwable;
 
 class RegistrationController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('register', ['title' => 'Registration']);
+        $ref = $request->ref;
+        
+        return view('register', ['title' => 'Registration', 'ref' => $ref]);
     }
 
     public function store(Request $request)
@@ -31,9 +34,10 @@ class RegistrationController extends Controller
         ]);
 
         $reg_service = new RegistrationService();
+        $user_service = new UserService();
 
         // create user
-        $user = User::create([
+        $user = $user_service->create_user([
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
@@ -50,7 +54,7 @@ class RegistrationController extends Controller
         }
 
         // create user profile
-        Profile::create([
+        $user_service->create_profile([
             'user_id' => $user->id,
             'gender' => $validated['gender'],
             'phone' => $validated['phone'],
