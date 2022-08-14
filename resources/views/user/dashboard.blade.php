@@ -130,7 +130,7 @@
 			<a href="{{url('/user/investments')}}" class="has-gradient-to-right-bottom dash_btn padding center">View All</a>
 		</div>
 		<div class="col-6 col-m-6" style="padding: 10px 20px">
-			<a href="#/account/repeat-history" class="has-gradient-to-right-bottom dash_btn padding center">Profit History</a>
+			<a href="/user/profits" class="has-gradient-to-right-bottom dash_btn padding center">Profit History</a>
 		</div>
 	</div>
 </div>

@@ -32,7 +32,7 @@ class NewService extends Command
 
         $contents = "<?php\nnamespace App\Services;\n\n#Automatically generated service\n#Author: Benjamin Ojobo\n\n\nclass $service_name {\n\t//your methods here\n}\n\n\n";
 
-        $file = fopen('app/services/' . $service_name . '.php', 'w') or die('Cannot create service');
+        $file = fopen('app/Services/' . $service_name . '.php', 'w') or die('Cannot create service');
         fwrite($file, $contents);
         fclose($file);
 

@@ -162,7 +162,15 @@ class UserInvestmentService extends UserService
             $this->update_next_payout($user_investment->id, $next_payout);
             $this->add_payout_times($user_investment->id);
 
+            // if this is the last payout, update investment as complete
+            if(($user_investment->payout_times + 1) >= $investment->times)
+            {
+                $this->set_investment_status($user_investment->id, 2, $user_id);
+            }
+
             $this->daily_commission($user_id, $user_investment->id);
+
+           
 
             return;
 
@@ -196,6 +204,12 @@ class UserInvestmentService extends UserService
             $this->update_last_payout($user_investment->id, $date);
             $this->update_next_payout($user_investment->id, $next_payout);
             $this->add_payout_times($user_investment->id);
+            
+            // if this is the last payout, update investment as complete
+            if(($user_investment->payout_times + 1) >= $investment->times)
+            {
+                $this->set_investment_status($user_investment->id, 2, $user_id);
+            }
 
             $this->daily_commission($user_id, $user_investment->id);
 
@@ -231,5 +245,19 @@ class UserInvestmentService extends UserService
     public function add_payout_times(int $investment_id)
     {
         UserInvestment::where('id', $investment_id)->increment('payout_times');
+    }
+
+    /**
+     * Set user investment status
+     * @param $investment id
+     * @param $status
+     * @param $user_id
+     */
+    public function set_investment_status(int $investment_id, int $status, int $user_id)
+    {
+        $status = UserInvestment::where(['id' => $investment_id, 'user_id' => $user_id])
+            ->update(['status' => $status]);
+        
+        return $status;
     }
 }

@@ -105,6 +105,9 @@ function map_transaction_type(int $type)
         case 4:
             return 'Investment';
             break;
+        case 5:
+            return 'Profit';
+            break;
         default:
             return 'Reference';
     }
