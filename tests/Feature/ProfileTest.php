@@ -25,6 +25,13 @@ class ProfileTest extends TestCase
         $response->assertOk();
     }
 
+    public function test_edit_profile_page()
+    {
+        $response = $this->actingAs($this->user)->get('/user/edit-profile');
+
+        $response->assertOk();
+    }
+
     public function test_profile_edit()
     {
         $data =[
