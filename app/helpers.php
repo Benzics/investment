@@ -173,3 +173,25 @@ function num_format(float $number)
 {
     return number_format($number, 2);
 }
+
+/**
+ * Formats date to a more user friendly date
+ * @param $time
+ */
+function friendly_date(string $time)
+{
+    $date = new DateTime($time);
+
+    return $date->format('jS M Y');
+}
+
+/**
+ * Formats time to a more user friendly time
+ * @param $time
+ */
+function friendly_time(string $time)
+{
+    $date = new DateTime($time);
+
+    return $date->format('jS M Y - h:i:A');
+}

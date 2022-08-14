@@ -112,7 +112,7 @@
 					
 					<tr>
 						
-						<td>{{ $row->created_at }}</td>
+						<td>{{ friendly_time($row->created_at) }}</td>
 						<td>{{$row->name}}</td>
 						<td>{{$row->amount}} - {{ $currency }}</td>
 						<td>

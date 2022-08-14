@@ -26,7 +26,7 @@
             @endphp
             <tr>
                 <td>{{ $id }}</td>
-                <td>{{ $row->created_at }}</td>
+                <td>{{ friendly_time($row->created_at) }}</td>
                 <td>
                     <span class="blue" style="padding: 4px 10px">
                     <span class="small">{{ map_transaction_type($row->type) }}</span></span>

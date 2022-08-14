@@ -24,7 +24,7 @@
             @endphp
             <tr>
                 <td>{{ $id }}</td>
-                <td>{{ $row->created_at }}</td>
+                <td>{{ friendly_time($row->created_at) }}</td>
                 <td>
                     <span class="{{ map_status_class($row->status) }}" style="padding: 4px 10px">
                     <span class="small">{{ map_investment_status($row->status) }}</span></span>
