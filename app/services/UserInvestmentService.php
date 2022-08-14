@@ -104,11 +104,15 @@ class UserInvestmentService extends UserService
     {
         $active_investments = $this->get_user_active_investments($user_id);
 
-        // foreach($active_investments as $row)
-        // {
-        //     $investment = $this->get_investment($row->investment_id);
-        //     // if($row->pay)
-        // }
+        foreach($active_investments as $row)
+        {
+            $investment = $this->get_investment($row->investment_id);
+
+            if($row->payout_times < $investment->times)
+            {
+                
+            }
+        }
         return false;
     }
 }

@@ -18,9 +18,9 @@ return new class extends Migration
             $table->foreignId('investment_id');
             $table->foreignId('user_id');
             $table->float('amount');
-            $table->date('last_payout')->nullable();
+            $table->date('last_payout')->default(now());
             $table->date('next_payout')->nullable();
-            $table->integer('payout_times')->nullable();
+            $table->integer('payout_times')->default('0');
             $table->integer('status')->default('1');
             $table->timestamps();
         });
