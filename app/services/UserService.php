@@ -171,4 +171,26 @@ class UserService {
         
         return $debit;
     }
+
+    /**
+     * credits a user
+     * @param $user_id
+     * @param $amount
+     * @param $type
+     * @param? $description
+     */
+    public function credit_user(int $user_id, float $amount, int $type, string $description = '')
+    {
+        $balance = $this->get_balance($user_id);
+        
+        $credit = Wallet::create([
+            'user_id' => $user_id,
+            'credit' => $amount,
+            'description' => $description,
+            'balance' => $balance + $amount,
+            'type' => $type,
+            ]);
+        
+        return $credit;
+    }
 }

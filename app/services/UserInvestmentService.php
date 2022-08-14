@@ -3,6 +3,7 @@ namespace App\Services;
 
 use App\Models\Investment;
 use App\Models\UserInvestment;
+use DateTime;
 
 class UserInvestmentService extends UserService
 {
@@ -64,7 +65,7 @@ class UserInvestmentService extends UserService
      * @param $investment_id
      * @return
      */
-    public function get_investment($investment_id)
+    public function get_investment(int $investment_id)
     {
         $investment = Investment::find($investment_id);
 
@@ -76,7 +77,7 @@ class UserInvestmentService extends UserService
      * @param $user_id
      * @return
      */
-    public function get_user_active_investments($user_id)
+    public function get_user_active_investments(int $user_id)
     {
         $user_investments = UserInvestment::where(['user_id' => $user_id, 'status' => '1'])->get();
 
@@ -88,7 +89,7 @@ class UserInvestmentService extends UserService
      * @param $investment_id
      * @return
      */
-    public function get_user_investment($investment_id)
+    public function get_user_investment(int $investment_id)
     {
         $user_investment = UserInvestment::find($investment_id);
 
@@ -100,19 +101,132 @@ class UserInvestmentService extends UserService
      * @param $user_id
      * @param
      */
-    public function pay_user_investment($user_id)
+    public function pay_user_investment(int $user_id)
     {
         $active_investments = $this->get_user_active_investments($user_id);
+
 
         foreach($active_investments as $row)
         {
             $investment = $this->get_investment($row->investment_id);
 
-            if($row->payout_times < $investment->times)
+
+            switch($investment?->type)
             {
-                
+                case 'Daily':
+                    $this->daily_commission($user_id, $row->id);
+                    break;
             }
+ 
         }
+
         return false;
+    }
+
+    /**
+     * Gives daily commissions to a user
+     * @param $user_id
+     * @param $user_investment_id
+     */
+    function daily_commission(int $user_id, int $user_investment_id)
+    {
+        $user_investment = $this->get_user_investment($user_investment_id);
+        $investment = $this->get_investment($user_investment->investment_id);
+
+
+        if($user_investment->payout_times < $investment->times && !$user_investment->next_payout)
+        {
+            $date = new DateTime();
+            $date2 = new DateTime($user_investment->last_payout);
+
+            // day difference
+            $interval = $date->diff($date2);
+            $days = $interval->format('%a');
+
+            if($days < 1)
+            {
+                return;
+            }
+
+            $commission = ($investment->commission_type) ? $investment->commission : ($investment->commisson / 100) * $user_investment->amount;
+
+            $desc = currency_symbol() . $commission . ' daily commission for ' . currency_symbol() . $user_investment->amount . ' ' . $investment->name . ' plan';
+
+            // determine the next payout date
+            $next_payout = $date2->modify('+1 day');
+
+            $this->credit_user($user_id, $commission, 5, $desc);
+
+            $this->update_last_payout($user_investment->id, $date);
+            $this->update_next_payout($user_investment->id, $next_payout);
+            $this->add_payout_times($user_investment->id);
+
+            $this->daily_commission($user_id, $user_investment->id);
+
+            return;
+
+        }
+
+        if($user_investment->payout_times < $investment->times && $user_investment->next_payout)
+        {
+            $date = new DateTime();
+            $date2 = new DateTime($user_investment->next_payout);
+
+            // day difference
+            $interval = $date->diff($date2);
+            $days = $interval->format('%a');
+
+            if($days < 1)
+            {
+                return;
+            }
+
+            $commission = ($investment->commission_type) ? $investment->commission : ($investment->commisson / 100) * $user_investment->amount;
+
+            $desc = currency_symbol() . $commission . ' daily commission for ' . currency_symbol() . $user_investment->amount . ' ' . $investment->name . ' plan';
+
+            // determine the next payout date
+            $next_payout = $date2->modify('+1 day');
+
+            $this->credit_user($user_id, $commission, 5, $desc);
+
+            $this->update_last_payout($user_investment->id, $date);
+            $this->update_next_payout($user_investment->id, $next_payout);
+            $this->add_payout_times($user_investment->id);
+
+            $this->daily_commission($user_id, $user_investment->id);
+
+        }
+        
+    }
+
+    /**
+     * Update last payout date
+     * @param $investment_id
+     * @param $date
+     */
+    public function update_last_payout(int $investment_id, DateTime $date)
+    {
+        UserInvestment::where('id', $investment_id)->update(['last_payout' => $date]);
+    }
+
+    /**
+     * Update next payout date
+     * @param $investment_id
+     * @param $date
+     */
+    public function update_next_payout(int $investment_id, DateTime $date)
+    {
+        UserInvestment::where('id', $investment_id)->update(['next_payout' => $date]);
+    }
+
+    /**
+     * Update last payout date
+     * @param $investment_id
+     * @param $date
+     */
+    public function add_payout_times(int $investment_id)
+    {
+        UserInvestment::where('id', $investment_id)->increment('payout_times');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use DateTime;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,10 +17,16 @@ class UserInvestmentFactory extends Factory
      */
     public function definition()
     {
+        $date = new DateTime();
+
+        $date->modify('-1 day');
+
         return [
             'investment_id' => '1',
             'user_id' => '1',
             'amount' => '200',
+            'last_payout' => $date->format('Y-m-d H:i:s'),
+            'status' => '1',
         ];
     }
 }

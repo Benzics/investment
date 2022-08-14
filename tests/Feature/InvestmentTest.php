@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\User;
+use App\Models\UserInvestment;
 use App\Services\UserInvestmentService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -61,10 +62,12 @@ class InvestmentTest extends TestCase
 
     public function test_investment_payout()
     {
+        UserInvestment::factory()->create();
+
         $user_investment_service = new UserInvestmentService();
 
         $pay_user = $user_investment_service->pay_user_investment(1);
 
-        $this->assertTrue($pay_user);
+        $this->assertDatabaseHas('wallets', ['user_id' => '1', 'type' => '5']);
     }
 }
