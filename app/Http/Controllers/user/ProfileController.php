@@ -43,15 +43,15 @@ class ProfileController extends UserController
         $user = auth()->user();
         $validate = $request->validate(['name' => 'required', 'phone' => 'required']);
 
-        $attachment = '';
+        // $attachment = '';
 
-        if($request->has('photo'))
-        {
-            $attachment = $request->file('photo')->store('uploads');
-        }
+        // if($request->has('photo'))
+        // {
+        //     $attachment = $request->file('photo')->store('uploads');
+        // }
         $user_data = ['name' => $validate['name']];
         $profile_data = [
-            'photo' => $attachment,
+            // 'photo' => $attachment,
             'phone' => $validate['phone'],
             'gender' => $request->gender,
             'address' => $request->address,
@@ -71,12 +71,15 @@ class ProfileController extends UserController
 
         $upload = $request->file('image_upload_file')->store('uploads', 'public');
 
+        $user = auth()->user();
         if(!$upload)
         {
             $data = ['status' => false, 'error' => 'unable to upload your image'];
 
             return response()->json($data);
         }
+
+        $this->_user_service->save_profile_photo($upload, $user->id);
 
         $data = ['status' => true, "image_small" => $upload, "success" => "Image uploaded successfully"];
 

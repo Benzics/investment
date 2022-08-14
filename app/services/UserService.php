@@ -313,4 +313,17 @@ class UserService {
 
         return $user;
     }
+
+    /**
+     * Save uploaded user photo to database
+     * @param $photo
+     * @param $user_id
+     * @return
+     */
+    public function save_profile_photo(string $photo, int $user_id)
+    {
+        $photo = Profile::where('user_id', $user_id)->update(['photo' => $photo]);
+
+        return $photo;
+    }
 }

@@ -3,7 +3,7 @@
 <div class="white section round">
 	<div class="center">
 	<div id="imgArea" style="width:100px" class="circle">
-		<img src="" style="width:100px" class="circle"><span></span>
+		<img src="{{asset('storage/' . $profile->photo)}}" style="width:100px" class="circle"><span></span>
     	<div class="progressBar">
     		<div class="bar"></div>
     		<div class="percent">0%</div>
