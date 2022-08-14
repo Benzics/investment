@@ -4,7 +4,7 @@ namespace App\Services;
 use App\Models\Investment;
 use App\Models\UserInvestment;
 
-class UserInvestmentService
+class UserInvestmentService extends UserService
 {
     /**
      * Creates a new user investment
@@ -69,5 +69,46 @@ class UserInvestmentService
         $investment = Investment::find($investment_id);
 
         return $investment;
+    }
+
+    /**
+     * Get all user active investments
+     * @param $user_id
+     * @return
+     */
+    public function get_user_active_investments($user_id)
+    {
+        $user_investments = UserInvestment::where(['user_id' => $user_id, 'status' => '1'])->get();
+
+        return $user_investments;
+    }
+
+    /**
+     * Get a particular user investment
+     * @param $investment_id
+     * @return
+     */
+    public function get_user_investment($investment_id)
+    {
+        $user_investment = UserInvestment::find($investment_id);
+
+        return $user_investment;
+    }
+
+    /**
+     * Pays a user investment commissions if they are qualified to receive
+     * @param $user_id
+     * @param
+     */
+    public function pay_user_investment($user_id)
+    {
+        $active_investments = $this->get_user_active_investments($user_id);
+
+        // foreach($active_investments as $row)
+        // {
+        //     $investment = $this->get_investment($row->investment_id);
+        //     // if($row->pay)
+        // }
+        return false;
     }
 }

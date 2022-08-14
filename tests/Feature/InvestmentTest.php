@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\User;
+use App\Services\UserInvestmentService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -56,5 +57,14 @@ class InvestmentTest extends TestCase
         $response = $this->actingAs($user)->get('/user/investments');
 
         $response->assertOk()->assertValid();
+    }
+
+    public function test_investment_payout()
+    {
+        $user_investment_service = new UserInvestmentService();
+
+        $pay_user = $user_investment_service->pay_user_investment(1);
+
+        $this->assertTrue($pay_user);
     }
 }
