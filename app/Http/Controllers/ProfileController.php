@@ -9,7 +9,7 @@ class ProfileController extends UserController
 {
     public function index()
     {
-
+        
     }
 
     public function profile()
@@ -19,6 +19,6 @@ class ProfileController extends UserController
 
     public function store(Request $request)
     {
-        
+
     }
 }

@@ -14,7 +14,7 @@ class TestimonyController extends UserController
         $user = auth()->user();
         $ref_id = $this->_user_service->get_profile($user->id)?->ref_id;
 
-        return view('user.testimony', compact('title', 'page_title', 'user', 'ref_id',));
+        return view('user.testimony', compact($this->_shared));
     }
 
     public function store(Request $request)

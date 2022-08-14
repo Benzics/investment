@@ -28,12 +28,16 @@ class UserController extends Controller
 
     public $_user_service;
 
+    public $_shared;
+
     public function __construct()
     {
         $this->_user_service = new UserService();
 
         $this->_currency = currency_symbol();
         $this->_currency_short = currency_short(); 
+
+        $this->_shared = ['title', 'user', 'ref_id', 'page_title'];
     
     }
 
