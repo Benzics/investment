@@ -28,7 +28,12 @@ class UserController extends Controller
 
     public $_user_service;
 
-    public $_shared;
+    /**
+     * Shared view array ['title', 'user', 'ref_id', 'page_title']
+     * to extend this variable, remember to set variables with the names in the array above
+     * @var 
+     */
+    public array $_shared;
 
     public function __construct()
     {

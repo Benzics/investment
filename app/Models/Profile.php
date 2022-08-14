@@ -18,6 +18,8 @@ class Profile extends Model
         'address',
         'zip',
         'country',
+        'photo',
+        'additional',
 
     ];
 }

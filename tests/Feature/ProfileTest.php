@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
 
 class ProfileTest extends TestCase
@@ -40,11 +41,21 @@ class ProfileTest extends TestCase
             'gender' => 'male',
             'country' => 'test',
             'zip' => 'test',
-            'phone' => '',
+            'phone' => '123',
         ];
 
         $response = $this->actingAs($this->user)->post('/user/edit-profile', $data);
 
         $response->assertValid()->assertSessionHas('success');
+    }
+
+    public function test_image_upload()
+    {
+        $photo = ['image_upload_file' => UploadedFile::fake()->image('payment.jpg')];
+
+        $response = $this->actingAs($this->user)->post('/user/image-upload', $photo);
+
+        $response->assertJson(['status' => 'true']);
+
     }
 }

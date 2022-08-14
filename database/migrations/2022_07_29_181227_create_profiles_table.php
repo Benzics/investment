@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('zip')->nullable();
             $table->string('country')->nullable();
+            $table->string('photo')->nullable();
+            $table->text('additional')->nullable();
             $table->timestamps();
         });
     }

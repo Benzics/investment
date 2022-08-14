@@ -119,7 +119,7 @@ class DepositController extends UserController
         
         $charges = ($dep_charge->type == 0) ? ($dep_charge->amount / 100) * $request->amount : $dep_charge->amount;
         
-        $attachment = $request->file('attachment')->store('deposits');
+        $attachment = $request->file('attachment')->store('deposits', 'public');
         $user = auth()->user();
 
         $deposit = $this->_payment_service->make_deposit([

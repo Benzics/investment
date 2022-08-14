@@ -189,7 +189,7 @@
             <li ><a href="{{url('/user/investments')}}"> <i class="fa fa-database"></i> My Investments</a></li>
             <li ><a href="{{ url('/user/referrals')}} "> <i class="fa fa-crosshairs"></i> Affiliate Program</a></li>
             <li ><a href="{{url('/user/testimony')}}"> <i class="fa fa-bullhorn"></i> Write Testimony</a></li>
-            <li ><a href="#/info"> <i class="fa fa-gears"></i> Account Settings</a></li>
+            <li ><a href="{{url('/user/profile')}}"> <i class="fa fa-gears"></i> Account Settings</a></li>
             <li ><a href="#/trading-view"> <i class="fa fa-bullseye"></i> Trade View</a></li>
             <li><a href="{{url('/logout')}}"> <i class="fa fa-power-off"></i> Logout</a></li>
             <li><a href="#user/contact"> <i class="fa fa-exclamation-circle"></i> Help</a></li>

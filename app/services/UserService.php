@@ -283,10 +283,34 @@ class UserService {
      * @param $testimony
      * @param $user_id
      */
-    public function write_testimony($testimony, $user_id)
+    public function write_testimony(string $testimony, int $user_id)
     {
         $testimony = Testimony::create(['testimony' => $testimony, 'user_id' => $user_id]);
 
         return $testimony;
+    }
+
+    /**
+     * Update user profile
+     * @param $data
+     * @param $user_id
+     */
+    public function update_profile(array $data, int $user_id)
+    {
+        $profile = Profile::where('user_id', $user_id)->update($data);
+
+        return $profile;
+    }
+
+    /**
+     * Update user data
+     * @param $data
+     * @param $user_id
+     */
+    public function update_user(array $data, int $user_id)
+    {
+        $user = User::where('id', $user_id)->update($data);
+
+        return $user;
     }
 }

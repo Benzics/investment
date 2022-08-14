@@ -13,7 +13,7 @@ use App\Http\Controllers\user\DepositController;
 use App\Http\Controllers\admin\LoginController as AdminLoginController;
 use App\Http\Controllers\admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\admin\DepositController as AdminDepositController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\user\ProfileController;
 use App\Http\Controllers\user\InvestmentController;
 use App\Http\Controllers\user\ReferralController;
 use App\Http\Controllers\user\TestimonyController;
@@ -95,6 +95,7 @@ Route::middleware(['auth', 'verified', 'investment.commission'])->name('user.')-
     Route::get('/profile', [ProfileController::class, 'index']);
     Route::get('/edit-profile', [ProfileController::class, 'profile']);
     Route::post('/edit-profile', [ProfileController::class, 'store']);
+    Route::post('/image-upload', [ProfileController::class, 'photo']);
 });
 
 // admin routes
