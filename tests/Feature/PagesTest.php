@@ -32,9 +32,5 @@ class PagesTest extends TestCase
             ->assertSessionHas('success');
     }
 
-    public function test_affiliate_page()
-    {
-        $response = $this->actingAs($this->user)->get('/user/affiliate');
-        $response->assertOk();
-    }
+
 }

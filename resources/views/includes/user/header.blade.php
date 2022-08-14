@@ -187,7 +187,7 @@
             <li ><a href="{{url('/user/withdrawals')}}"> <i class="fa fa-money"></i> My Withdrawals</a></li>
             <li ><a href="{{url('/user/new-investment')}}"> <i class="fa fa-database"></i> New Investment</a></li>
             <li ><a href="{{url('/user/investments')}}"> <i class="fa fa-database"></i> My Investments</a></li>
-            <li ><a href="#/reference-user"> <i class="fa fa-crosshairs"></i> Affiliate Program</a></li>
+            <li ><a href="{{ url('/user/referrals')}} "> <i class="fa fa-crosshairs"></i> Affiliate Program</a></li>
             <li ><a href="#/testimony"> <i class="fa fa-bullhorn"></i> Write Testimony</a></li>
             <li ><a href="#/info"> <i class="fa fa-gears"></i> Account Settings</a></li>
             <li ><a href="#/trading-view"> <i class="fa fa-bullseye"></i> Trade View</a></li>
@@ -209,6 +209,7 @@
             <h4>{{$page_title ?? ''}}</h4>
             <span class="decor_default"></span>
         </div>
+    </div>
     </div>
 
     @if (session('success') !== null)

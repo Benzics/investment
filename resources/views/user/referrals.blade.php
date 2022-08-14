@@ -1,7 +1,16 @@
 @include('includes.user.header')
 
+
+
+<div class="white section round row" style="padding:0;clear:both"><div class="col-12">
+    <h5>Affilite Program</h5>
+    <h2>Your Affiliate Link: <span class="green" style="font-size: 14px; padding: 2px 5px; text-transform: lowercase; display: inline-block;">{{url('/register/?ref=' . $ref_id )}}</span></h2>
+    <p>Gain free {{currency_symbol() . $reward }} everytime a user registers with your affiliate link, and is verified.</p>
+</div>
+</div>
+
 <div class="white section round">
-    <h5>Referral list.</h5>
+    <h5>Referrals.</h5>
     <div style="overflow-y: auto;" class="margint">
         <table style="width:100%" class="striped">
 
@@ -14,7 +23,7 @@
             </tr>
             @if(count($users) == 0)
             <tr>
-                <td colspan="5">You have no profits.</td>
+                <td colspan="5">You have no referrals.</td>
             </tr>
             @endif
             @foreach($users as $row)
@@ -43,5 +52,7 @@
                 
                  </table>
     </div>
+</div>
+
 
 @include('includes.user.footer')

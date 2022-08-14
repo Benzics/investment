@@ -48,5 +48,5 @@
                 
                  </table>
     </div>
-
+</div>
 @include('includes.user.footer')

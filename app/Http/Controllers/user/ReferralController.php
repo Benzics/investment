@@ -15,8 +15,10 @@ class ReferralController extends UserController
 
         $users = $this->_user_service->get_referral_list($user->id);
         $currency = $this->_currency;
+
+        $reward = setting('referral-bonus');
         
-        $view_data = ['title', 'page_title', 'user', 'ref_id', 'users', 'currency'];
+        $view_data = ['title', 'page_title', 'user', 'ref_id', 'users', 'currency', 'reward'];
 
         return view('user.referrals', compact($view_data));
     }
