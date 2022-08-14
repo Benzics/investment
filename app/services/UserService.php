@@ -75,6 +75,18 @@ class UserService {
     }
 
     /**
+     * Get the total investment profit
+     * @param $user_id
+     * @return
+     */
+    public function get_total_investment_profit(int $user_id)
+    {
+        $profit = Wallet::where(['user_id' => $user_id, 'type' => '5'])->sum('credit');
+        
+        return $profit;
+    }
+
+    /**
      * Get latest investments from a user
      * @param $user_id
      * @param? $limit

@@ -15,14 +15,14 @@
 </a>
 </div>
 <div class="col-4 col-m-6">
-<a href="#/account/repeat-history">
+<a href="{{url('/user/profit')}}">
 	<div class="r4_counter db_box">
 		<div class="icon-after">
 			<img src="/assets/images/cryptonia-ico-lg.png" alt="">
 		</div>
 		<i class="pull-left fa fa-usd icon-md mt-10"></i>
 		<div class="stats">
-			<h3 class="color-white mb-5">0</h3>
+			<h3 class="color-white mb-5">{{ $profit }}</h3>
 			<span>Profit</span>
 		</div>
 	</div>
