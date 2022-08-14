@@ -10,24 +10,24 @@ use Tests\TestCase;
 class DashboardTest extends TestCase
 {
     use RefreshDatabase;
+    public $user;
 
     public function setUp(): void 
     {
         parent::setUp();
         $this->artisan('db:seed');
+        $this->user = User::find(1);
     }
     
     public function test_dashboard()
     {
-        $user = User::find(1);
-        $response = $this->actingAs($user)->get('/user/dashboard');
+        $response = $this->actingAs($this->user)->get('/user/dashboard');
         $response->assertOk();
     }
 
     public function test_referrals_page()
     {
-        $user = User::find(1);
-        $response = $this->actingAs($user)->get('/user/referrals');
+        $response = $this->actingAs($this->user)->get('/user/referrals');
         $response->assertOk();
     }
 }
