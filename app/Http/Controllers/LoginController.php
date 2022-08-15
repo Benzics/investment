@@ -18,6 +18,8 @@ class LoginController extends Controller
             'email' => ['required', 'email'],
             'password' => 'required'
         ]);
+
+        $credentials['status'] = '1';
         $remember = $request->remember ? TRUE : FALSE;
 
         if (Auth::attempt($credentials, $remember))

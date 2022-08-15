@@ -10,6 +10,8 @@ use App\Models\Wallet;
 use App\Http\Controllers\core\UserController;
 use App\Services\PaymentService;
 use App\Services\WithdrawalService;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 
@@ -22,7 +24,7 @@ class WithdrawalController extends UserController
         parent::__construct();
         $this->_withdrawal_service = new WithdrawalService();
     }
-    public function index()
+    public function index() : View
     {
         // retrieve the withdrawal settings 
         $minimum_withdrawal = $this->_user_service->get_setting('minimum-withdrawal');
@@ -64,7 +66,7 @@ class WithdrawalController extends UserController
             'charge', 'processing_time', 'minimum_withdrawal', 'maximum_withdrawal', 'user', 'ref_id'));
     }
 
-    public function withdraw(Request $request)
+    public function withdraw(Request $request) : RedirectResponse
     {
         $validate = $request->validate([
             'amount' => 'required|min:1',
@@ -127,7 +129,7 @@ class WithdrawalController extends UserController
 
     }
 
-    public function withdrawals()
+    public function withdrawals() : View
     {
         $title = 'My Withdrawals';
         $page_title = 'My Withdrawals';

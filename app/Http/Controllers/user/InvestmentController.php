@@ -8,6 +8,8 @@ use App\Http\Controllers\core\UserController;
 
 use App\Events\Invested;
 use App\Services\UserInvestmentService;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Throwable;
 
 class InvestmentController extends UserController
@@ -27,7 +29,7 @@ class InvestmentController extends UserController
 
     }
 
-    public function index()
+    public function index() : View
     {
         $title = 'New Investment';
         $page_title = 'New Investment';
@@ -50,7 +52,7 @@ class InvestmentController extends UserController
         return view('user.new-investment', compact($view_data));
     }
 
-    public function preview(Request $request)
+    public function preview(Request $request) : View
     {
         $title = 'Preview Investment';
         $page_title = 'Preview Investment';
@@ -81,7 +83,7 @@ class InvestmentController extends UserController
         return view('user.preview-investment', compact($view_data));
     }
 
-    public function invest(Request $request)
+    public function invest(Request $request) : RedirectResponse
     {
         $validate = $request->validate([
             'amount' => 'required',
@@ -131,7 +133,7 @@ class InvestmentController extends UserController
         
     }
 
-    public function investments()
+    public function investments() : View
     {
         $title = 'My Investments';
         $page_title = 'My Investments';

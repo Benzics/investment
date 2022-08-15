@@ -3,12 +3,16 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\core\UserController;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Client\Response;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class ProfileController extends UserController
 {
-    public function index()
+    public function index() : View
     {
         $title = 'Profile';
         $page_title = $title;
@@ -22,7 +26,7 @@ class ProfileController extends UserController
         return view('user.profile', compact(array_merge($view_data, $this->_shared)));
     }
 
-    public function profile()
+    public function profile() : View
     {
 
         $title = 'Edit Profile';
@@ -37,7 +41,7 @@ class ProfileController extends UserController
         return view('user.edit-profile', compact(array_merge($view_data, $this->_shared)));
     }
 
-    public function store(Request $request)
+    public function store(Request $request) : RedirectResponse
     {
 
         $user = auth()->user();
@@ -65,9 +69,9 @@ class ProfileController extends UserController
         return redirect('/user/profile')->with('success', 'Profile successfully updated');
     }
 
-    public function photo(Request $request)
+    public function photo(Request $request) : JsonResponse
     {
-        $validate = $request->validate(['image_upload_file' => 'required']);
+        $request->validate(['image_upload_file' => 'required']);
 
         $upload = $request->file('image_upload_file')->store('uploads', 'public');
 

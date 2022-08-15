@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\core\UserController;
+use Illuminate\Contracts\View\View;
+
 
 class ReferralController extends UserController
 {
-    public function index()
+    public function index() : View
     {
         $title = 'My Referrals';
         $page_title = $title;

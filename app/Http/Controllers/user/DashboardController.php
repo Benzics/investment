@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\core\UserController;
-
+use Illuminate\Contracts\View\View;
 
 class DashboardController extends UserController
 {
 
-    public function index()
+    public function index() : View
     {
         $user = auth()->user();
         $ref_id = $this->_user_service->get_profile($user->id)?->ref_id;

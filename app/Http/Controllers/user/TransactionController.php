@@ -4,10 +4,11 @@ namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\core\UserController;
 use App\Services\WalletService;
+use Illuminate\Contracts\View\View;
 
 class TransactionController extends UserController
 {
-    public function index()
+    public function index() : View
     {
         $title = 'My Transactions';
         $page_title = $title;
@@ -23,7 +24,7 @@ class TransactionController extends UserController
         return view('user.transactions', compact($view_data));
     }
 
-    public function profits()
+    public function profits() : View
     {
         $title = 'My Profits';
         $page_title = $title;

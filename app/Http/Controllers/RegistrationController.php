@@ -10,19 +10,21 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use App\Services\RegistrationService;
 use App\Services\UserService;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
 use Throwable;
 
 class RegistrationController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request) : View
     {
         $ref = $request->ref;
         
         return view('register', ['title' => 'Registration', 'ref' => $ref]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request) : RedirectResponse
     {
         $validated = $request->validate([
             'name' => 'required',
@@ -66,7 +68,7 @@ class RegistrationController extends Controller
             event(new Registered($user));
         } catch (Throwable $e) {
             report($e);
-            return back()->withErrors(['email' => 'Sorry there is an internal server issue. Please contact the admin.']);
+            // return back()->withErrors(['email' => 'Sorry there is an internal server issue. Please contact the admin.']);
         }
 
         Auth::login($user);

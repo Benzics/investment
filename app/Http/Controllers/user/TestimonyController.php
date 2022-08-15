@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\core\UserController;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class TestimonyController extends UserController
 {
-    public function index()
+    public function index() : View
     {
         $title = 'Testimony';
         $page_title = $title;
@@ -17,7 +19,7 @@ class TestimonyController extends UserController
         return view('user.testimony', compact($this->_shared));
     }
 
-    public function store(Request $request)
+    public function store(Request $request) : RedirectResponse
     {
         $user = auth()->user();
         $validate = $request->validate(['testimony' => 'required']);

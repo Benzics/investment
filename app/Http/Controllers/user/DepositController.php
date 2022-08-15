@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\File;
 use App\Http\Controllers\core\UserController;
 use App\Services\PaymentService;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Throwable;
 
 class DepositController extends UserController
@@ -22,7 +24,7 @@ class DepositController extends UserController
 
     }
 
-    public function index()
+    public function index() : View
     {
         $payments = $this->_payment_service->get_active_payments();
 
@@ -62,7 +64,7 @@ class DepositController extends UserController
         return view('user.deposit', $view_data);
     }
 
-    public function deposit(Request $request)
+    public function deposit(Request $request) : View
     {
         $validate = $request->validate([
             'amount' => 'required',
@@ -104,7 +106,7 @@ class DepositController extends UserController
         return view('user.deposit-fund', $view_data);
     }
 
-    public function store(Request $request)
+    public function store(Request $request) : RedirectResponse
     {
         $request->validate([
             'attachment' => ['required', File::image()],
