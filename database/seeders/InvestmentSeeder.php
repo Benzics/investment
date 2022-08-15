@@ -22,7 +22,7 @@ class InvestmentSeeder extends Seeder
                 'commission_type' => '0',
                 'minimum' => '100',
                 'maximum' => '5000',
-                'type' => 'Daily',
+                'type' => '1',
                 'times' => '90',
             ],
             [
@@ -31,7 +31,7 @@ class InvestmentSeeder extends Seeder
                 'commission_type' => '0',
                 'minimum' => '500',
                 'maximum' => '10000',
-                'type' => 'Daily',
+                'type' => '1',
                 'times' => '120',
             ],
             [
@@ -40,7 +40,7 @@ class InvestmentSeeder extends Seeder
                 'commission_type' => '0',
                 'minimum' => '1000',
                 'maximum' => '100000',
-                'type' => 'Weekly',
+                'type' => '7',
                 'times' => '365',
             ],
 

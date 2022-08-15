@@ -17,9 +17,9 @@
                 <td colspan="5">You have no withdrawals. <a href="{{url('/user/withdrawal')}}">Click Here</a> to make a withdrawal.</td>
             </tr>
             @endif
+            @php  $id = 0; @endphp
             @foreach($withdrawals as $row)
             @php
-            $id = 0;
             $id++;
             @endphp
             <tr>

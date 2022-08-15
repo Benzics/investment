@@ -195,3 +195,29 @@ function friendly_time(string $time)
 
     return $date->format('jS M Y - h:i:A');
 }
+
+/**
+ * Returns a user friendly string for the number of days set on investment
+ * @param int $days
+ * @return string
+ */
+function investment_days(int $days) : string
+{
+    switch($days)
+    {
+        case 1:
+            return 'Daily';
+            break;
+        case 7:
+            return 'Weekly';
+            break;
+        case 30:
+            return 'Monthly';
+            break;
+        case 365:
+            return 'Yearly';
+            break;
+        default:
+            return "$days Days";
+    }
+}

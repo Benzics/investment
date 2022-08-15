@@ -26,9 +26,10 @@
                 <td colspan="5">You have no referrals.</td>
             </tr>
             @endif
+            @php  $id = 0; @endphp
             @foreach($users as $row)
             @php
-            $id = 0;
+           
             $id++;
             @endphp
             <tr>

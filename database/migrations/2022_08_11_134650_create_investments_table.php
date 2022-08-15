@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('commission_type')->default('0');
             $table->float('minimum');
             $table->float('maximum');
-            $table->enum('type', ['Daily', 'Weekly', 'Monthly', 'Yearly']);
+            $table->integer('type')->default('1');
             $table->integer('times');
             $table->integer('status')->default('1');
             $table->timestamps();

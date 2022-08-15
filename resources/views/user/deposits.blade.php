@@ -17,9 +17,9 @@
                 <td colspan="5">You have no deposits. <a href="{{url('/user/deposit')}}">Click Here</a> to make a deposit.</td>
             </tr>
             @endif
+            @php  $id = 0; @endphp
             @foreach($deposits as $row)
             @php
-            $id = 0;
             $id++;
             @endphp
             <tr>

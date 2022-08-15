@@ -110,26 +110,20 @@ class UserInvestmentService extends UserService
         foreach($active_investments as $row)
         {
             $investment = $this->get_investment($row->investment_id);
-
-
-            switch($investment?->type)
-            {
-                case 'Daily':
-                    $this->daily_commission($user_id, $row->id);
-                    break;
-            }
- 
+    
+            $this->daily_commission($user_id, $row->id, $investment->type);
+            
         }
 
-        return false;
     }
 
     /**
      * Gives daily commissions to a user
-     * @param $user_id
-     * @param $user_investment_id
+     * @param int $user_id
+     * @param int $user_investment_id
+     * @param int $days_set
      */
-    function daily_commission(int $user_id, int $user_investment_id)
+    function daily_commission(int $user_id, int $user_investment_id, int $days_set)
     {
         $user_investment = $this->get_user_investment($user_investment_id);
         $investment = $this->get_investment($user_investment->investment_id);
@@ -144,17 +138,17 @@ class UserInvestmentService extends UserService
             $interval = $date->diff($date2);
             $days = $interval->format('%a');
 
-            if($days < 1)
+            if($days < $days_set)
             {
                 return;
             }
 
             $commission = ($investment->commission_type == 0) ? ($investment->commission / 100) * $user_investment->amount : $investment->commission;
 
-            $desc = currency_symbol() . $commission . ' daily commission for ' . currency_symbol() . $user_investment->amount . ' ' . $investment->name . ' plan';
+            $desc = currency_symbol() . $commission . ' commission for ' . currency_symbol() . $user_investment->amount . ' ' . $investment->name . ' plan';
 
             // determine the next payout date
-            $next_payout = $date2->modify('+1 day');
+            $next_payout = $date2->modify("+$days_set day");
 
             $this->credit_user($user_id, $commission, 5, $desc);
 
@@ -168,7 +162,7 @@ class UserInvestmentService extends UserService
                 $this->set_investment_status($user_investment->id, 2);
             }
 
-            $this->daily_commission($user_id, $user_investment->id);
+            $this->daily_commission($user_id, $user_investment->id, $days_set);
 
            
 
@@ -185,17 +179,17 @@ class UserInvestmentService extends UserService
             $interval = $date->diff($date2);
             $days = $interval->format('%a');
 
-            if($days < 1)
+            if($days < $days_set)
             {
                 return;
             }
 
             $commission = ($investment->commission_type == 0) ? ($investment->commission / 100) * $user_investment->amount : $investment->commission;
 
-            $desc = currency_symbol() . $commission . ' daily commission for ' . currency_symbol() . $user_investment->amount . ' ' . $investment->name . ' plan';
+            $desc = currency_symbol() . $commission . ' commission for ' . currency_symbol() . $user_investment->amount . ' ' . $investment->name . ' plan';
 
             // determine the next payout date
-            $next_payout = $date2->modify('+1 day');
+            $next_payout = $date2->modify("+$days_set day");
 
             $this->credit_user($user_id, $commission, 5, $desc);
 
@@ -209,7 +203,7 @@ class UserInvestmentService extends UserService
                 $this->set_investment_status($user_investment->id, 2);
             }
 
-            $this->daily_commission($user_id, $user_investment->id);
+            $this->daily_commission($user_id, $user_investment->id, $days_set);
 
         }
         

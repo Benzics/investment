@@ -7,7 +7,7 @@
 			<li class="bold grey">{{ $minimum ?? 0 }} - {{ $maximum ?? 0 }} </li>
 			<li>Commission - {{ $commission ?? 0 }}</li>
 			<li>Time - {{ $times ?? 0 }} times</li>
-			<li>Compound - <span class="border-green small round-xxlarge smpadding">{{ $type ?? '' }}</span></li>
+			<li>Compound - <span class="border-green small round-xxlarge smpadding">{{ investment_days($type) ?? '' }}</span></li>
 			<li>
 				<a href="{{ url('/user/new-investment') }}" class="btn has-gradient-to-right-bottom round-xxlarge" style="font-size: 14px; padding: 5px 20px"><i class="fa fa-send"></i> GO BACK</a>
 			</li>

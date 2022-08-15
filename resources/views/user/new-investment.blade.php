@@ -9,7 +9,7 @@
 			<li class="bold grey">{{ $row->minimum . ' ' . $currency }} - {{ $row->maximum . ' ' . $currency }} USD</li>
 			<li>Commission - {{ $row->commission }}</li>
 			<li>Time - {{ $row->times }} times</li>
-			<li>Compound - <span class="border-green small round-xxlarge smpadding">{{ $row->type }}</span></li>
+			<li>Compound - <span class="border-green small round-xxlarge smpadding">{{ investment_days($row->type) }}</span></li>
 			<input type="hidden" name="investment_id" value="{{ $row->id }}">
 			<li class="grey">
 				<button class="btn has-gradient-to-right-bottom round-xxlarge" style="font-size: 14px; padding: 5px 20px"><i class="fa fa-send"></i> INVEST NOW</button>

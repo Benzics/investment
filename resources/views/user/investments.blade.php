@@ -17,9 +17,9 @@
                 <td colspan="5">You have no investments. <a href="{{url('/user/new-investment')}}">Click Here</a> to start a new investment.</td>
             </tr>
             @endif
+            @php  $id = 0; @endphp
             @foreach($investments as $row)
             @php
-            $id = 0;
             $id++;
             @endphp
             <tr>

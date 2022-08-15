@@ -19,9 +19,9 @@
                 <td colspan="7">You have no transactions.</td>
             </tr>
             @endif
+            @php  $id = 0; @endphp
             @foreach($transactions as $row)
             @php
-            $id = 0;
             $id++;
             @endphp
             <tr>
