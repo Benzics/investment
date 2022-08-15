@@ -130,6 +130,7 @@ class ProfileController extends UserController
         $profile = $this->_user_service->get_profile($user->id);
         $ref_id = $profile->ref_id;
 
+        // 
         return view('user.trade-view', compact($this->_shared));
     }
 }
