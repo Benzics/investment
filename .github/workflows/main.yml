@@ -27,7 +27,8 @@ jobs:
 
 
       # Runs a set of commands using the runners shell
-      - name: Sync Files
+      - name: Push files to staging
+        uses: SamKirkland/FTP-Deploy-Action@4.1.0
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
