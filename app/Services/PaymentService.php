@@ -14,7 +14,6 @@ class PaymentService {
     {
         $payment_methods = Payment::where('status', '1')->get();
 
-        
         return $payment_methods;
     }
 
