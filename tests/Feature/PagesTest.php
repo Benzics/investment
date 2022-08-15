@@ -32,5 +32,11 @@ class PagesTest extends TestCase
             ->assertSessionHas('success');
     }
 
+    public function test_trade_view()
+    {
+        $response = $this->actingAs($this->user)->get('/user/trade-view');
+        $response->assertOk();
+    }
+
 
 }

@@ -33,7 +33,7 @@
 
 <link rel="icon" sizes="192x192" href="{{ asset('/assets/images/icon/icon-192.png') }}">
 
-<meta name="keywords" content="Global Options FX Trade, cryptocurrency, investments" />
+<meta name="keywords" content="FX Trade, cryptocurrency, investments" />
 <meta property="og:image" content="{{ asset('/assets/images/icon/icon-310x310.png') }}" />
 
 <meta name="msapplication-square310x310logo" content="{{ asset('/assets/images/icon/icon-310x310.png') }}" />
@@ -68,7 +68,7 @@
     <header class="cpanel_header row" id="cpanel_header">
         <ul>
             <li class="bar"><a id="menu_btn"><i class="fa fa-align-left"></i></a></li>
-            <li class="brand"><img src="{{ asset('/assets/images/bitcoin-15.png') }}" title="Global Options FX Trade"/></li>
+            <li class="brand"><img src="{{ asset('/assets/images/bitcoin-15.png') }}" title=""/></li>
             <li class="user"><a href="#" id="open_account"><i class="fa fa-user"></i></a>
             </li>
         </ul>
@@ -190,7 +190,7 @@
             <li ><a href="{{ url('/user/referrals')}} "> <i class="fa fa-crosshairs"></i> Affiliate Program</a></li>
             <li ><a href="{{url('/user/testimony')}}"> <i class="fa fa-bullhorn"></i> Write Testimony</a></li>
             <li ><a href="{{url('/user/profile')}}"> <i class="fa fa-gears"></i> Account Settings</a></li>
-            <li ><a href="#/trading-view"> <i class="fa fa-bullseye"></i> Trade View</a></li>
+            <li ><a href="{{url('/user/trade-view')}}"> <i class="fa fa-bullseye"></i> Trade View</a></li>
             <li><a href="{{url('/logout')}}"> <i class="fa fa-power-off"></i> Logout</a></li>
             <li><a href="#user/contact"> <i class="fa fa-exclamation-circle"></i> Help</a></li>
         </ul>

@@ -121,4 +121,15 @@ class ProfileController extends UserController
 
         return redirect('/user/change-password')->with('success', 'Password successfully changed');
     }
+
+    public function trade_view() : View
+    {
+        $title = 'Trading View';
+        $page_title = $title;
+        $user = auth()->user();
+        $profile = $this->_user_service->get_profile($user->id);
+        $ref_id = $profile->ref_id;
+
+        return view('user.trade-view', compact($this->_shared));
+    }
 }

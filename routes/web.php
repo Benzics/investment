@@ -98,7 +98,7 @@ Route::middleware(['auth', 'verified', 'investment.commission'])->name('user.')-
     Route::post('/image-upload', [ProfileController::class, 'photo']);
     Route::get('/change-password', [ProfileController::class, 'password']);
     Route::post('/change-password', [ProfileController::class, 'change_password']);
-
+    Route::get('/trade-view', [ProfileController::class, 'trade_view']); 
 });
 
 // admin routes
