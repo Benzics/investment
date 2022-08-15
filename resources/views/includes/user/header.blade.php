@@ -76,9 +76,9 @@
     <div id="account" class="udex-animate-right">
         <ul>
             <li class="title">Account</li>
-            <li><a href="#/info"><i class="fa fa-user"></i>  @isset($user) {{ $user->name }} @endisset </a></li>
-            <li><a href="#/security"><i class="fa fa-gear"></i> Safety & Security</a></li>
-            <li><a href="#/changepass"><i class="fa fa-lock"></i> Change Password</a></li>
+            <li><a href="{{ url('/user/profile') }}"><i class="fa fa-user"></i>  @isset($user) {{ $user->name }} @endisset </a></li>
+       
+            <li><a href="{{url('/user/change-password')}}"><i class="fa fa-lock"></i> Change Password</a></li>
                     <li><a href="{{ url('/logout') }}"><i class="fa fa-power-off"></i> Sign Out</a></li>
         </ul>
     </div>
