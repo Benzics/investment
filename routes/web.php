@@ -96,6 +96,9 @@ Route::middleware(['auth', 'verified', 'investment.commission'])->name('user.')-
     Route::get('/edit-profile', [ProfileController::class, 'profile']);
     Route::post('/edit-profile', [ProfileController::class, 'store']);
     Route::post('/image-upload', [ProfileController::class, 'photo']);
+    Route::get('/change-password', [ProfileController::class, 'password']);
+    Route::post('/change-password', [ProfileController::class, 'change_password']);
+
 });
 
 // admin routes

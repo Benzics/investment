@@ -68,7 +68,7 @@ class ProfileTest extends TestCase
 
     public function test_change_password()
     {
-        $data = [];
+        $data = ['old_password' => 'admin', 'new_password' => '123456'];
 
         $response = $this->actingAs($this->user)->post('/user/change-password', $data);
 

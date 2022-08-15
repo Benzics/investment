@@ -8,6 +8,7 @@ use Illuminate\Http\Client\Response;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 
 class ProfileController extends UserController
@@ -101,6 +102,23 @@ class ProfileController extends UserController
 
         $view_data = [];
 
-        return view('users.password', compact(array_merge($view_data, $this->_shared)));
+        return view('user.password', compact(array_merge($view_data, $this->_shared)));
+    }
+
+    public function change_password(Request $request) : RedirectResponse
+    {
+        $validate = $request->validate([
+            'old_password' => 'required|min:5',
+            'new_password' => 'required|min:5',
+        ]);
+
+        $user = auth()->user();
+
+        if (!$this->_user_service->change_user_pass($validate['old_password'], $validate['new_password'], $user->id))
+        {
+            return back()->withErrors(['old_password' => 'Old password is incorrect']);
+        }
+
+        return redirect('/user/change-password')->with('success', 'Password successfully changed');
     }
 }

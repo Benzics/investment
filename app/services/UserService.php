@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Wallet;
 use App\Models\Withdrawal;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserService {
 
@@ -325,5 +326,26 @@ class UserService {
         $photo = Profile::where('user_id', $user_id)->update(['photo' => $photo]);
 
         return $photo;
+    }
+
+    /**
+     * Changes a user password
+     * @param string $old_password
+     * @param string $new_password
+     * @param int $user_id
+     * @return mixed
+     */
+    public function change_user_pass(string $old_password, string $new_password, int $user_id) : mixed
+    {
+        $user = $this->get_user($user_id);
+
+        if(!Hash::check($old_password, $user->password))
+        {
+            return false;
+        }
+
+        $new_pass = $this->update_user(['password' => Hash::make($new_password)], $user_id);
+
+        return $new_pass;
     }
 }
