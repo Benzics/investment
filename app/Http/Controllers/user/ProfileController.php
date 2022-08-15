@@ -90,4 +90,17 @@ class ProfileController extends UserController
         return response()->json($data);
 
     }
+
+    public function password() : View
+    {
+        $title = 'Change Password';
+        $page_title = $title;
+        $user = auth()->user();
+        $profile = $this->_user_service->get_profile($user->id);
+        $ref_id = $profile->ref_id;
+
+        $view_data = [];
+
+        return view('users.password', compact(array_merge($view_data, $this->_shared)));
+    }
 }

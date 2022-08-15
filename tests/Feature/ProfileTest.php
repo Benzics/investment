@@ -58,4 +58,20 @@ class ProfileTest extends TestCase
         $response->assertJson(['status' => 'true']);
 
     }
+
+    public function test_password_page()
+    {
+        $response = $this->actingAs($this->user)->get('/user/change-password');
+
+        $response->assertOk();
+    }
+
+    public function test_change_password()
+    {
+        $data = [];
+
+        $response = $this->actingAs($this->user)->post('/user/change-password', $data);
+
+        $response->assertValid()->assertSessionHas('success');
+    }
 }
