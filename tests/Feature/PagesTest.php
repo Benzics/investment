@@ -38,5 +38,23 @@ class PagesTest extends TestCase
         $response->assertOk();
     }
 
+    public function test_index()
+    {
+        $response = $this->get('/');
+        $response->assertOk();
+    }
+
+    public function test_login()
+    {
+        $response = $this->get('/login');
+        $response->assertOk();
+    }
+
+    public function test_registration()
+    {
+        $response = $this->get('/register');
+        $response->assertOk();
+    }
+
 
 }

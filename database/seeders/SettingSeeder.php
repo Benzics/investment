@@ -24,10 +24,14 @@ class SettingSeeder extends Seeder
             ['name' => 'withdrawal-time', 'value' => '1'],
             ['name' => 'deposit-charges', 'value' => '{"type": "1", "amount": "12"}'],
             ['name' => 'admin-mail', 'value' => 'benjaminnicholas29@gmail.com'],
+            ['name' => 'support-mail', 'value' => 'support@site.com'],
             ['name' => 'deposit-notification', 'value' => '1'],
             ['name' => 'investment-notification', 'value' => '1'],
             ['name' => 'withdrawal-notification', 'value' => '1'],
-            ['name' => 'referral-bonus', 'value' => '10']
+            ['name' => 'referral-bonus', 'value' => '10'],
+            ['name' => 'site-logo-1', 'value' => '/assets/images/v2/logo.jpg'],
+            ['name' => 'site-logo-2', 'value' => '/assets/images/v2/logo-2.jpg'],
+            ['name' => 'site-logo-3', 'value' => '/assets/images/v2/logo-3.jpg'],
         ]);
     }
 }

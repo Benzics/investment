@@ -119,10 +119,17 @@ function map_transaction_type(int $type)
  * @return
  */
 function setting(string $setting_name)
-{
+{ 
+    try
+    {
     $setting = DB::table('settings')->where('name', $setting_name)->first();
-
-    return $setting ? $setting->value : false;
+    return $setting->value;
+    }
+    catch (Throwable $e)
+    {
+        report($e);
+        return '';
+    }
 }
 
 /**

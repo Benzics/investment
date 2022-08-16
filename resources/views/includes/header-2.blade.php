@@ -77,7 +77,7 @@
                         <div class="col-12">
                             <div class="d-sm-flex">
                                 <a class="navbar-brand" href="index">
-                                    <img class="img-fluid" src="images/logo-light.png" alt="logo" />
+                                    <img class="img-fluid" src="{{ asset('/assets/images/v2/logo-light.png') }}" alt="logo" />
                                 </a>
                                 <div id="ytWidget"></div>
                                 <script src="https://translate.yandex.net/website-widget/v1/widget.js?widgetId=ytWidget&pageLang=en&widgetTheme=light&autoMode=false" type="text/javascript"></script>
@@ -98,7 +98,7 @@
                                         <li>
                                             <i class="flaticon-email"></i>
                                             <span>
-                                                <label class="d-block">support@star-capital.ltd</label>
+                                                <label class="d-block">{{setting('support-mail')}}</label>
                                                 
                                             </span>
                                         </li>
@@ -117,7 +117,7 @@
                             <div class="navbar-collapse collapse">
                                 <ul class="nav navbar-nav">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="https://star-capitals.ltd">HOME</a>
+                                        <a class="nav-link" href="{{url('/')}}">HOME</a>
                                     </li>
                                     <li class="nav-item"></li>
                                     <li class="dropdown nav-item">
@@ -138,10 +138,10 @@
                                         <a href="?a=support" class="nav-link">CONTACT</a>
                                     </li>
                                                                         <li class="nav-item">
-                                        <a href="?a=login" class="nav-link">LOGIN</a>
+                                        <a href="{{url('/login')}}" class="nav-link">LOGIN</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="?a=signup" class="nav-link">SIGN UP</a>
+                                        <a href="{{url('/register')}}" class="nav-link">SIGN UP</a>
                                     </li>
                                                                     </ul>
                             </div>
