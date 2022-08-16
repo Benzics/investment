@@ -16,7 +16,7 @@
   <!-- Item -->
   <div class="item">
     <div class="img-fill">
-      <img src="{{ asset('assets/images/912465.jpg') }}" alt="">
+      <img src="{{ asset('assets/images/912465-min.jpg') }}" alt="">
       <div class="info-slick">
         <div>
           <h1 class="headering"><span class="text-default">SECURE</span> AND <span class="text-default">EASY WAY</span><br>TO BITCOIN MINNING</h1>
@@ -29,7 +29,7 @@
   <!-- Item -->
   <div class="item">
     <div class="img-fill">
-      <img src="{{ asset('assets/images/913441.jpg') }}" alt="">
+      <img src="{{ asset('assets/images/913441-min.jpg') }}" alt="">
       <div class="info-slick">
         <div>
           <h1 class="headering"><span class="text-default">BITCOIN</span> INVESTMENT<br>YOU CAN <span class="text-default">TRUST</span></h1>
@@ -582,7 +582,7 @@
 
 
 
-<script src="{{ asset('assets/js/slick/slick.js') }}" type="text/javascript" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js" integrity="sha512-An4a3FEMyR5BbO9CRQQqgsBscxjM7uNNmccUSESNVtWn53EWx5B9oO7RVnPvPG6EcYcYPp0Gv3i/QQ4KUzB5WA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="{{ asset('assets/js/slick/slick-animation.min.js') }}" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 	// Init slick slider + animation

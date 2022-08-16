@@ -36,9 +36,9 @@
 <meta name="msapplication-wide310x150logo" content="{{ asset('/assets/images/icon/icon-310x150.png') }}" />
 
 
-<script src="{{ asset('/assets/js/jquery.min.js') }}"></script>
-<script src="{{ asset('/assets/js/jquery-ui.js') }}"></script>
-<script src="{{ asset('/assets/js/jquery.form.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js" integrity="sha512-synHs+rLg2WDVE9U0oHVJURDCiqft60GcWOW7tXySy8oIr0Hjl3K9gv7Bq/gSj4NDVpc5vmsNkMGGJ6t2VpUMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.50/jquery.form.min.js" integrity="sha512-zsLciaUdJLt5CtNc7c4MO7wa/YHcsHO+MwPGXoZ08Ps8hEAN/YwKqmvzXYv0npytDOJMvYqrt8rN0thncUPOOg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <link href="{{ asset('/assets/css/select2.min.css') }}" rel="stylesheet" />
 
