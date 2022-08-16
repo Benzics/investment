@@ -295,11 +295,11 @@
     
     $range.on("change", function () {
         var $this = $(this),
-           value = $this.prop("value");
-           var output = $this.prop("value") * ($this.data("cent")/100);
-          $("#"+$this.data("id")).val("$ " + $this.prop("value"));
+           value = parseFloat($this.prop("value"));
+           var output = parseFloat($this.prop("value")) * (parseFloat($this.data("cent")) / 100);
+          $("#"+$this.data("id")).val("$ " + parseFloat($this.prop("value")));
             $("#"+$this.data("per")).html("$ " + output.toFixed(1));
-            $("#"+$this.data("total")).html("$ " + (output * $this.data("times")).toFixed(1));
+            $("#"+$this.data("total")).html("$ " + (output * parseFloat($this.data("times"))).toFixed(1));
         console.log("Value: " + value);
     });
     </script>
