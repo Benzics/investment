@@ -82,7 +82,8 @@
     </script>
 
 </head>
-<body class="loading_it">
+{{-- <body class="loading_it"> --}}
+<body>
 
     <header class="header">
 
@@ -233,7 +234,7 @@
 	});
 </script>
 
-<div class="preloader">
+{{-- <div class="preloader">
 <div id="bitcoin">
   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="200px" height="200px" viewBox="100 100 400 400" xml:space="preserve">
@@ -259,12 +260,12 @@
           
 </svg>
 </div>
-</div>
-<script>
+</div> --}}
+{{-- <script>
 /*--window load functions--*/
 jQuery(window).load(function(){
 	var preLoder = $(".preloader");
 	preLoder.fadeOut(1000);
 	$("body").removeClass("loading_it");
 });
-</script>
+</script> --}}
