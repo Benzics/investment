@@ -1,15 +1,19 @@
 <?php
-
+/**
+ * 
+ * Investment script by Benzics
+ * Author: Benjamin Ojobo
+ * https://github.com/benzics
+ * 
+ */
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\core\UserController;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Client\Response;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Redirect;
+
 
 class ProfileController extends UserController
 {

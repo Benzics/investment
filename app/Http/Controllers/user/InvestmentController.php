@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * 
+ * Investment script by Benzics
+ * Author: Benjamin Ojobo
+ * https://github.com/benzics
+ * 
+ */
 namespace App\Http\Controllers\user;
 
 use Illuminate\Http\Request;
