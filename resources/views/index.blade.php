@@ -163,7 +163,7 @@
             <h1 class="tlt text-white">AFFORDABLE <span class="text-default">PACKAGES</span></h1>
             <p class="sub_tlt">CHOOSE YOUR PREFERABLE PLAN FOR INVESTMENT.</p>
             <div class="row">
-                                <div class="col-4 col-m-12">
+                                <div class="col-3 col-m-12">
                     <div class="pricing_header default">
                         <h3 class="bold">MINDFUL</h3>
                         <h6 class="bold">9.5% AFTER 180 DAYS</h6>
@@ -197,7 +197,7 @@
                         <a href="assets/register" class="btn default round-xxlarge">SIGN UP</a>
                     </div>
                 </div>
-                                <div class="col-4 col-m-12">
+                                <div class="col-3 col-m-12">
                     <div class="pricing_header default">
                         <h3 class="bold">CONSERVATIVE </h3>
                         <h6 class="bold">10.5% AFTER 365 DAYS</h6>
@@ -231,7 +231,42 @@
                         <a href="assets/register" class="btn default round-xxlarge">SIGN UP</a>
                     </div>
                 </div>
-                                <div class="col-4 col-m-12">
+                <div class="col-3 col-m-12">
+                    <div class="pricing_header default">
+                        <h3 class="bold">BALANCED </h3>
+                        <h6 class="bold">12.5% AFTER 1095 DAYS</h6>
+                    </div>
+                    <div class="pricing_body">
+                        <ul>
+                            <li>DAILY RETURN</li>
+                            <li>INSTANT WITHDRAWAL</li>
+                            <li>12.5% ROI EACH TIME</li>
+                        </ul>
+                        <div class="row pricing_info">
+                            <div class="col-6 col-m-6 col-sm-6" style="padding:10px 0 0 0">
+                                MINIMUM<br>$ 100000						</div>
+                            <div class="col-6 col-m-6 col-sm-6 v2" style="padding: 10px 0 0 0">
+                                MAXIMUM<br>$ 5000000						</div>
+                            <div class="col-12 v3" style="padding: 0">
+                                <input type="text" value="$ 2550000" id="range_3">
+                            </div>
+                            <div class="col-12" style="padding: 0">
+                                <input type="text" class="range_47" data-id="range_3" data-times="1095" data-cent="12.5%" data-per="range3_per" data-total="range3_total" value="2550000" data-prefix="$ " data-type="single" data-min="100000" data-max="5000000" data-from="2550000"/>
+                            </div>
+                            <div class="col-6 col-m-6 col-sm-6" style="padding:10px 0 0 0">
+                                PER TIME<br><span id="range3_per">$ 318750</span>
+                            </div>
+                            <div class="col-6 col-m-6 col-sm-6 v2" style="padding:10px 0 0 0">
+                                TOTAL RETURN<br><span id="range3_total">$ 349031250</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pricing_footer">
+                        <a href="assets/register" class="btn default round-xxlarge">SIGN UP</a>
+                    </div>
+                </div>
+
+				<div class="col-3 col-m-12">
                     <div class="pricing_header default">
                         <h3 class="bold">BALANCED </h3>
                         <h6 class="bold">12.5% AFTER 1095 DAYS</h6>
