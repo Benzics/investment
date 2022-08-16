@@ -266,7 +266,7 @@
                     </div>
                 </div>
 
-				<div class="col-3 col-m-12">
+				      <div class="col-3 col-m-12">
                     <div class="pricing_header default">
                         <h3 class="bold">BALANCED </h3>
                         <h6 class="bold">12.5% AFTER 1095 DAYS</h6>

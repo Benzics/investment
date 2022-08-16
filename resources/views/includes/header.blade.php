@@ -13,6 +13,7 @@
 <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet"/>
 <link href="{{ asset('assets/css/animate.min.css') }}" rel="stylesheet" />
 
+{{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap-grid.min.css" rel="stylesheet"/> --}}
 <link rel="manifest" href="{{ asset('assets/js/manifest.json') }}" />
 <meta name="theme-color" content="#FD961A">
 <meta name="msapplication-navbutton-color" content="#FD961A" />
