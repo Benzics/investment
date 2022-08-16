@@ -27,7 +27,7 @@ class RegistrationController extends Controller
     {
         $ref = $request->ref;
         
-        return view('register-2', ['title' => 'Registration', 'ref' => $ref]);
+        return view('register', ['title' => 'Registration', 'ref' => $ref]);
     }
 
     public function store(Request $request) : RedirectResponse
