@@ -42,7 +42,7 @@
                         <a href="{{ url('/admin/deposits/decline/' . $row->id) }}" class="btn btn-warning mb-1">Decline</a>
                         @endif
                         
-                        <form action="{{url('/admin/deposits/delete')}}" onsubmit="return confirm('Are you sure you want to delete this deposit?')">
+                        <form method="post" action="{{url('/admin/deposits/delete')}}" onsubmit="return confirm('Are you sure you want to delete this deposit?')">
                             @csrf
                             <input type="hidden" name="id" value="{{ $row->id }}">
                             <button class="btn btn-danger">Delete</button>

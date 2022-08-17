@@ -2,16 +2,26 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Events\DepositApproved;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use App\Models\Wallet;
 use App\Models\User;
-use App\Models\Deposit;
+
 use App\Services\DepositService;
+use App\Services\UserService;
+use Throwable;
 
 class DepositController extends Controller
 {
+    public $service;
+
+    public function __construct(DepositService $service)
+    {
+        $this->service = $service;
+    }
+
     public function index()
     {
         $title = 'Fund Wallet';
@@ -55,13 +65,71 @@ class DepositController extends Controller
         return redirect('/admin/fund-wallet')->with(['success' => 'User wallet funded successfully']);
     }
 
-    public function deposits(DepositService $deposit_service)
+    public function deposits()
     {
         $title = 'Deposits';
         $page_title = 'deposits';
-        $deposits = $deposit_service->get_all_deposits();
+        $deposits = $this->service->get_all_deposits();
 
         
         return view('admin.deposits', compact('deposits', 'title', 'page_title'));
+    }
+
+    public function approve(int $id)
+    {
+        $deposit = $this->service->get_deposit($id);
+        if(!$deposit)
+        {
+            return redirect()->route('admin.deposits')->with(['error' => 'Invalid deposit id']);
+        }
+
+        $this->service->approve_deposit($id);
+        $user_service = new UserService();
+
+        $desc = currency_symbol() . $deposit->amount . ' deposit.';
+
+        $user_service->credit_user($deposit->user_id, $deposit->amount, 1, $desc);
+        $user = $user_service->get_user($deposit->user_id);
+
+        try {
+            event(new DepositApproved($deposit));
+        } catch (Throwable $e) {
+            report($e);
+        }
+
+        return redirect()->route('admin.deposits')->with('success', 'Deposit successfully approved.');
+    }
+
+    public function decline(int $id)
+    {
+
+        $deposit = $this->service->get_deposit($id);
+        if(!$deposit)
+        {
+            return redirect()->route('admin.deposits')->with(['error' => 'Invalid deposit id']);
+        }
+
+        $this->service->decline_deposit($id);
+
+        return redirect()->route('admin.deposits')->with('success', 'Deposit successfully declined.');
+
+    }
+
+    public function delete(Request $request)
+    {
+        $validate = $request->validate(['id' => 'required|numeric']);
+
+        $id = $validate['id'];
+
+        $deposit = $this->service->get_deposit($id);
+
+        if(!$deposit)
+        {
+            return redirect()->route('admin.deposits')->with(['error' => 'Invalid deposit id']);
+        }
+
+        $this->service->remove_deposit($id);
+
+        return redirect()->route('admin.deposits')->with('success', 'Deposit successfully deleted.');
     }
 }

@@ -35,7 +35,7 @@ function map_withdrawal_status(int $status)
     switch($status)
     {
         case 1:
-            return 'Processed';
+            return 'Approved';
             break;
         case 2: 
             return 'Rejected';

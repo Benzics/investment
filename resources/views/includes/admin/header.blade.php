@@ -42,7 +42,7 @@
         <div class="container">
         @if (session('success') !== null)
        
-        <div class="alert alert-success mb-3">
+        <div class="alert alert-success mb-3 mt-5">
             {{ session('success') }}
         </div>
         
@@ -50,7 +50,7 @@
         
         @if (session('error') !== null)
       
-        <div class="alert alert-danger mb-3">
+        <div class="alert alert-danger mb-3 mt-5">
             {{ session('error') }}
         </div>
         
@@ -58,7 +58,7 @@
         
         @if ($errors->any())
 
-        <div class="alert alert-danger mb-3">
+        <div class="alert alert-danger mb-3 mt-5">
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>

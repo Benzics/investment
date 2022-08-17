@@ -47,7 +47,7 @@ class DepositTest extends TestCase
     public function test_admin_deposit_approve()
     {
         Deposit::factory()->create();
-        $response = $this->actingAs($this->_user)->get('/admin/deposits/approve/1');
+        $response = $this->actingAs($this->user)->get('/admin/deposits/approve/1');
 
         $response->assertValid()->assertSessionHas('success');
     }
@@ -55,7 +55,7 @@ class DepositTest extends TestCase
     public function test_admin_deposit_decline()
     {
         Deposit::factory()->create();
-        $response = $this->actingAs($this->_user)->get('/admin/deposits/decline/1');
+        $response = $this->actingAs($this->user)->get('/admin/deposits/decline/1');
 
         $response->assertValid()->assertSessionHas('success');
     }
@@ -63,7 +63,7 @@ class DepositTest extends TestCase
     public function test_admin_deposit_delete()
     {
         Deposit::factory()->create();
-        $response = $this->actingAs($this->_user)->post('/admin/deposits/delete', ['id' => '1']);
+        $response = $this->actingAs($this->user)->post('/admin/deposits/delete', ['id' => '1']);
 
         $response->assertValid()->assertSessionHas('success');
     }

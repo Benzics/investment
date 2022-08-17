@@ -1,6 +1,8 @@
 <?php
 namespace App\Services;
 
+use App\Models\Deposit;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -26,6 +28,61 @@ class DepositService
 		->paginate($paginate);
 	
 		return $deposits;
+	}
+
+	/**
+	 * Get a deposit
+	 * @param int $deposit_id
+	 * @return
+	 */
+	public function get_deposit(int $deposit_id)
+	{
+		try 
+		{
+			$deposit = Deposit::findOrFail($deposit_id);
+			return $deposit;
+		}
+		catch (ModelNotFoundException $e)
+		{
+			report($e);
+			return false;
+		}
+	}
+
+	/**
+	 * Approve a deposit
+	 * @param int $deposit_id
+	 * @return
+	 */
+	public function approve_deposit(int $deposit_id)
+	{
+		$deposit = Deposit::where('id', $deposit_id)->update(['status' => '1']);
+
+		return $deposit;
+	}
+
+	/**
+	 * Decline a deposit
+	 * @param int $deposit_id
+	 * @return
+	 */
+	public function decline_deposit(int $deposit_id)
+	{
+		$deposit = Deposit::where('id', $deposit_id)->update(['status' => '2']);
+
+		return $deposit;
+	}
+
+	/**
+	 * Delete a deposit
+	 * @param int $deposit_id
+	 * @return
+	 */
+	public function remove_deposit(int $deposit_id)
+	{
+		$deposit = Deposit::where('id', $deposit_id)->delete();
+
+		return $deposit;
 	}
 }
 
