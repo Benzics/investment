@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\DB;
 use App\Models\Currency;
+use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 /**
@@ -227,4 +228,16 @@ function investment_days(int $days) : string
         default:
             return "$days Days";
     }
+}
+
+/**
+ * Returns the user email
+ * @param int $user_id
+ * @return string
+ */
+function get_email(int $user_id) : string
+{
+    $user = User::select('email')->first();
+
+    return $user?->email;
 }

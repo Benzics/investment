@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Wallet;
 use App\Models\User;
 use App\Models\Deposit;
+use App\Services\DepositService;
 
 class DepositController extends Controller
 {
@@ -54,11 +55,11 @@ class DepositController extends Controller
         return redirect('/admin/fund-wallet')->with(['success' => 'User wallet funded successfully']);
     }
 
-    public function deposits()
+    public function deposits(DepositService $deposit_service)
     {
         $title = 'Deposits';
         $page_title = 'deposits';
-        $deposits = Deposit::orderBy('status')->get();
+        $deposits = $deposit_service->get_all_deposits();
 
         
         return view('admin.deposits', compact('deposits', 'title', 'page_title'));

@@ -1,36 +1,10 @@
 @include('includes.admin.header')
 
-<main class="col-12 col-xl-10 col-md-9">
+
     <div class="container">
-        <h2 class="mt-4 b-3">Fund User Wallet</h2>
+        <h2 class="mt-4 b-3 page-title">Fund User Wallet</h2>
 
-        @if (session('success') !== null)
-       
-        <div class="alert alert-success mb-3">
-            {{ session('success') }}
-        </div>
-        
-        @endif
-        
-        @if (session('error') !== null)
       
-        <div class="alert alert-danger mb-3">
-            {{ session('error') }}
-        </div>
-        
-        @endif
-        
-        @if ($errors->any())
-
-        <div class="alert alert-danger mb-3">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        
-        @endif
         <form action="" method="post">
             @csrf
             <div class="form-group">
@@ -46,6 +20,6 @@
             </div>
         </form>
     </div>
-</main>
+
 
 @include('includes.admin.footer')

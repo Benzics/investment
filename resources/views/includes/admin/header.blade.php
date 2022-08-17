@@ -37,3 +37,34 @@
                 </ul>
             </nav>
         </div>
+
+        <main class="col-12 col-xl-10 col-md-9">
+        <div class="container">
+        @if (session('success') !== null)
+       
+        <div class="alert alert-success mb-3">
+            {{ session('success') }}
+        </div>
+        
+        @endif
+        
+        @if (session('error') !== null)
+      
+        <div class="alert alert-danger mb-3">
+            {{ session('error') }}
+        </div>
+        
+        @endif
+        
+        @if ($errors->any())
+
+        <div class="alert alert-danger mb-3">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        
+        @endif
+    </div>
