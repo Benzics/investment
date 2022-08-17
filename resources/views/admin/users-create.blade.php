@@ -28,8 +28,8 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="amount">Password</label>
-                        <input type="password" class="form-control" name="password" required placeholder="Password">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" class="form-control" name="password" required placeholder="Password">
                     </div>
                 </div>
             </div>

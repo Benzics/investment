@@ -54,11 +54,10 @@ class UserTest extends TestCase
     {
         $data = [
             'name' => 'test',
-            'email' => 'test',
-            'user_id' => '1',
+            'email' => 'test@mail.com',
         ];
         
-        $response = $this->actingAs($this->user)->put('/admin/users', $data);
+        $response = $this->actingAs($this->user)->put('/admin/users/1', $data);
         $response->assertValid()->assertRedirect('/admin/users/1')->assertSessionHas('success');
 
     }
@@ -72,7 +71,7 @@ class UserTest extends TestCase
 
     public function test_admin_delete_user()
     {
-        $response = $this->delete('/admin/users/1');
+        $response = $this->actingAs($this->user)->delete('/admin/users/1');
 
         $response->assertRedirect('/admin/users')->assertSessionHas('success');
     }

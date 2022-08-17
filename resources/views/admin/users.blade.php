@@ -45,7 +45,7 @@
                         <a href="{{ url('/admin/users/' . $row->id) }}" class="btn btn-primary mb-2" data-toggle="tooltip" title="View"><i class="fas fa-eye"></i></a>
                         <a href="{{ url('/admin/users/' . $row->id . '/edit') }}" class="btn btn-primary mb-2" data-toggle="tooltip" title="Edit"><i class="fas fa-edit"></i></a>
                         @if($row->id != 1)
-                        <form action="{{url('/admin/users' . $row->id)}}" 
+                        <form action="{{url('/admin/users/' . $row->id)}}" 
                             onsubmit="return confirm('Are you sure you want to delete {{$row->email}}?')" method="post">
                             @csrf
                             @method('delete')

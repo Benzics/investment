@@ -360,4 +360,17 @@ class UserService {
 
         return $users;
     }
+
+    /**
+     * Deletes a user and his profile
+     * @param int $user_id
+     * @return
+     */
+    public function delete_user(int $user_id)
+    {
+        User::where('id', $user_id)->delete();
+        Profile::where('user_id', $user_id)->delete();
+
+        return $this;
+    }
 }

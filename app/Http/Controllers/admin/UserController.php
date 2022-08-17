@@ -115,7 +115,16 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $page_title = $title = 'Users';
+        $user = $this->service->get_user($id);
+        $profile = $this->service->get_profile($id);
+
+        if(!$user || !$profile)
+        {
+            return redirect('/admin/users')->with('error', 'The selected user does not exist');
+        }
+
+        return view('admin.users-edit', compact('page_title', 'title', 'user', 'profile', 'id'));
     }
 
     /**
@@ -127,7 +136,47 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = $this->service->get_user($id);
+        if(!$user)
+        {
+            return redirect('/admin/users')->with('error', 'The selected user does not exist');
+        }
+        $validate = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'nullable|min:5|confirmed',
+        ]);
+
+        // $attachment = '';
+
+        // if($request->has('photo'))
+        // {
+        //     $attachment = $request->file('photo')->store('uploads');
+        // }
+        $user_data = [
+            'name' => $validate['name'],
+            'email' => $validate['email'],
+        ];
+        $profile_data = [
+            // 'photo' => $attachment,
+            'phone' => $request->phone,
+            'gender' => $request->gender,
+            'address' => $request->address,
+            'country' => $request->country,
+            'zip' => $request->zip,
+        ];
+
+        $this->service->update_user($user_data, $user->id);
+
+        if($request->filled('password'))
+        {
+            $data_pass = ['password' => Hash::make($validate['password'])];
+            $this->service->update_user($data_pass, $user->id);
+        }
+
+        $this->service->update_profile($profile_data, $user->id);
+
+        return redirect('/admin/users/' . $id)->with('success', 'User profile successfully updated.');
     }
 
     /**
@@ -138,6 +187,15 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = $this->service->get_user($id);
+
+        if(!$user)
+        {
+            return redirect('/admin/users')->with('error', 'The selected user does not exist');
+        }
+
+        $this->service->delete_user($user->id);
+
+        return redirect('/admin/users')->with('success', 'User deleted successfully.');
     }
 }
