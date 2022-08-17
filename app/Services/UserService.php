@@ -348,4 +348,17 @@ class UserService {
 
         return $new_pass;
     }
+
+    /**
+     * Get all users in db
+     * @param int $limit
+     * @return
+     */
+    public function get_users($limit = 15)
+    {
+        $users = User::latest()
+        ->paginate($limit);
+
+        return $users;
+    }
 }

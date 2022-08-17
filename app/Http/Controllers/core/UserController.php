@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * 
+ * Investment script by Benzics
+ * Author: Benjamin Ojobo
+ * https://github.com/benzics
+ * 
+ */
 namespace App\Http\Controllers\core;
 
 use App\Http\Controllers\Controller;

@@ -46,6 +46,26 @@ function map_withdrawal_status(int $status)
 }
 
 /**
+ * Map the user status
+ * @param int $status
+ * @return string
+ */
+function map_user_status(int $status) : string
+{
+    switch($status)
+    {
+        case 1:
+            return 'Active';
+            break;
+        case 2:
+            return 'Banned';
+            break;
+        default:
+            return 'Inactive';
+    }
+}
+
+/**
  * Appropriate CSS class names for status
  * @param int $status
  * @return string

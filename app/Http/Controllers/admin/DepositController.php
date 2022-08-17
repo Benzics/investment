@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * 
+ * Investment script by Benzics
+ * Author: Benjamin Ojobo
+ * https://github.com/benzics
+ * 
+ */
 namespace App\Http\Controllers\admin;
 
 use App\Events\DepositApproved;

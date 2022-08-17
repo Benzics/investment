@@ -13,6 +13,7 @@ use App\Http\Controllers\user\DepositController;
 use App\Http\Controllers\admin\LoginController as AdminLoginController;
 use App\Http\Controllers\admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\admin\DepositController as AdminDepositController;
+use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\user\ProfileController;
 use App\Http\Controllers\user\InvestmentController;
 use App\Http\Controllers\user\ReferralController;
@@ -111,4 +112,8 @@ Route::middleware(['auth', 'isadmin'])->name('admin.')->prefix('admin')->group(f
     Route::get('/deposits/approve/{id}', [AdminDepositController::class, 'approve'])->where('id', '[0-9]+');
     Route::get('/deposits/decline/{id}', [AdminDepositController::class, 'decline'])->where('id', '[0-9]+');
     Route::post('/deposits/delete', [AdminDepositController::class, 'delete']);
+
+    Route::resources([
+        '/users' => UserController::class,
+    ]);
 });
