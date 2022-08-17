@@ -1,7 +1,14 @@
 @include('includes.admin.header')
 
 
-    <div class="container">
+    <div class="container vh">
+        <nav aria-label="breadcrumb" class="mt-3">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}">Dashboard</a></li>
+              
+              <li class="breadcrumb-item active" aria-current="page">Fund Wallet</li>
+            </ol>
+        </nav>
         <h2 class="mt-4 b-3 page-title">Fund User Wallet</h2>
 
       

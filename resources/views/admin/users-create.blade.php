@@ -2,6 +2,13 @@
 
 
     <div class="container vh">
+        <nav aria-label="breadcrumb" class="mt-3">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}">Dashboard</a></li>
+              <li class="breadcrumb-item"><a href="{{ url('/admin/users') }}">Users</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Create</li>
+            </ol>
+        </nav>
         <h2 class="mt-4 mb-3 page-title">Create New User</h2>
 
       

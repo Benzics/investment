@@ -95,7 +95,16 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $page_title = $title = 'Users';
+        $user = $this->service->get_user($id);
+        $profile = $this->service->get_profile($id);
+
+        if(!$user || !$profile)
+        {
+            return redirect('/admin/users')->with('error', 'The selected user does not exist');
+        }
+
+        return view('admin.users-view', compact('page_title', 'title', 'user', 'profile'));
     }
 
     /**

@@ -3,6 +3,12 @@
 
 
 <div class="container vh">
+    <nav aria-label="breadcrumb" class="mt-3">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}">Dashboard</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Users</li>
+        </ol>
+    </nav>
     <h2 class="mt-4 mb-3 page-title">Users</h2>
 
     <div class="mb-3 mt-3 d-flex justify-content-end">
