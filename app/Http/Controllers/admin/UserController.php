@@ -42,7 +42,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $page_title = $title = 'Users';
+
+        return view('admin.users-create', compact('page_title', 'title'));
     }
 
     /**
@@ -53,7 +55,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
