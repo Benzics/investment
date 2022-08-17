@@ -68,4 +68,74 @@ class InvestmentTest extends TestCase
 
         $this->assertDatabaseHas('wallets', ['user_id' => '1', 'type' => '5']);
     }
+
+    public function test_admin_investment_page()
+    {
+        $response = $this->actingAs($this->user)->get('/admin/investments');
+
+        $response->assertOk();
+    }
+
+    public function test_admin_investment_add()
+    {
+        $data = [
+            'name' => 'Test investment',
+            'commission' => '1',
+            'commission_type' => '0',
+            'minimum' => '12',
+            'maximum' => '1200',
+            'type' => '1',
+            'times' => '5',
+        ];
+
+        $response = $this->actingAs($this->user)->post('/admin/investments', $data);
+
+        $response->assertValid()->assertSessionHas('success')->assertRedirect('/admin/investments');
+
+    }
+
+    public function test_admin_investment_view()
+    {
+        $response = $this->actingAs($this->user)->get('/admin/investments/1');
+
+        $response->assertOk();
+    }
+
+    public function test_admin_investment_update_page()
+    {
+        $response = $this->actingAs($this->user)->get('/admin/investments/1/edit');
+
+        $response->assertOk();
+    }
+
+    public function test_admin_investment_update()
+    {
+        $data = [
+            'name' => 'Test investment',
+            'commission' => '1',
+            'commission_type' => '0',
+            'minimum' => '12',
+            'maximum' => '1200',
+            'type' => '1',
+            'times' => '5',
+        ];
+
+        $response = $this->actingAs($this->user)->put('/admin/investments/1', $data);
+
+        $response->assertValid()->assertRedirect('/admin/investments/1')->assertSessionHas('success');
+    }
+
+    public function test_admin_investment_delete()
+    {
+        $response = $this->actingAs($this->user)->delete('/admin/investments/1');
+
+        $response->assertRedirect('/admin/investments')->assertSessionHas('success');
+    }
+
+    public function test_admin_user_investments()
+    {
+        $response = $this->actingAs($this->user)->get('/admin/user-investments');
+
+        $response->assertOk();
+    }
 }
