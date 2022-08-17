@@ -9,9 +9,11 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Services\RegistrationService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Services\UserService;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -55,7 +57,34 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $validated = $request->validate([
+            'email' => 'required|email|unique:users',
+            'name' => 'required',
+            'password' => 'required|min:5',
+        ]);
+
+        $reg_service = new RegistrationService();
+
+       
+        // create user
+        $user = $this->service->create_user([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+            'email_verified_at' => now(),
+        ]);
+
+         // generate user ref_id
+         $ref_id = $reg_service->newRefId($user->id, 'ZFX');
+
+        // create profile
+        $this->service->create_profile([
+            'user_id' => $user->id,
+            'referrer' => '1',
+            'ref_id' => $ref_id,
+        ]);
+
+        return redirect('/admin/users')->with('success', 'User successfully created');
     }
 
     /**

@@ -27,7 +27,7 @@ class UserTest extends TestCase
     public function test_admin_user_create_page()
     {
         $response = $this->actingAs($this->user)->get('/admin/users/create');
-        
+
         $response->assertOk();
     }
 
@@ -40,7 +40,7 @@ class UserTest extends TestCase
         ];
         $response = $this->actingAs($this->user)->post('/admin/users', $data);
 
-        $response->assertOk()->assertValid()->assertSessionHas('success');
+        $response->assertRedirect('/admin/users')->assertValid()->assertSessionHas('success');
 
     }
 
@@ -59,7 +59,7 @@ class UserTest extends TestCase
         ];
         
         $response = $this->actingAs($this->user)->put('/admin/users', $data);
-        $response->assertValid()->assertOk()->assertSessionHas('success');
+        $response->assertValid()->assertRedirect('/admin/users/1')->assertSessionHas('success');
 
     }
 
@@ -74,6 +74,6 @@ class UserTest extends TestCase
     {
         $response = $this->delete('/admin/users/1');
 
-        $response->assertOk()->assertSessionHas('success');
+        $response->assertRedirect('/admin/users')->assertSessionHas('success');
     }
 }

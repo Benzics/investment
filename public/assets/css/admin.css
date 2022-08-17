@@ -54,6 +54,9 @@ ul.side-nav li.active a {
         border-bottom: 0;
         border-right: 1px solid #ddd;
     }
+    .vh {
+        min-height: 90vh;
+    }
 }
 .brand {
     width: 50px;

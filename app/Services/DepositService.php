@@ -16,16 +16,16 @@ class DepositService
 {
 	/**
 	 * Get all deposits
-	 * @param? int $paginate
+	 * @return
 	 */
-	public function get_all_deposits(int $paginate = 15)
+	public function get_all_deposits()
 	{
 		$deposits = DB::table('deposits')
 		->join('payments', 'deposits.payment_id', '=', 'payments.id')
 		->select('deposits.*', 'payments.name')
 		->orderBy('status', 'DESC')
 		->orderBy('id', 'DESC')
-		->paginate($paginate);
+		->get();
 	
 		return $deposits;
 	}

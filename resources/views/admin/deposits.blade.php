@@ -1,10 +1,10 @@
 @include('includes.admin.header')
 
-<div class="container">
-    <h2 class="mt-4 b-3 page-title">User Deposits</h2>
+<div class="container vh">
+    <h2 class="mt-4 mb-3 page-title">User Deposits</h2>
 
     <div class="table-responsive">
-        <table class="table table-striped">
+        <table id="data-table" class="table table-striped">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -52,7 +52,7 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $deposits->links() }} 
+      
     </div>
 </div>
 

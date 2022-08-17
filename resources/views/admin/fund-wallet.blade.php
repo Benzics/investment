@@ -9,11 +9,11 @@
             @csrf
             <div class="form-group">
                 <label for="email">User Email</label>
-                <input type="email" name="email" id="email" value="{{ old('email') }}" class="form-control" placeholder="User email address">
+                <input type="email" name="email" required id="email" value="{{ old('email') }}" class="form-control" placeholder="User email address">
             </div>
             <div class="form-group">
                 <label for="amount">Amount {{ currency_short() }}</label>
-                <input type="number" class="form-control" value="{{ old('amount') }}" name="amount" placeholder="Amount to add to wallet">
+                <input type="number" required class="form-control" value="{{ old('amount') }}" name="amount" placeholder="Amount to add to wallet">
             </div>
             <div class="form-group">
                 <button class="btn btn-primary">Fund Wallet</button>

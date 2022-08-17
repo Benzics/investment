@@ -2,14 +2,14 @@
 
 
 
-<div class="container">
-    <h2 class="mt-4 b-3 page-title">Users</h2>
+<div class="container vh">
+    <h2 class="mt-4 mb-3 page-title">Users</h2>
 
     <div class="mb-3 mt-3 d-flex justify-content-end">
         <a href="{{url('/admin/users/create')}}" class="btn btn-primary" data-toggle="tooltip" title="Add user"><i class="fas fa-user-plus"></i></a>
     </div>
     <div class="table-responsive">
-        <table class="table table-striped">
+        <table id="data-table" class="table table-striped">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -38,12 +38,14 @@
                     <td>
                         <a href="{{ url('/admin/users/' . $row->id) }}" class="btn btn-primary mb-2" data-toggle="tooltip" title="View"><i class="fas fa-eye"></i></a>
                         <a href="{{ url('/admin/users/' . $row->id . '/edit') }}" class="btn btn-primary mb-2" data-toggle="tooltip" title="Edit"><i class="fas fa-edit"></i></a>
+                        @if($row->id != 1)
                         <form action="{{url('/admin/users' . $row->id)}}" 
                             onsubmit="return confirm('Are you sure you want to delete {{$row->email}}?')" method="post">
                             @csrf
                             @method('delete')
                             <button class="btn btn-danger"  data-toggle="tooltip" title="Delete"><i class="fas fa-trash"></i></button>
                         </form>
+                        @endif
                        
                     </td>
                 </tr>
@@ -51,7 +53,7 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $users->links() }} 
+       
     </div>
 </div>
 

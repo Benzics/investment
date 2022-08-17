@@ -351,13 +351,12 @@ class UserService {
 
     /**
      * Get all users in db
-     * @param int $limit
      * @return
      */
-    public function get_users($limit = 15)
+    public function get_users()
     {
         $users = User::latest()
-        ->paginate($limit);
+        ->get();
 
         return $users;
     }

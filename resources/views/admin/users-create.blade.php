@@ -1,8 +1,8 @@
 @include('includes.admin.header')
 
 
-    <div class="container">
-        <h2 class="mt-4 b-3 page-title">Create New User</h2>
+    <div class="container vh">
+        <h2 class="mt-4 mb-3 page-title">Create New User</h2>
 
       
         <form action="{{url('/admin/users')}}" method="post">
@@ -10,19 +10,19 @@
 
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" name="name" id="name" placeholder="Full name" value="{{ old('name') }}">
+                <input type="text" class="form-control" name="name" required id="name" placeholder="Full name" value="{{ old('name') }}">
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="email">User Email</label>
-                        <input type="email" name="email" id="email" value="{{ old('email') }}" class="form-control" placeholder="User email address">
+                        <input type="email" name="email" id="email" required value="{{ old('email') }}" class="form-control" placeholder="User email address">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="amount">Password</label>
-                        <input type="password" class="form-control" name="password" placeholder="Password">
+                        <input type="password" class="form-control" name="password" required placeholder="Password">
                     </div>
                 </div>
             </div>
