@@ -1,3 +1,17 @@
+/**
+* Author: Benjamin Ojobo
+* Github: https://github.com/benzics
+*/
+body,html,div,a,ul,li,span,form,header,aside,main{
+    padding: 0;
+    margin: 0;
+}
+body {
+    width: 100%;
+}
+* {
+    box-sizing: border-box;
+}
 ul, li {
     padding: 0;
     margin: 0;
@@ -9,17 +23,19 @@ a:hover {
     text-decoration: none;
 }
 ul.side-nav li {
-    display: block;
-    padding: 10px 20px;
+    padding: .25rem 1.5rem;
     transition: .3s;
+    list-style: none;
 }
-ul.side-nav li.active, ul.side-nav li:hover {
-    background-color: #eee;
+ul.side-nav li.active a {
+    color: #000;
+    font-weight: 600;
 }
 
 .side-nav li a {
-    color: #eee;
+    color: rgba(0,0,0,0.65);
     display: block;
+    font-weight: 90%;
 }
 .side-nav li:hover a, .side-nav li.active a {
     color: #000;
@@ -28,9 +44,17 @@ ul.side-nav li.active, ul.side-nav li:hover {
     display: inline-block;
     margin-right: 5px;
 }
+.v10 {
+    border-bottom: 1px solid #ddd;
+}
 
 @media (min-width: 768px) {
     .v10 {
         min-height: 100vh;
+        border-bottom: 0;
+        border-right: 1px solid #ddd;
     }
+}
+.brand {
+    width: 50px;
 }

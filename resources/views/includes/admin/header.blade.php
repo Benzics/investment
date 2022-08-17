@@ -11,27 +11,29 @@
     <link rel="stylesheet" href="{{ asset('/assets/css/admin.css') }}" />
 </head>
 <body>
-    <header class="bg-primary p-2 text-light">Admin Panel</header>
-    <div class="row">
-        <aside class="col-md-3 col-12 col-xl-2">
-            <nav class="bg-dark v10">
+    <header class="bg-primary p-2 text-light">
+        <div class="brand"><img src="{{ asset('/assets/images/bitcoin-15.png') }}" title="" style="width: 100%"/></div></header>
+    <div class="container-fluid">
+    <div class="row flex-xl-nowrap">
+        <div class="col-md-3 col-12 col-xl-2">
+            <nav class="v10">
                 <ul class="side-nav">
                     <li class="{{(isset($page_title) && $page_title == 'dashboard' ? 'active' : '')}}">
-                        <a href="{{ url('/admin/dashboard') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                        <a href="{{ url('/admin/dashboard') }}"> <!--<i class="fas fa-tachometer-alt"></i> --> Dashboard</a>
                     </li>
                     <li class="{{(isset($page_title) && $page_title == 'users' ? 'active' : '')}}">
-                        <a href="{{ url('/admin/users') }}"><i class="fas fa-users"></i> Users</a>
+                        <a href="{{ url('/admin/users') }}"> <!--<i class="fas fa-users"></i> --> Users</a>
                     </li>
                     <li class="{{(isset($page_title) && $page_title == 'deposits' ? 'active' : '')}}">
-                        <a href="{{ url('/admin/deposits') }}"><i class="fas fa-money-bill"></i> Deposits</a>
+                        <a href="{{ url('/admin/deposits') }}"> <!--<i class="fas fa-money-bill"></i> --> Deposits</a>
                     </li>
 
                     <li class="{{(isset($page_title) && $page_title == 'fund_wallet' ? 'active' : '')}}">
-                        <a href="{{ url('/admin/fund-wallet') }}"><i class="fas fa-money-bill-wave"></i> Wallet Top Up</a>
+                        <a href="{{ url('/admin/fund-wallet') }}"> <!--<i class="fas fa-money-bill-wave"></i>--> Wallet Top Up</a>
                     </li>
                     <li>
-                        <a href="{{ url('/admin/settings') }}"><i class="fas fa-cogs"></i> Site Settings</a>
+                        <a href="{{ url('/admin/settings') }}"> <!--<i class="fas fa-cogs"></i>--> Site Settings</a>
                     </li>
                 </ul>
             </nav>
-        </aside>
+        </div>
