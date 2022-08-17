@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Deposit;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -41,6 +42,30 @@ class DepositTest extends TestCase
         $response->assertValid()
         ->assertRedirect('/admin/fund-wallet');
 
+    }
+
+    public function test_admin_deposit_approve()
+    {
+        Deposit::factory()->create();
+        $response = $this->actingAs($this->_user)->get('/admin/deposits/approve/1');
+
+        $response->assertValid()->assertSessionHas('success');
+    }
+
+    public function test_admin_deposit_decline()
+    {
+        Deposit::factory()->create();
+        $response = $this->actingAs($this->_user)->get('/admin/deposits/decline/1');
+
+        $response->assertValid()->assertSessionHas('success');
+    }
+
+    public function test_admin_deposit_delete()
+    {
+        Deposit::factory()->create();
+        $response = $this->actingAs($this->_user)->post('/admin/deposits/delete', ['id' => '1']);
+
+        $response->assertValid()->assertSessionHas('success');
     }
 
     public function test_user_deposit_page()
