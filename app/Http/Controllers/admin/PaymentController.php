@@ -164,6 +164,15 @@ class PaymentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $payment = $this->service->get_payment($id);
+
+        if(!$payment)
+        {
+            return back()->with('error', 'Invalid payment method ID.');
+        }
+
+        $this->service->delete_payment($id);
+
+        return redirect('/admin/payment-settings')->with('success', 'Payment method deleted successfully');
     }
 }

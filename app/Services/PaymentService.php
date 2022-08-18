@@ -65,12 +65,24 @@ class PaymentService {
     /**
      * Edit a payment method
      * @param array $data
-     * @param int $id
+     * @param int $payment_id
      * @return
      */
-    public function edit_payment(array $data, int $id)
+    public function edit_payment(array $data, int $payment_id)
     {
-        $payment = Payment::where('id', $id)->update($data);
+        $payment = Payment::where('id', $payment_id)->update($data);
+
+        return $payment;
+    }
+
+    /**
+     * Deletes a payment method
+     * @param int $payment_id
+     * @return
+     */
+    public function delete_payment(int $payment_id)
+    {
+        $payment = Payment::where('id', $payment_id)->delete();
 
         return $payment;
     }
