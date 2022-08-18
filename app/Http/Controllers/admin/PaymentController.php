@@ -88,6 +88,11 @@ class PaymentController extends Controller
         $page_title = $title = 'Payment Settings';
         $payment = $this->service->get_payment($id);
 
+        if(!$payment)
+        {
+            return back()->with('error', 'Invalid payment method ID.');
+        }
+
         return view('admin.payments-view', compact('page_title', 'title', 'payment'));
     }
 
@@ -99,7 +104,15 @@ class PaymentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $page_title = $title = 'Payment Settings';
+        $payment = $this->service->get_payment($id);
+
+        if(!$payment)
+        {
+            return back()->with('error', 'Invalid payment method ID.');
+        }
+
+        return view('admin.payments-edit', compact('page_title', 'title', 'payment', 'id'));
     }
 
     /**
@@ -111,7 +124,36 @@ class PaymentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $payment = $this->service->get_payment($id);
+
+        if(!$payment)
+        {
+            return back()->with('error', 'Invalid payment method ID.');
+        }
+
+        $validate = $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'image' => ['nullable', File::image()],
+            'status' => 'required',
+        ]);
+
+        if($request->filled('image'))
+        {
+            $image = $request->file('image')->store('uploads', 'public');
+        }
+        
+
+        $data = [
+            'name' => $validate['name'],
+            'address' => $validate['address'],
+            'image' => isset($image) ? "storage/$image" : $payment->image,
+            'status' => $validate['status'],
+        ];
+
+        $this->service->edit_payment($data, $id);
+
+        return redirect("/admin/payment-settings/$id")->with('success', 'Payment method successfully modified.');
     }
 
     /**

@@ -62,4 +62,17 @@ class PaymentService {
         return $payment;
     }
 
+    /**
+     * Edit a payment method
+     * @param array $data
+     * @param int $id
+     * @return
+     */
+    public function edit_payment(array $data, int $id)
+    {
+        $payment = Payment::where('id', $id)->update($data);
+
+        return $payment;
+    }
+
 }

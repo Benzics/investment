@@ -67,8 +67,8 @@ class PaymentTest extends TestCase
     {
         $data = [
             'name' => 'Test',
-            'image' => UploadedFile::fake()->image('payment.jpg'),
             'address' => 'Test',
+            'status' => '1',
         ];
 
         $response = $this->actingAs($this->user)->put('/admin/payment-settings/1', $data);
