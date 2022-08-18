@@ -155,6 +155,15 @@ class InvestmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $investment = $this->service->get_investment($id);
+
+        if(!$investment)
+        {
+            return back()->with('error', 'Invalid investment plan ID.');
+        }
+
+        $this->service->delete_plan($id);
+
+        return redirect('/admin/investments')->with('success', 'Investment plan deleted successfully');
     }
 }

@@ -286,4 +286,16 @@ class UserInvestmentService extends UserService
 
         return $plan;
     }
+
+    /**
+     * Deletes an investment plan
+     * @param int $investment_id
+     * @return
+     */
+    public function delete_plan(int $investment_id)
+    {
+        Investment::where('id', $investment_id)->delete();
+
+        return $this;
+    }
 }
