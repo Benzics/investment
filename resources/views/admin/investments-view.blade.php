@@ -7,7 +7,7 @@
     <nav aria-label="breadcrumb" class="mt-3">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}">Dashboard</a></li>
-          <li class="breadcrumb-item"><a href="{{ url('/admin/investments') }}">Investment Plans</a></li>
+          <li class="breadcrumb-item"><a href="{{ url('/admin/investments') }}">{{ $page_title }}</a></li>
           <li class="breadcrumb-item active" aria-current="page">View</li>
         </ol>
     </nav>

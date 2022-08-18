@@ -31,7 +31,7 @@ class DepositController extends Controller
     public function index()
     {
         $title = 'Fund Wallet';
-        $page_title = 'fund_wallet';
+        $page_title = 'Fund Wallet';
 
         return view('admin.fund-wallet', compact('title', 'page_title'));
     }

@@ -9,7 +9,7 @@
               <li class="breadcrumb-item active" aria-current="page">Edit</li>
             </ol>
         </nav>
-        <h2 class="mt-4 mb-3 page-title">Edit User</h2>
+        <h2 class="mt-4 mb-3 page-title">Edit {{ $page_title }}</h2>
 
       
         <form action="{{url('/admin/users/' . $id)}}" method="post" autocomplete="off">

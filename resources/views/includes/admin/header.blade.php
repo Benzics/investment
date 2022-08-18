@@ -40,7 +40,7 @@
                         <a href="{{ url('/admin/withdrawals') }}"> Withdrawals</a>
                     </li>
 
-                    <li class="{{(isset($page_title) && $page_title == 'fund_wallet' ? 'active' : '')}}">
+                    <li class="{{(isset($page_title) && $page_title == 'Fund Wallet' ? 'active' : '')}}">
                         <a href="{{ url('/admin/fund-wallet') }}"> Wallet Top Up</a>
                     </li>
                     <li class="{{(isset($page_title) && $page_title == 'Payment Settings' ? 'active' : '')}}">

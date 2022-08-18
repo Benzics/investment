@@ -85,7 +85,10 @@ class PaymentController extends Controller
      */
     public function show($id)
     {
-        //
+        $page_title = $title = 'Payment Settings';
+        $payment = $this->service->get_payment($id);
+
+        return view('admin.payments-view', compact('page_title', 'title', 'payment'));
     }
 
     /**

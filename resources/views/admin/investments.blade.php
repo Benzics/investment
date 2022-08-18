@@ -6,10 +6,10 @@
     <nav aria-label="breadcrumb" class="mt-3">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}">Dashboard</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Investment Plans</li>
+          <li class="breadcrumb-item active" aria-current="page">{{ $page_title }}</li>
         </ol>
     </nav>
-    <h2 class="mt-4 mb-3 page-title">Investment Plans</h2>
+    <h2 class="mt-4 mb-3 page-title">{{ $page_title }}</h2>
 
     <div class="mb-3 mt-3 d-flex justify-content-end">
         <a href="{{url('/admin/investments/create')}}" class="btn btn-primary" data-toggle="tooltip" title="Add investment plan"><i class="fas fa-plus"></i></a>

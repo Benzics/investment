@@ -5,11 +5,11 @@
         <nav aria-label="breadcrumb" class="mt-3">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}">Dashboard</a></li>
-              <li class="breadcrumb-item"><a href="{{ url('/admin/payment-settings') }}">Payment Settings</a></li>
+              <li class="breadcrumb-item"><a href="{{ url('/admin/payment-settings') }}">{{ $page_title }}</a></li>
               <li class="breadcrumb-item active" aria-current="page">Add</li>
             </ol>
         </nav>
-        <h2 class="mt-4 b-3 page-title">Add Payment Method</h2>
+        <h2 class="mt-4 b-3 page-title">Add {{ $page_title }}</h2>
 
       
         <form action="{{url('/admin/payment-settings')}}" method="post" enctype="multipart/form-data">

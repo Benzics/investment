@@ -5,10 +5,10 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}">Dashboard</a></li>
           
-          <li class="breadcrumb-item active" aria-current="page">Deposits</li>
+          <li class="breadcrumb-item active" aria-current="page">{{ $page_title }}</li>
         </ol>
     </nav>
-    <h2 class="mt-4 mb-3 page-title">User Deposits</h2>
+    <h2 class="mt-4 mb-3 page-title">{{ $page_title }}</h2>
 
     <div class="table-responsive">
         <table id="data-table" class="table table-striped">
