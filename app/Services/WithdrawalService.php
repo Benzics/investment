@@ -37,6 +37,11 @@ class WithdrawalService {
 
 		return $withdrawals;
 	}
+
+	/**
+	 * Approves a withdrawal
+	 * @param int $withdrawal_id
+	 */
 }
 
 

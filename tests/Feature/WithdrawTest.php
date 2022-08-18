@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\User;
+use App\Models\Withdrawal;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -43,5 +44,28 @@ class WithdrawTest extends TestCase
     {
         $response = $this->actingAs($this->user)->get('/user/withdrawals');
         $response->assertValid()->assertOk();
+    }
+
+    public function test_admin_withdrawals_page()
+    {
+        $response = $this->actingAs($this->user)->get('/admin/withdrawals');
+
+        $response->assertOk();
+    }
+
+    public function test_admin_withdrawal_approve()
+    {
+        Withdrawal::factory()->create();
+        $response = $this->actingAs($this->user)->get('/admin/withdrawals/approve/1');
+
+        $response->assertRedirect('/admin/withdrawals')->assertSessionHas('success');
+    }
+
+    public function test_admin_withdrawal_decline()
+    {
+        Withdrawal::factory()->create();
+        $response = $this->actingAs($this->user)->get('/admin/withdrawals/decline/1');
+
+        $response->assertRedirect('/admin/withdrawals')->assertSessionHas('success');
     }
 }
