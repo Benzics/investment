@@ -18,6 +18,17 @@ class PaymentService {
     }
 
     /**
+     * Get all the payment methods
+     * @return
+     */
+    public function get_payments()
+    {
+        $payment_methods = Payment::all();
+
+        return $payment_methods;
+    }
+
+    /**
      * Get a payment method
      * @param $payment_id
      */

@@ -1,7 +1,7 @@
 <?php
 /**
  * 
- * Investment script by Benzics
+ * payment script by Benzics
  * Author: Benjamin Ojobo
  * https://github.com/benzics
  * 
@@ -9,10 +9,19 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Services\PaymentService;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
+
+    public $service;
+
+    public function __construct(PaymentService $service)
+    {
+        $this->service = $service;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +29,10 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        //
+        $page_title = $title = 'Payment Settings';
+        $payments = $this->service->get_payments();
+
+        return view('admin.payments', compact('page_title', 'title', 'payments'));
     }
 
     /**
