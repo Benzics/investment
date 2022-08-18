@@ -27,6 +27,12 @@
                     <li class="{{(isset($page_title) && $page_title == 'Users' ? 'active' : '')}}">
                         <a href="{{ url('/admin/users') }}"> <!--<i class="fas fa-users"></i> --> Users</a>
                     </li>
+                    <li class="{{(isset($page_title) && $page_title == 'Investment Plans' ? 'active' : '')}}">
+                        <a href="{{ url('/admin/investments') }}"> <!--<i class="fas fa-users"></i> --> Investment Plans</a>
+                    </li>
+                    <li class="{{(isset($page_title) && $page_title == 'User Investments' ? 'active' : '')}}">
+                        <a href="{{ url('/admin/user-investments') }}"> <!--<i class="fas fa-users"></i> --> User Investments</a>
+                    </li>
                     <li class="{{(isset($page_title) && $page_title == 'deposits' ? 'active' : '')}}">
                         <a href="{{ url('/admin/deposits') }}"> <!--<i class="fas fa-money-bill"></i> --> Deposits</a>
                     </li>

@@ -251,4 +251,15 @@ class UserInvestmentService extends UserService
         
         return $status;
     }
+
+    /**
+     * Get all investment plans 
+     * @return
+     */
+    public function get_investment_plans()
+    {
+        $plans = Investment::latest()->get();
+
+        return $plans;
+    }
 }

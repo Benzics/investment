@@ -3,10 +3,17 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Services\UserInvestmentService;
 use Illuminate\Http\Request;
 
 class InvestmentController extends Controller
 {
+
+    public $service;
+    public function __construct(UserInvestmentService $service)
+    {
+        $this->service = $service;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,10 @@ class InvestmentController extends Controller
      */
     public function index()
     {
-        //
+        $title = $page_title = 'Investment Plans';
+        $investments = $this->service->get_investment_plans();
+
+        return view('admin.investments', compact('title', 'page_title', 'investments'));
     }
 
     /**
