@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * 
+ * Investment script by Benzics
+ * Author: Benjamin Ojobo
+ * https://github.com/benzics
+ * 
+ */
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
@@ -34,7 +40,9 @@ class InvestmentController extends Controller
      */
     public function create()
     {
-        //
+        $title = $page_title = 'Investment Plans';
+
+        return view('admin.investments-create', compact('title', 'page_title'));
     }
 
     /**

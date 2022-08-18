@@ -27,6 +27,13 @@ ul.side-nav li {
     transition: .3s;
     list-style: none;
 }
+@media (max-width: 768px)
+{
+    ul.side-nav li {
+        display: inline-block;
+        padding: 10px 10px;
+    }
+}
 ul.side-nav li.active a {
     color: #000;
     font-weight: 600;
