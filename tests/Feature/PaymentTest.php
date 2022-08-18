@@ -41,11 +41,12 @@ class PaymentTest extends TestCase
             'name' => 'Test',
             'image' => UploadedFile::fake()->image('payment.jpg'),
             'address' => 'Test',
+            'status' => '1',
         ];
 
         $response = $this->actingAs($this->user)->post('/admin/payment-settings', $data);
 
-        $response->assertValid()->assertSessionHas('success')->assertRedirect('/admin/payment-settings');
+        $response->assertValid()->assertRedirect('/admin/payment-settings')->assertSessionHas('success');
     }
 
     public function test_admin_payment_view()

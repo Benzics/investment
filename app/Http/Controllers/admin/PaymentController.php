@@ -11,6 +11,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Services\PaymentService;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\File;
 
 class PaymentController extends Controller
 {
@@ -55,7 +56,25 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'image' => ['required', File::image()],
+            'status' => 'required',
+        ]);
+
+        $image = $request->file('image')->store('uploads', 'public');
+
+        $data = [
+            'name' => $validate['name'],
+            'address' => $validate['address'],
+            'image' => "storage/$image",
+            'status' => $validate['status'],
+        ];
+
+        $this->service->add_payment($data);
+
+        return redirect('/admin/payment-settings')->with('success', 'Payment method successfully added');
     }
 
     /**

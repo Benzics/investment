@@ -41,13 +41,25 @@ class PaymentService {
 
     /**
      * Makes a new deposit
-     * @param $data
+     * @param array $data
      */
     public function make_deposit(array $data)
     {
         $deposit = Deposit::create($data);
 
         return $deposit;
+    }
+
+    /**
+     * Add a new payment method
+     * @param array $data
+     * @return
+     */
+    public function add_payment(array $data)
+    {
+        $payment = Payment::create($data);
+
+        return $payment;
     }
 
 }

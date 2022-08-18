@@ -12,7 +12,7 @@
         <h2 class="mt-4 b-3 page-title">Add Payment Method</h2>
 
       
-        <form action="{{url('/admin/payment-settings')}}" method="post">
+        <form action="{{url('/admin/payment-settings')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-md-6">
@@ -40,7 +40,7 @@
                         <label for="status">Status</label>
                         <select name="status" id="status" class="form-control">
                             <option value="1" selected>Active</option>
-                            <option value="0" selected>Inactive</option>
+                            <option value="0">Inactive</option>
                         </select>
                     </div>
                 </div>
