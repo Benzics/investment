@@ -261,3 +261,20 @@ function get_email(int $user_id) : string
 
     return $user?->email;
 }
+
+/**
+ * Marks an investment commission type to its string equivalent
+ * @param int $commission_type
+ * @return string
+ */
+function map_investment_type(int $commission_type)
+{
+    switch($commission_type)
+    {
+        case 0:
+            return "Percentage";
+            break;
+        case 1:
+            return "Fixed amount";
+    }
+}

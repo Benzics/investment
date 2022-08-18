@@ -9,6 +9,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Investment;
 use App\Services\UserInvestmentService;
 use Illuminate\Http\Request;
 
@@ -85,7 +86,10 @@ class InvestmentController extends Controller
      */
     public function show($id)
     {
-        //
+        $page_title = $title = 'Investment Plans';
+        $investment = $this->service->get_investment($id);
+
+        return view('admin.investments-view', compact('page_title', 'title', 'investment'));
     }
 
     /**
