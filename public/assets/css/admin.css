@@ -74,3 +74,6 @@ ul.side-nav li.active a {
 th {
     text-transform: uppercase;
 }
+small {
+    word-break: break-all;
+}
