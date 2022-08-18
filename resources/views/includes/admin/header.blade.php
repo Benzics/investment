@@ -19,8 +19,8 @@
     <div class="container-fluid">
     <div class="row flex-xl-nowrap">
         <div class="col-md-3 col-12 col-xl-2">
-            <nav class="v10">
-                <ul class="side-nav">
+            <nav class="v10 fh">
+                <ul class="side-nav fh pt-3">
                     <li class="{{(isset($page_title) && $page_title == 'dashboard' ? 'active' : '')}}">
                         <a href="{{ url('/admin/dashboard') }}"> Dashboard</a>
                     </li>
@@ -42,6 +42,9 @@
 
                     <li class="{{(isset($page_title) && $page_title == 'fund_wallet' ? 'active' : '')}}">
                         <a href="{{ url('/admin/fund-wallet') }}"> Wallet Top Up</a>
+                    </li>
+                    <li class="{{(isset($page_title) && $page_title == 'Payment Settings' ? 'active' : '')}}">
+                        <a href="{{ url('/admin/payment-settings') }}"> Payment Settings</a>
                     </li>
                     <li>
                         <a href="{{ url('/admin/settings') }}"> Site Settings</a>

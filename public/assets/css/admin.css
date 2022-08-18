@@ -64,6 +64,9 @@ ul.side-nav li.active a {
     .vh {
         min-height: 90vh;
     }
+    .fh {
+        min-height: 100%;
+    }
 }
 .brand {
     width: 50px;
