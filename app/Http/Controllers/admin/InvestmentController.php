@@ -100,7 +100,10 @@ class InvestmentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $page_title = $title = 'Investment Plans';
+        $investment = $this->service->get_investment($id);
+
+        return view('admin.investments-edit', compact('page_title', 'title', 'investment'));
     }
 
     /**
