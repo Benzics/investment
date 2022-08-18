@@ -53,7 +53,28 @@ class InvestmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'name' => 'required',
+            'commission' => 'required',
+            'minimum' => 'required',
+            'maximum' => 'required',
+            'type' => 'required',
+            'times' => 'required',
+        ]);
+
+        $data = [
+            'name' => $validate['name'],
+            'commission' => $validate['commission'],
+            'minimum' => $validate['minimum'],
+            'maximum' => $validate['maximum'],
+            'type' => $validate['type'],
+            'commission_type' => $request->commission_type,
+            'times' => $validate['times'],
+        ];
+
+        $this->service->create_investment_plan($data);
+
+        return redirect('/admin/investments')->with(['success' => 'Investment plan successfully created.']);
     }
 
     /**

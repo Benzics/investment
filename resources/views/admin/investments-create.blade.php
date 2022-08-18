@@ -46,7 +46,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="minimum">Maximum Amount</label>
+                        <label for="maximum">Maximum Amount</label>
                         <input type="number" name="maximum" id="maximum" required value="{{ old('maximum') }}" class="form-control" placeholder="Maximum investment amount">
                     </div>
                 </div>
@@ -60,7 +60,7 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="type">Commission Times ( <small class="text-muted">Number of times commission is paid</small> )</label>
+                        <label for="times">Commission Times ( <small class="text-muted">Number of times commission is paid</small> )</label>
                         <input type="number" name="times" id="times" required value="{{ old('times') }}" class="form-control" placeholder="Commission times">
                     </div>
                 </div>

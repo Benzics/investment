@@ -262,4 +262,15 @@ class UserInvestmentService extends UserService
 
         return $plans;
     }
+
+    /**
+     * Creates a new investment plan
+     * @param array $data
+     * @return
+     */
+    public function  create_investment_plan(array $data)
+    {
+        $plan = Investment::create($data);
+        return;
+    }
 }
