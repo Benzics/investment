@@ -16,21 +16,17 @@
                 <tr>
                     <th>ID</th>
                     <th>User</th>
-                    <th>Deposit Amount</th>
+                    <th>Amount</th>
                     <th>Charges</th>
                     <th>Total</th>
-                    <th>Payment Method</th>
+                    <th>Method</th>
                     <th>Proof</th>
                     <th>Status</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @if(count($deposits) == 0)
-                <tr>
-                    <td colspan="9" class="text-center">There are no deposits yet.</td>
-                </tr>
-                @endif
+              
                 @php $id = 0; @endphp
                 @foreach ($deposits as $row)
                 @php $id++ @endphp

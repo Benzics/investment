@@ -4,7 +4,7 @@ namespace App\Services;
 use App\Models\Investment;
 use App\Models\UserInvestment;
 use DateTime;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 class UserInvestmentService extends UserService
 {
@@ -297,5 +297,21 @@ class UserInvestmentService extends UserService
         Investment::where('id', $investment_id)->delete();
 
         return $this;
+    }
+
+    /**
+     * Get all investments from users on the site
+     * @param $user_id
+     * @return
+     */
+    public function get_all_investments()
+    {
+        $investments = DB::table('user_investments')
+            ->join('investments', 'user_investments.investment_id', '=', 'investments.id')
+            ->select('user_investments.*', 'investments.name')
+            ->latest()
+            ->get();
+        
+        return $investments;
     }
 }

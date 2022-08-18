@@ -68,3 +68,6 @@ ul.side-nav li.active a {
 .brand {
     width: 50px;
 }
+th {
+    text-transform: uppercase;
+}

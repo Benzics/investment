@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\DB;
 use App\Models\Currency;
 use App\Models\User;
+use App\Models\Wallet;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 /**
@@ -277,4 +278,17 @@ function map_investment_type(int $commission_type)
         case 1:
             return "Fixed amount";
     }
+}
+ /**
+ * Get the user balance
+ * @param $user_id
+ * @return
+ */
+function get_balance(int $user_id)
+{
+    $wallet = Wallet::where('user_id', $user_id)->latest('id')->first();
+
+    $balance = ($wallet) ? $wallet->balance : 0;
+
+    return $balance;
 }

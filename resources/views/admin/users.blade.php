@@ -21,6 +21,7 @@
                     <th>ID</th>
                     <th>Email</th>
                     <th>Name</th>
+                    <th>Balance</th>
                     <th>Status</th>
                     <th>Actions</th>
                 </tr>
@@ -28,11 +29,6 @@
             <tbody>
                 @php($id = 0)
 
-                @if(count($users) == 0)
-                <tr>
-                    <td colspan="5">No users found</td>
-                </tr>
-                @endif
                 @foreach($users as $row)
                 @php($id++)
 
@@ -40,6 +36,7 @@
                     <td>{{ $id }}</td>
                     <td>{{ $row->email }}</td>
                     <td>{{ $row->name }}</td>
+                    <td> {{ currency_symbol() . num_format(get_balance($row->id)) }} </td>
                     <td>{{ map_user_status($row->status) }}</td>
                     <td>
                         <a href="{{ url('/admin/users/' . $row->id) }}" class="btn btn-primary mb-2" data-toggle="tooltip" title="View"><i class="fas fa-eye"></i></a>

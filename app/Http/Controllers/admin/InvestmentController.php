@@ -166,4 +166,16 @@ class InvestmentController extends Controller
 
         return redirect('/admin/investments')->with('success', 'Investment plan deleted successfully');
     }
+
+    /**
+     * Show the user investments
+     * @return 
+     */
+    public function investments()
+    {
+        $page_title = $title = 'User Investments';
+        $investments = $this->service->get_all_investments();
+
+        return view('admin.user-investments', compact('page_title', 'title', 'investments'));
+    }
 }

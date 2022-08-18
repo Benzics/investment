@@ -30,11 +30,7 @@
             <tbody>
                 @php($id = 0)
 
-                @if(count($investments) == 0)
-                <tr>
-                    <td colspan="6">No investments found</td>
-                </tr>
-                @endif
+             
                 @foreach($investments as $row)
                 @php($id++)
 
