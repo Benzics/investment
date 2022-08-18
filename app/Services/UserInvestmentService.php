@@ -273,4 +273,17 @@ class UserInvestmentService extends UserService
         $plan = Investment::create($data);
         return;
     }
+
+    /**
+     * Update investment plan data
+     * @param array $data
+     * @param int $investment_id
+     * @return
+     */
+    public function update_plan(array $data, int $investment_id)
+    {
+        $plan = Investment::where('id', $investment_id)->update($data);
+
+        return $plan;
+    }
 }

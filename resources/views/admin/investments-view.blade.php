@@ -58,7 +58,7 @@
             <li class="list-group-item">
                 <div class="row">
                     <div class="col-6">Commission Duration / Times</div>
-                    <div class="col-6">{{ $investment->times }}</div>
+                    <div class="col-6">{{ $investment->times }} Days</div>
                 </div>
             </li>
 

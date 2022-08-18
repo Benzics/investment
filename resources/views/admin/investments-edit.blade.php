@@ -12,7 +12,7 @@
         <h2 class="mt-4 mb-3 page-title">Edit Investment Plan</h2>
 
       
-        <form action="{{url('/admin/investments')}}" method="post">
+        <form action="{{url('/admin/investments/' . $id)}}" method="post">
             @csrf
             @method('put')
             <div class="row">

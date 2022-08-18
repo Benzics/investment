@@ -103,7 +103,7 @@ class InvestmentController extends Controller
         $page_title = $title = 'Investment Plans';
         $investment = $this->service->get_investment($id);
 
-        return view('admin.investments-edit', compact('page_title', 'title', 'investment'));
+        return view('admin.investments-edit', compact('page_title', 'title', 'investment', 'id'));
     }
 
     /**
@@ -115,7 +115,36 @@ class InvestmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $investment = $this->service->get_investment($id);
+
+        if(!$investment)
+        {
+            return back()->with('error', 'Invalid investment plan ID.');
+        }
+
+        $validate = $request->validate([
+            'name' => 'required',
+            'commission' => 'required',
+            'minimum' => 'required',
+            'maximum' => 'required',
+            'type' => 'required',
+            'times' => 'required',
+        ]);
+
+        $data = [
+            'name' => $validate['name'],
+            'commission' => $validate['commission'],
+            'minimum' => $validate['minimum'],
+            'maximum' => $validate['maximum'],
+            'type' => $validate['type'],
+            'commission_type' => $request->commission_type,
+            'times' => $validate['times'],
+        ];
+
+
+        $this->service->update_plan($data, $id);
+        
+        return redirect('/admin/investments/' . $id)->with('success', 'Investment plan edited successfully.');
     }
 
     /**
