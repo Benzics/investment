@@ -12,7 +12,7 @@
     <h2 class="mt-4 mb-3 page-title">Payment Methods</h2>
 
     <div class="mb-3 mt-3 d-flex justify-content-end">
-        <a href="{{url('/admin/payment-settings/create')}}" class="btn btn-primary" data-toggle="tooltip" title="Add payment plan"><i class="fas fa-plus"></i></a>
+        <a href="{{url('/admin/payment-settings/create')}}" class="btn btn-primary" data-toggle="tooltip" title="Add payment method"><i class="fas fa-plus"></i></a>
     </div>
     <div class="table-responsive">
         <table id="data-table" class="table table-striped">

@@ -19,14 +19,14 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="name">Name</label>
+                        <label for="name">Name <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" name="name" required id="name" placeholder="Full name" value="{{ old('name', $user->name) }}">
                     </div>
                 </div>
             
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="email">User Email</label>
+                        <label for="email">User Email <span class="text-danger">*</span></label>
                         <input type="email" name="email" id="email" required value="{{ old('email', $user->email) }}" class="form-control" placeholder="User email address">
                     </div>
                 </div>

@@ -42,7 +42,9 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        //
+        $page_title = $title = 'Payment Settings';
+
+        return view('admin.payments-create', compact('page_title', 'title'));
     }
 
     /**
