@@ -28,4 +28,32 @@ class WithdrawalController extends Controller
 
         return view('admin.withdrawals', compact('page_title', 'title', 'withdrawals'));
     }
+
+    public function approve(int $id)
+    {
+        $withdrawal = $this->service->get_withdrawal($id);
+
+        if(!$withdrawal)
+        {
+            return back()->with(['error' => 'Invalid withdrawal ID.']);
+        }
+
+        $this->service->approve($id);
+
+        return redirect('/admin/withdrawals')->with('success', 'Withdrawal successfully marked as paid.');
+    }
+
+    public function decline(int $id)
+    {
+        $withdrawal = $this->service->get_withdrawal($id);
+
+        if(!$withdrawal)
+        {
+            return back()->with(['error' => 'Invalid withdrawal ID.']);
+        }
+
+        $this->service->decline($id);
+
+        return redirect('/admin/withdrawals')->with('success', 'Withdrawal successfully declined.');
+    }
 }
