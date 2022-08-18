@@ -39,9 +39,56 @@ class WithdrawalService {
 	}
 
 	/**
-	 * Approves a withdrawal
+	 * Returns a withdrawal data
 	 * @param int $withdrawal_id
+	 * @return
 	 */
+	public function get_withdrawal(int $withdrawal_id)
+	{
+		$withdrawal = Withdrawal::find($withdrawal_id);
+
+		return $withdrawal;
+	}
+
+	/**
+	 * Approves a user withdrawal
+	 * @param int $withdrawal_id
+	 * @return
+	 */
+	public function approve(int $withdrawal_id)
+	{
+		$withdrawal = Withdrawal::where('id', $withdrawal_id)->update(['status' => '1']);
+
+		return $withdrawal;
+	}
+
+	/**
+	 * Declines a user withdrawal
+	 * @param int $withdrawal_id
+	 * @return
+	 */
+	public function decline(int $withdrawal_id)
+	{
+		$withdrawal = Withdrawal::where('id', $withdrawal_id)->update(['status' => '2']);
+
+		return $withdrawal;
+	}
+
+	/**
+	 * Get all user withdrawals in site
+	 * @return
+	 */
+	public function get_withdrawals()
+	{
+		$withdrawals = DB::table('withdrawals')
+        ->join('payments', 'withdrawals.payment_id', '=', 'payments.id')
+        ->select('withdrawals.*', 'payments.name')
+        ->latest()
+        ->get();
+
+		return $withdrawals;
+	}
+
 }
 
 

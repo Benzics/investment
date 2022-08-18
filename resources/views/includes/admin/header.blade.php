@@ -22,26 +22,29 @@
             <nav class="v10">
                 <ul class="side-nav">
                     <li class="{{(isset($page_title) && $page_title == 'dashboard' ? 'active' : '')}}">
-                        <a href="{{ url('/admin/dashboard') }}"> <!--<i class="fas fa-tachometer-alt"></i> --> Dashboard</a>
+                        <a href="{{ url('/admin/dashboard') }}"> Dashboard</a>
                     </li>
                     <li class="{{(isset($page_title) && $page_title == 'Users' ? 'active' : '')}}">
-                        <a href="{{ url('/admin/users') }}"> <!--<i class="fas fa-users"></i> --> Users</a>
+                        <a href="{{ url('/admin/users') }}"> Users</a>
                     </li>
                     <li class="{{(isset($page_title) && $page_title == 'Investment Plans' ? 'active' : '')}}">
-                        <a href="{{ url('/admin/investments') }}"> <!--<i class="fas fa-users"></i> --> Investment Plans</a>
+                        <a href="{{ url('/admin/investments') }}"> Investment Plans</a>
                     </li>
                     <li class="{{(isset($page_title) && $page_title == 'User Investments' ? 'active' : '')}}">
-                        <a href="{{ url('/admin/user-investments') }}"> <!--<i class="fas fa-users"></i> --> User Investments</a>
+                        <a href="{{ url('/admin/user-investments') }}"> User Investments</a>
                     </li>
                     <li class="{{(isset($page_title) && $page_title == 'deposits' ? 'active' : '')}}">
-                        <a href="{{ url('/admin/deposits') }}"> <!--<i class="fas fa-money-bill"></i> --> Deposits</a>
+                        <a href="{{ url('/admin/deposits') }}"> Deposits</a>
+                    </li>
+                    <li class="{{(isset($page_title) && $page_title == 'Withdrawals' ? 'active' : '')}}">
+                        <a href="{{ url('/admin/withdrawals') }}"> Withdrawals</a>
                     </li>
 
                     <li class="{{(isset($page_title) && $page_title == 'fund_wallet' ? 'active' : '')}}">
-                        <a href="{{ url('/admin/fund-wallet') }}"> <!--<i class="fas fa-money-bill-wave"></i>--> Wallet Top Up</a>
+                        <a href="{{ url('/admin/fund-wallet') }}"> Wallet Top Up</a>
                     </li>
                     <li>
-                        <a href="{{ url('/admin/settings') }}"> <!--<i class="fas fa-cogs"></i>--> Site Settings</a>
+                        <a href="{{ url('/admin/settings') }}"> Site Settings</a>
                     </li>
                 </ul>
             </nav>

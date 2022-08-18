@@ -47,6 +47,26 @@ function map_withdrawal_status(int $status)
 }
 
 /**
+ * Map withdrawal status
+ * @param int $status
+ * @return string
+ */
+function map_withdrawal_status_two(int $status)
+{
+    switch($status)
+    {
+        case 1:
+            return 'Paid';
+            break;
+        case 2: 
+            return 'Declined';
+            break;
+        default:
+            return 'Pending Approval';
+    }
+}
+
+/**
  * Map the user status
  * @param int $status
  * @return string
