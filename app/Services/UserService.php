@@ -373,4 +373,81 @@ class UserService {
 
         return $this;
     }
+
+    /**
+     * Get the total users in the site
+     * @return int
+     */
+    public function get_users_count()
+    {
+        $users = User::count();
+
+        return $users;
+    }
+
+    /**
+     * Get the total number of active user investments
+     * @return int
+     */
+    public function get_investments_count()
+    {
+        $investments = UserInvestment::where('status', 1)->count();
+
+        return $investments;
+    }
+
+    /**
+     * Get total number of pending withdrawals
+     * @return int
+     */
+    public function get_withdrawals_count()
+    {
+        $withdrawals = Withdrawal::where('status', '0')->count();
+
+        return $withdrawals;
+    }
+
+    /**
+     * Get total number of unprocessed deposits
+     * @return int
+     */
+    public function get_deposits_count()
+    {
+        $deposits = Deposit::where('status', '0')->count();
+
+        return $deposits;
+    }
+
+    /**
+     * Gets all transactions
+     * @return
+     */
+    public function get_transactions()
+    {
+        $transactions = Wallet::latest('id')->get();
+
+        return $transactions;
+    }
+
+    /**
+     * Get total deposit amount
+     * @return
+     */
+    public function total_deposits()
+    {
+        $deposits = Deposit::where('status', '1')->sum('amount');
+
+        return $deposits;
+    }
+
+    /**
+     * Get total investment amount
+     * @return
+     */
+    public function total_investments()
+    {
+        $investments = UserInvestment::sum('amount');
+
+        return $investments;
+    }
 }

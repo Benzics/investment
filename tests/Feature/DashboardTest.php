@@ -25,6 +25,12 @@ class DashboardTest extends TestCase
         $response->assertOk();
     }
 
+    public function test_admin_dashboard()
+    {
+        $response = $this->actingAs($this->user)->get('/admin/dashboard');
+        $response->assertOk();
+    }
+
     public function test_referrals_page()
     {
         $response = $this->actingAs($this->user)->get('/user/referrals');

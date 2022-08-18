@@ -138,7 +138,7 @@ class PaymentController extends Controller
             'status' => 'required',
         ]);
 
-        if($request->filled('image'))
+        if($request->hasFile('image'))
         {
             $image = $request->file('image')->store('uploads', 'public');
         }

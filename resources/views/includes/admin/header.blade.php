@@ -21,7 +21,7 @@
         <div class="col-md-3 col-12 col-xl-2">
             <nav class="v10 fh">
                 <ul class="side-nav fh pt-3">
-                    <li class="{{(isset($page_title) && $page_title == 'dashboard' ? 'active' : '')}}">
+                    <li class="{{(isset($page_title) && $page_title == 'Dashboard' ? 'active' : '')}}">
                         <a href="{{ url('/admin/dashboard') }}"> Dashboard</a>
                     </li>
                     <li class="{{(isset($page_title) && $page_title == 'Users' ? 'active' : '')}}">
