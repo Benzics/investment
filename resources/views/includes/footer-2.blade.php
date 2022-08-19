@@ -32,7 +32,7 @@
 
             <div class="col-lg-3 col-md-6">
                 <div class="footer-contact-info">
-                    <a href="index"><img class="img-fluid mb-4" src="{{asset(setting('site-logo-3'))}}" alt="logo" /></a>
+                    <a href="/"><img class="img-fluid mb-4" src="{{asset(setting('site-logo-3'))}}" alt="logo" /></a>
                     <p class="mb-2 mb-sm-4">{{setting('address')}}
 </p>
                     <h4 class="mb-2 mb-sm-4 font-weight-bold"><a href="#">+vip members</a></h4>

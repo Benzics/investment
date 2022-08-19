@@ -57,8 +57,9 @@ class HomeController extends Controller
     public function terms()
     {
         $title = 'Terms';
+        $site_name = ucwords(setting('site-name'));
 
-        return view('terms' . $this->v, compact('title'));
+        return view('terms' . $this->v, compact('title', 'site_name'));
     }
 
     

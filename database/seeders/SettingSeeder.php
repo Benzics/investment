@@ -31,7 +31,7 @@ class SettingSeeder extends Seeder
             ['name' => 'referral-bonus', 'value' => '10'],
             ['name' => 'site-logo-1', 'value' => '/assets/images/pro.jpg'],
             ['name' => 'site-logo-2', 'value' => '/assets/images/v2/logo-light.png'],
-            ['name' => 'site-logo-3', 'value' => '/assets/images/v2/logo-1.png'],
+            ['name' => 'site-logo-3', 'value' => '/assets/images/v2/logo1.png'],
             ['name' => 'address', 'value' => 'Kloveniersburgwal 105II, 1011 KB Amsterdam, Netherlands'],
             ['name' => 'phone', 'value' => '+1 959 500 9190'],
         ]);
