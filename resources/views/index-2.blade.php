@@ -80,8 +80,8 @@ About -->
                         </div>
                         <div class="feature-info-content">
                             <h4 class="feature-info-title mb-2">Our Value</h4>
-                            <p>Star Capital is a distinctive investment platform offering investors opportunities in the crypto markets.We emphasize on understanding our client’s requirement.</p>
-                            <a href="about" class="icon-btn"><i class="fas fa-long-arrow-alt-right"></i></a>
+                            <p>{{ucwords(setting('site-name'))}} is a distinctive investment platform offering investors opportunities in the crypto markets.We emphasize on understanding our client’s requirement.</p>
+                            <a href="/about" class="icon-btn"><i class="fas fa-long-arrow-alt-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -93,7 +93,7 @@ About -->
                         <div class="feature-info-content">
                             <h4 class="feature-info-title mb-2">Our aim</h4>
                             <p>Our aim is to utilize our expertise to create a platform where Non-miners and Tech novice can participate and benefit from the crypto market investments.</p>
-                            <a href="dev" class="icon-btn"><i class="fas fa-long-arrow-alt-right"></i></a>
+                            <a href="#dev" class="icon-btn"><i class="fas fa-long-arrow-alt-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -128,67 +128,29 @@ About -->
               </div>
             </div>
             <div class="row">
+                @foreach($investments as $row)
           <div class="col-md-4 pb-4 pb-md-0">
                 <div class="pricing">
-                <h4 class="pricing-title">AMATEUR</h4>
+                <h4 class="pricing-title">{{$row->name}}</h4>
                 
                 <span class="pricing-price">
                    <sup></sup>
-                  <strong>1.5%</strong>
-                  Daily for 7 Days
+                  <strong>{{ $row->commission }}{{$row->commission_type == 1 ? currency_short() : '%'}}</strong>
+                  {{ strtoupper(investment_days($row->type)) }} for {{$row->times}} Days
                  </span>
                   <ul class="list-unstyled pricing-list">
-                       <li>Minimum: $200</li>
-                 <li>Maximum: $49,999</li>
-                   <li>7 Days Duration</li>
-                    <li>7% Referral Commission</li>
+                       <li>Minimum: {{currency_symbol() . num_format($row->minimum)}}</li>
+                 <li>Maximum: {{currency_symbol() . num_format($row->maximum)}}</li>
+                   <li>{{$row->times}} Days Duration</li>
+                    <li>Referral Commission</li>
                     <li>Instant Withdrawal</li>
                    <li>24/7 Support</li>
                 </ul>
-                 <a href="?a=signup" class="btn btn-light-round btn-round">Select Plan<i class="fas fa-arrow-right pl-3"></i></a>
+                 <a href="{{url('/register')}}" class="btn btn-light-round btn-round">Select Plan<i class="fas fa-arrow-right pl-3"></i></a>
              </div>
              </div>
-           
-          <div class="col-md-4">
-                <div class="pricing">
-                 <h4 class="pricing-title">PROFESSIONAL</h4>
-            
-                 <span class="pricing-price">
-                  <sup></sup>
-               <strong>2%</strong>
-                   Daily for 7 Days
-                 </span>
-                  <ul class="list-unstyled pricing-list">
-                      <li>Minimum: $50,000</li>
-                <li>Maximum: $99,999</li>
-                <li>7 Days Duration</li>
-                <li>7% Referral Commission</li>
-                  <li>Instant Withdrawal</li>
-                    <li>24/7 Support</li>
-                 </ul>
-                 <a href="?a=signup " class="btn btn-light-round btn-round">Select Plan<i class="fas fa-arrow-right pl-3"></i></a>
-                </div>
-              </div>
-            <div class="col-md-4 pb-4 pb-md-0">
-                <div class="pricing active">
-                 <h4 class="pricing-title">VIP</h4>
-                  
-                <span class="pricing-price">
-                   <sup></sup>
-                  <strong>4%</strong>
-                   Daily for 20 Days
-                  </span>
-                <ul class="list-unstyled pricing-list">
-                    <li>Minimum: $100,000</li>
-                     <li>Maximum: Unlimited</li>
-                    <li>20 Days Duration</li>
-                    <li>7% Referral Commission</li>
-                  <li>Instant Withdrawal</li>
-                    <li>24/7 Support</li>
-                 </ul>
-                 <a href="?a=signup" class="btn btn-light-round btn-round">Select Plan<i class="fas fa-arrow-right pl-3"></i></a>
-              </div>
-             </div>
+
+             @endforeach
            </div>
        </div>
         </section>

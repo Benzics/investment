@@ -38,7 +38,7 @@
     
                 <input type="password" placeholder="Password" required name="password" style="width:100%" class="margintb round">
                 <div class="row margintb">
-                    <a href="fpass" class="right">Forgot password?</a>
+                    <a href="/contact" class="right">Forgot password?</a>
                     <input type="checkbox" name="remember" value="1" id="label"><label for="check"> Remember Me</label>
                 </div>
                 <input type="submit" value="Login" class="btn round default"><br><br>

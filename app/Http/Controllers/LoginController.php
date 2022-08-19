@@ -13,9 +13,18 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+     /**
+     * the view version to render
+     */
+    public $v;
+    
+    public function __construct()
+    {
+        $this->v = env('SITE_VERSION');
+    }
     public function index()
     {
-        return view('login', ['title' => 'Login']);
+        return view('login' . $this->v, ['title' => 'Login']);
     }
 
     public function authenticate(Request $request)

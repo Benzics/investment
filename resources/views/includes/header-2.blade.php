@@ -76,8 +76,8 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="d-sm-flex">
-                                <a class="navbar-brand" href="index">
-                                    <img class="img-fluid" src="{{ asset('/assets/images/v2/logo-light.png') }}" alt="logo" />
+                                <a class="navbar-brand" href="{{url('/')}}">
+                                    <img class="img-fluid" src="{{ asset(setting('site-logo-1')) }}" alt="logo" />
                                 </a>
                                 <div id="ytWidget"></div>
                                 <script src="https://translate.yandex.net/website-widget/v1/widget.js?widgetId=ytWidget&pageLang=en&widgetTheme=light&autoMode=false" type="text/javascript"></script>
@@ -86,7 +86,7 @@
                                         <li>
                                             <i class="flaticon-world"></i>
                                             <span>
-                                                <label class="d-block">Griffin House,  Crawley, West Sussex, RH10 1DQ </label>
+                                                <label class="d-block">{{setting('address')}} </label>
                                             </span>
                                         </li>
                                         <li>
@@ -120,8 +120,8 @@
                                         <a class="nav-link" href="{{url('/')}}">HOME</a>
                                     </li>
                                     <li class="nav-item"></li>
-                                    <li class="dropdown nav-item">
-                                        <a href="?a=about-us" class="nav-link" data-toggle="dropdown">ABOUT US</a>
+                                    <li class="nav-item">
+                                        <a href="{{url('/about')}}" class="nav-link" data-toggle="dropdown">ABOUT US</a>
                                   
                                     </li>
                                   
@@ -129,13 +129,13 @@
                                     <li class="nav-item"></li>
                                   
                                     <li class="nav-item">
-                                        <a href="?a=partner" class="nav-link">PARTNERSHIP</a>
+                                        <a href="{{url('/terms')}}" class="nav-link">TERMS</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="?a=newsletter" class="nav-link">NEWSLETTER</a>
+                                        <a href="{{url('/faqs')}}" class="nav-link">FAQ</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="?a=support" class="nav-link">CONTACT</a>
+                                        <a href="{{url('/contact')}}" class="nav-link">CONTACT</a>
                                     </li>
                                                                         <li class="nav-item">
                                         <a href="{{url('/login')}}" class="nav-link">LOGIN</a>

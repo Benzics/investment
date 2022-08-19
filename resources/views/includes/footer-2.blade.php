@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-3 col-md-6">
                 <div class="footer-contact-info">
-                    <a href="index"><img class="img-fluid mb-4" src="{{ asset('/assets/images/v2/logo.png') }}" alt="logo" /></a>
+                    <a href="index"><img class="img-fluid mb-4" src="{{ asset(setting('site-logo-2')) }}" alt="logo" /></a>
                     <p class="mb-2 mb-sm-4">
                         We provide a unique opportunity to make profits online, based on our innovative developments that allow us to conduct risk-free bot trading on the largest cryptocurrency and stock exchanges.
                     </p>
@@ -14,17 +14,17 @@
                 <div class="footer-link">
                     <ul class="list-unstyled mb-0">
                      
-                        <li><a href="?a=partner">Partnership</a></li>
-                        <li><a href="?a=privacy-policy">Privacy Policy</a></li>
+                        {{-- <li><a href="?a=partner">Partnership</a></li>
+                        <li><a href="?a=privacy-policy">Privacy Policy</a></li> --}}
                         <li><a href="{{url('/login')}}">Login</a></li>
                         <li><a href="{{url('/register')}}">Sign Up</a></li>
                     </ul>
                     <ul class="list-unstyled mb-0">
-                        <li><a href="?a=about-us">About Us</a></li>
+                        <li><a href="{{url('/about')}}">About Us</a></li>
                       
-                        <li><a href="?a=faq">FAQs</a></li>
-                        <li><a href="?a=rules">Terms & Conditions</a></li>
-                        <li><a href="?a=support">Contact Us</a></li>
+                        <li><a href="{{url('/faqs')}}">FAQs</a></li>
+                        <li><a href="{{url('/terms')}}">Terms & Conditions</a></li>
+                        <li><a href="{{url('/contact')}}">Contact Us</a></li>
                       
                     </ul>
                 </div>
@@ -32,11 +32,11 @@
 
             <div class="col-lg-3 col-md-6">
                 <div class="footer-contact-info">
-                    <a href="index"><img class="img-fluid mb-4" src="images/logo1.png" alt="logo" /></a>
-                    <p class="mb-2 mb-sm-4">Griffin House,  Crawley, West Sussex, RH10 1DQ
+                    <a href="index"><img class="img-fluid mb-4" src="{{asset(setting('site-logo-3'))}}" alt="logo" /></a>
+                    <p class="mb-2 mb-sm-4">{{setting('address')}}
 </p>
                     <h4 class="mb-2 mb-sm-4 font-weight-bold"><a href="#">+vip members</a></h4>
-                    <a class="text-dark" href="#">support@star-capital.ltd</a>
+                    <a class="text-dark" href="#">{{setting('support-mail')}}</a>
                 </div>
             </div>
         </div>
@@ -46,7 +46,7 @@
             <div class="row">
         
                 <div class="col-lg-4 text-center text-lg-right">
-                    <p class="mb-0">©Copyright {{date('Y')}} <a href="{{url('/')}}">star-trades.ltd</a></p>
+                    <p class="mb-0">©Copyright {{date('Y')}} <a href="{{url('/')}}">{{setting('site-name')}}</a></p>
                 </div>
             </div>
         </div>

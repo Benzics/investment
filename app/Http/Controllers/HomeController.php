@@ -20,7 +20,7 @@ class HomeController extends Controller
     
     public function __construct()
     {
-        $this->v = '';
+        $this->v = env('SITE_VERSION');
     }
     public function index()
     {

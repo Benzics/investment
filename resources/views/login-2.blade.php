@@ -46,7 +46,7 @@
               </div>
            
               <div class="form-group mb-4">
-                 <a href="#a=forgot_password">Forgot Password</a>
+                 <a href="/contact">Forgot Password</a>
               </div>
               <div class="form-group mb-0">
                 <button type="submit" class="btn btn-primary">Login Here<i class="fas fa-arrow-right pl-3"></i></button>

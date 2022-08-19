@@ -23,11 +23,21 @@ use Throwable;
 
 class RegistrationController extends Controller
 {
+     /**
+     * the view version to render
+     */
+    public $v;
+    
+    public function __construct()
+    {
+        $this->v = env('SITE_VERSION');
+    }
+    
     public function index(Request $request) : View
     {
         $ref = $request->ref;
         
-        return view('register', ['title' => 'Registration', 'ref' => $ref]);
+        return view('register'. $this->v, ['title' => 'Registration', 'ref' => $ref]);
     }
 
     public function store(Request $request) : RedirectResponse

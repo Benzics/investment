@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@isset($title) {{$title}} @endisset - {{config('app.name')}}</title>
+    <title>@isset($title) {{$title}} @endisset - {{setting('site-name')}}</title>
     
 <link href="{{ asset('favicon.png') }}" rel="icon" type="image/x-icon" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -175,7 +175,7 @@
 		<div class="bodycontainer">
 			<button class="btn round default right menu"><i class="fa fa-align-right"></i></button>
 			<a href="{{ url('/') }}">
-				<img src="{{ asset('/assets/images/pro.jpg') }}" title="Global Options FX Trade"/>
+				<img src="{{ asset(setting('site-logo-1')) }}" title="Global Options FX Trade"/>
 			</a>
 		</div>
 	</li>
@@ -216,11 +216,11 @@
 	<div class="bodycontainer">
 		<ul>
 			<li><a href="{{ url('/') }}" class="active">HOME</a></li>
-			<li><a href="{{ url('/info/about') }}">ABOUT US</a></li>
+			<li><a href="{{ url('/about') }}">ABOUT US</a></li>
 			<li><a href="{{ url('#investment') }}">INVESTMENT PLANS</a></li>
 			<li><a href="#">LEGAL <i class="fa fa-chevron-down"></i></a>
 				<ul>
-					<li><a href="{{ url('/info/terms') }}">TERMS & CONDITIONS</a></li>
+					<li><a href="{{ url('/terms') }}">TERMS & CONDITIONS</a></li>
 					<li><a href="{{ url('/faqs') }}">FAQS</a></li>
 				</ul>
 			</li>

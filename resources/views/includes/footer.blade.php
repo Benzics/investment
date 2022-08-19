@@ -56,11 +56,11 @@ conveythis.init({source_language_id: 703, languages: [{"id":"703","active":true}
             <div class="padding">
                 <h3>QUICK LINKS</h3>
                 <ul>
-                    <li><a href="assets/">Home</a></li>
-                    <li><a href="assets/info/about">About Us</a></li>
-                    <li><a href="assets/faqs">FAQS</a></li>
-                    <li><a href="assets/info/terms">TERMS AND CONDITIONS</a></li>
-                    <li><a href="assets/contact">CONTACT US</a></li>
+                    <li><a href="{{url('/')}}">Home</a></li>
+                    <li><a href="{{url('/about')}}">About Us</a></li>
+                    <li><a href="{{url('/faqs')}}">FAQS</a></li>
+                    <li><a href="{{url('/terms')}}">TERMS AND CONDITIONS</a></li>
+                    <li><a href="{{url('/contact')}}">CONTACT US</a></li>
                 </ul>
             </div>
             </div>
@@ -70,9 +70,9 @@ conveythis.init({source_language_id: 703, languages: [{"id":"703","active":true}
                 <ul>
                     <li><a href="https://cointelegraph.com/bitcoin-for-beginners/what-are-cryptocurrencies" target="_blank">WHAT IS BITCOIN?</a></li>
                     <li><a href="https://www.investopedia.com/tech/how-to-buy-bitcoin/" target="_blank">HOW TO BUY BITCOIN</a></li>
-                    <li><a href="assets/register">REGISTER</a></li>
-                    <li><a href="assets/login">LOGIN</a></li>
-					<li><a href="assets/fpass">FORGOT PASSWORD</a></li>
+                    <li><a href="{{url('/register')}}">REGISTER</a></li>
+                    <li><a href="{{url('/login')}}">LOGIN</a></li>
+					<li><a href="{{url('/contact')}}">FORGOT PASSWORD</a></li>
                 </ul>
             </div>
             </div>
@@ -80,15 +80,15 @@ conveythis.init({source_language_id: 703, languages: [{"id":"703","active":true}
             <div class="padding">
                 <h3>CONTACT US</h3>
                 <ul>
-                    <li>Kloveniersburgwal 105II, 1011 KB Amsterdam, Netherlands</li>
+                    <li>{{setting('address')}}</li>
                 </ul>
-				<a href="mailto://info@globaloptionsfxtrade.com"><h3>info@globaloptionsfxtrade.com</h3></a>
-				<a href="tel:+1 959 500 9190">+1 959 500 9190</a>
+				<a href="mailto://{{setting('support-mail')}}"><h3>{{setting('support-mail')}}</h3></a>
+				<a href="tel:{{setting('phone')}}">{{setting('phone')}}</a>
 				<ul>
 					<li>MON-SAT 08AM ⇾ 05PM</li>
 					<ul class="social">
-						<li><a href="" class="circle"><i class="fa fa-facebook"></i></a></li>
-						<li><a href="" class="circle"><i class="fa fa-twitter"></i></a></li>
+						<li><a href="#" class="circle"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="#" class="circle"><i class="fa fa-twitter"></i></a></li>
 					</ul>
 				</ul>
             </div>
