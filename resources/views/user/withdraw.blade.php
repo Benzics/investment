@@ -40,7 +40,7 @@
 			<div class="col-12">
 				<div class="danger margintb">Withdraw Charge : {{ $charge }}</div>
 				<div class="display-container">
-					<input type="number" required name="amount" placeholder="Amount" class="padding bold" style="width: 100%; padding-right: 70px !important">
+					<input type="text" required name="amount" placeholder="Amount" class="padding bold" style="width: 100%; padding-right: 70px !important">
                     <input type="text" required name="address" placeholder="Payment Address" class="padding bold" style="width: 100%; padding-right: 70px !important">
                     <input type="hidden" name="payment_id" value="{{ $row->id }}">
 					<span class="display-topright grey padding border" style="display: inline-block">{{ $currency_short }}</span>

@@ -62,7 +62,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="withdrawal-charge">Amount to charge <span class="text-danger">*</span></label>
-                            <input type="number" required class="form-control" value="{{ old('withdrawal-charge', $settings['withdrawal-charges']->amount) }}" name="withdrawal-charge" placeholder="Withdrawal charge amount">
+                            <input type="text" required class="form-control" value="{{ old('withdrawal-charge', $settings['withdrawal-charges']->amount) }}" name="withdrawal-charge" placeholder="Withdrawal charge amount">
                         </div>
                     </div>
 
@@ -87,7 +87,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="deposit-charge">Amount to charge <span class="text-danger">*</span></label>
-                            <input type="number" required class="form-control" value="{{ old('deposit-charge', $settings['deposit-charges']->amount) }}" name="deposit-charge" placeholder="Deposit charge amount">
+                            <input type="text" required class="form-control" value="{{ old('deposit-charge', $settings['deposit-charges']->amount) }}" name="deposit-charge" placeholder="Deposit charge amount">
                         </div>
                     </div>
 
@@ -113,7 +113,7 @@
                         <label for="minimum-withdrawal">Minimum Withdrawal <span class="text-danger">*</span>
                             <i class="fas fa-question-circle" data-toggle="tooltip" title="The minimum amount users can withdraw from the site"></i>
                         </label>
-                        <input type="number" required class="form-control" value="{{ old('minimum-withdrawal', $settings['minimum-withdrawal']) }}" name="minimum-withdrawal" placeholder="Minimum withdrawal">
+                        <input type="text" required class="form-control" value="{{ old('minimum-withdrawal', $settings['minimum-withdrawal']) }}" name="minimum-withdrawal" placeholder="Minimum withdrawal">
                     </div>
                 </div>
 
@@ -122,7 +122,7 @@
                         <label for="maximum-withdrawal">Maximum Withdrawal <span class="text-danger">*</span>
                             <i class="fas fa-question-circle" data-toggle="tooltip" title="The maximum amount users can withdraw from the site"></i>
                         </label>
-                        <input type="number" required class="form-control" value="{{ old('maximum-withdrawal', $settings['maximum-withdrawal']) }}" name="maximum-withdrawal" placeholder="Maximum withdrawal">
+                        <input type="text" required class="form-control" value="{{ old('maximum-withdrawal', $settings['maximum-withdrawal']) }}" name="maximum-withdrawal" placeholder="Maximum withdrawal">
                     </div>
                 </div>
 
@@ -131,7 +131,7 @@
                         <label for="withdrawal-time">Withdrawal processing days <span class="text-danger">*</span>
                             <i class="fas fa-question-circle" data-toggle="tooltip" title="The average amount of days withdrawals take to be processed"></i>
                         </label>
-                        <input type="number" required class="form-control" value="{{ old('withdrawal-time', $settings['withdrawal-time']) }}" name="withdrawal-time" placeholder="Withdrawal time">
+                        <input type="text" required class="form-control" value="{{ old('withdrawal-time', $settings['withdrawal-time']) }}" name="withdrawal-time" placeholder="Withdrawal time">
                     </div>
                 </div>
 
@@ -140,7 +140,7 @@
                         <label for="referral-bonus">Referral Bonus <span class="text-danger">*</span>
                             <i class="fas fa-question-circle" data-toggle="tooltip" title="Amount to give users for every referral. Set to Zero(0) if you want to disable this."></i>
                         </label>
-                        <input type="number" required class="form-control" value="{{ old('referral-bonus', $settings['referral-bonus']) }}" name="referral-bonus" placeholder="Referral bonus">
+                        <input type="text" required class="form-control" value="{{ old('referral-bonus', $settings['referral-bonus']) }}" name="referral-bonus" placeholder="Referral bonus">
                     </div>
                 </div>
             </div>

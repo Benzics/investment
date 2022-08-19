@@ -26,7 +26,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="commission">Commission <span class="text-danger">*</span></label>
-                        <input type="number" name="commission" id="commission" required value="{{ old('commission') }}" class="form-control" placeholder="Commission">
+                        <input type="text" name="commission" id="commission" required value="{{ old('commission') }}" class="form-control" placeholder="Commission">
                     </div>
                 </div>
                 <div class="col-12">
@@ -41,27 +41,27 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="minimum">Minimum Amount <span class="text-danger">*</span></label>
-                        <input type="number" name="minimum" id="minimum" required value="{{ old('minimum') }}" class="form-control" placeholder="Minimum investment amount">
+                        <input type="text" name="minimum" id="minimum" required value="{{ old('minimum') }}" class="form-control" placeholder="Minimum investment amount">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="maximum">Maximum Amount <span class="text-danger">*</span></label>
-                        <input type="number" name="maximum" id="maximum" required value="{{ old('maximum') }}" class="form-control" placeholder="Maximum investment amount">
+                        <input type="text" name="maximum" id="maximum" required value="{{ old('maximum') }}" class="form-control" placeholder="Maximum investment amount">
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="type">Commission Interval ( <small class="text-muted">Days between each commission</small> ) <span class="text-danger">*</span></label>
-                        <input type="number" name="type" id="type" required value="{{ old('type') }}" class="form-control" placeholder="Commission interval">
+                        <input type="text" name="type" id="type" required value="{{ old('type') }}" class="form-control" placeholder="Commission interval">
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="times">Commission Times ( <small class="text-muted">Number of times commission is paid</small> ) <span class="text-danger">*</span></label>
-                        <input type="number" name="times" id="times" required value="{{ old('times') }}" class="form-control" placeholder="Commission times">
+                        <input type="text" name="times" id="times" required value="{{ old('times') }}" class="form-control" placeholder="Commission times">
                     </div>
                 </div>
                 

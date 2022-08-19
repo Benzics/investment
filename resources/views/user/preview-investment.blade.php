@@ -28,7 +28,7 @@ Amount
 @endif
 
 <div class="display-container">
-	<input type="number" name="amount" min="{{$investment->minimum}}" required placeholder="Enter Investment Amount" class="bold padding" 
+	<input type="text" name="amount" min="{{$investment->minimum}}" required placeholder="Enter Investment Amount" class="bold padding" 
     style="width: 100%; padding-left: 60px !important; padding-right: 80px !important; outline:none;" 
     @if($low_balance) disabled @endif>
 	<span class="padding border grey display-topleft" style="display: inline-block;">{{ $currency_sign ?? ''}}</span>

@@ -39,7 +39,7 @@
 		</div>
 		<div class="col-8 col-m-12">
 			<div class="display-container">
-				<input type="number" name="amount" value="{{ $amount }}" required class="bold padding" style="width: 100%; padding-right: 80px !important;" disabled>
+				<input type="text" name="amount" value="{{ $amount }}" required class="bold padding" style="width: 100%; padding-right: 80px !important;" disabled>
 				<span class="padding border grey display-topright" style="display: inline-block;">{{ $currency }}</span>
 			</div>
 		</div>
@@ -48,7 +48,7 @@
 		</div>
 		<div class="col-8 col-m-12">
 			<div class="display-container">
-				<input type="number" name="charges" value="{{ $charges }}" required class="bold padding" style="width: 100%; padding-right: 80px !important;" disabled>
+				<input type="text" name="charges" value="{{ $charges }}" required class="bold padding" style="width: 100%; padding-right: 80px !important;" disabled>
 				<span class="padding border grey display-topright" style="display: inline-block;">{{ $currency }}</span>
 			</div>
 		</div>
@@ -57,7 +57,7 @@
 		</div>
 		<div class="col-8 col-m-12">
 			<div class="display-container">
-				<input type="number" name="total" value="{{ $amount + $charges }}" required class="bold padding" style="width: 100%; padding-right: 80px !important;" disabled>
+				<input type="text" name="total" value="{{ $amount + $charges }}" required class="bold padding" style="width: 100%; padding-right: 80px !important;" disabled>
 				<span class="padding border grey display-topright" style="display: inline-block;">{{ $currency }}</span>
 			</div>
 		</div>
