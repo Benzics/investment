@@ -69,7 +69,7 @@ conveythis.init({source_language_id: 703, languages: [{"id":"703","active":true}
                 <h3>HELP & SUPPORT</h3>
                 <ul>
                     <li><a href="https://cointelegraph.com/bitcoin-for-beginners/what-are-cryptocurrencies" target="_blank">WHAT IS BITCOIN?</a></li>
-                    <li><a href="https://www.investopedia.com/tech/how-to-buy-bitcoin/" target="_blank">HOW TO BUY BITCOIN</a></li>
+                    <li><a href="https://coinmama.com/" target="_blank">HOW TO BUY BITCOIN</a></li>
                     <li><a href="{{url('/register')}}">REGISTER</a></li>
                     <li><a href="{{url('/login')}}">LOGIN</a></li>
 					<li><a href="{{url('/contact')}}">FORGOT PASSWORD</a></li>
