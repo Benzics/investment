@@ -24,7 +24,7 @@
                             <div class="col-xl-8 col-lg-10 text-center">
                                 <h1 data-swiper-animation="fadeInUp" data-duration="1s" data-delay="0.25s"><span class="text-stroke-white">Earn Profit</span> <span class="font-large">Without Compromising</span></h1>
                                 <h6 data-swiper-animation="fadeInUp" data-duration="1s" data-delay="0.5s">We support the growth of investment in promising innovations</h6>
-                                <a class="btn btn-dark btn-round text-white" data-swiper-animation="fadeInUp" data-duration="1s" data-delay="0.75s" href="about-us">Read More<i class="fas fa-arrow-right pl-3"></i></a>
+                                <a class="btn btn-dark btn-round text-white" data-swiper-animation="fadeInUp" data-duration="1s" data-delay="0.75s" href="/about">Read More<i class="fas fa-arrow-right pl-3"></i></a>
                             </div>
                         </div>
                     </div>

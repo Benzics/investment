@@ -140,7 +140,7 @@
                                     </li>
                                     <li class="nav-item"></li>
                                     <li class="nav-item">
-                                        <a href="{{url('/about')}}" class="nav-link" data-toggle="dropdown">ABOUT US</a>
+                                        <a href="{{url('/about')}}" class="nav-link">ABOUT US</a>
                                   
                                     </li>
                                   
@@ -156,12 +156,21 @@
                                     <li class="nav-item">
                                         <a href="{{url('/contact')}}" class="nav-link">CONTACT</a>
                                     </li>
-                                                                        <li class="nav-item">
+                                    @auth
+                                    <li class="nav-item">
+                                        <a href="{{url('/user/dashboard')}}" class="nav-link">DASHBOARD</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{url('/logout')}}" class="nav-link">LOGOUT</a>
+                                    </li>
+                                    @else
+                                     <li class="nav-item">
                                         <a href="{{url('/login')}}" class="nav-link">LOGIN</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{url('/register')}}" class="nav-link">SIGN UP</a>
                                     </li>
+                                    @endauth
                                                                     </ul>
                             </div>
                         </nav>
