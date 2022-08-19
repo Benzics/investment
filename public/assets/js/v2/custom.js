@@ -57,9 +57,9 @@ POTENZA.isSticky = function () {
   $(window).on('scroll',function(event) {
         var scroll = $(window).scrollTop();
         if (scroll < 300) {
-            $(".stick-top").removeClass("sticky-top");
+            $(".header").removeClass("sticky-top");
         }else{
-            $(".stick-top").addClass("sticky-top");
+            $(".header").addClass("sticky-top");
         }
     });
 };
@@ -71,13 +71,13 @@ POTENZA.secondarySticky = function () {
   $(window).on('scroll',function(event) {
         var scroll = $(window).scrollTop();
         if (scroll < 500) {
-            $(".header-inner-navv").removeClass("page-menu-top");
+            $(".header-inner-nav").removeClass("page-menu-top");
         }else{
-            $(".header-inner-navv").addClass("page-menu-top");
+            $(".header-inner-nav").addClass("page-menu-top");
         }
-        console.log($('div').hasClass('header-inner-navv'));
-        if( $('div').hasClass('header-inner-navv') ) {
-          var div_height = 90 + $('.header-inner-navv').height();
+        console.log($('div').hasClass('header-inner-nav'));
+        if( $('div').hasClass('header-inner-nav') ) {
+          var div_height = 90 + $('.header-inner-nav').height();
           $('.is-sticky').css('top',div_height);
         } else{
           $('.is-sticky').css('top','80px');
