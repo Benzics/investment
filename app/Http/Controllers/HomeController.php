@@ -8,8 +8,11 @@
  */
 namespace App\Http\Controllers;
 
+use App\Mail\ContactForm;
 use App\Services\UserInvestmentService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Throwable;
 
 class HomeController extends Controller
 {
@@ -59,8 +62,10 @@ class HomeController extends Controller
     public function contact()
     {
         $title = 'Contact';
+        $email = setting('support-mail');
+        $address = setting('address');
 
-        return view('contact' . $this->v, compact('title'));
+        return view('contact' . $this->v, compact('title', 'address', 'email'));
     }
 
     public function terms()
@@ -69,6 +74,34 @@ class HomeController extends Controller
         $site_name = ucwords(setting('site-name'));
 
         return view('terms' . $this->v, compact('title', 'site_name'));
+    }
+
+    public function message(Request $request)
+    {
+        $validate = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'text' => 'required',
+        ]);
+
+        $data = [
+            'name' => $validate['name'],
+            'email' => $validate['email'],
+            'text' => $validate['text']
+        ];
+
+        // send mail to admin
+        try
+        {
+            Mail::to(setting('admin-mail'))->send(new ContactForm($data));
+        }
+        catch(Throwable $e)
+        {
+            report($e);
+            return back()->withErrors(['email' => 'An internal server error occured, please try again later.']);
+        }
+
+        return redirect('/contact')->with('success', 'Message successfully sent');
     }
 
     

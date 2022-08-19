@@ -57,9 +57,9 @@ POTENZA.isSticky = function () {
   $(window).on('scroll',function(event) {
         var scroll = $(window).scrollTop();
         if (scroll < 300) {
-            $(".header").removeClass("sticky-top");
+            $(".stick-top").removeClass("sticky-top");
         }else{
-            $(".header").addClass("sticky-top");
+            $(".stick-top").addClass("sticky-top");
         }
     });
 };

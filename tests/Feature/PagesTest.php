@@ -71,6 +71,19 @@ class PagesTest extends TestCase
         $response->assertOk();
     }
 
+    public function test_contact_page_feature()
+    {
+        $data = [
+            'name' => 'Test',
+            'email' => 'test@site.com',
+            'text' => 'Hello world',
+        ];
+
+        $response = $this->post('/contact', $data);
+
+        $response->assertValid()->assertSessionHas('success');
+    }
+
     public function test_terms_page()
     {
         $response = $this->get('/terms');

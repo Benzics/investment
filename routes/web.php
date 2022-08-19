@@ -42,6 +42,7 @@ Route::get('/about', [HomeController::class, 'about']);
 Route::get('/terms', [HomeController::class, 'terms']);
 Route::get('/faqs', [HomeController::class, 'faq']);
 Route::get('/contact', [HomeController::class, 'contact']);
+Route::post('/contact', [HomeController::class, 'message']);
 Route::get('/affiliate', [HomeController::class, 'affiliate']);
 Route::get('/register', [RegistrationController::class, 'index'])->name('register');
 Route::post('/register', [RegistrationController::class, 'store']);

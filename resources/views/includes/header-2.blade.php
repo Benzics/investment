@@ -28,6 +28,23 @@
         <!-- Template Style -->
         <link rel="stylesheet" href="{{ asset('/assets/css/v2/style.css') }}" />
         <link rel="stylesheet" href="{{ asset('/assets/css/v2/fake-notification.css') }}" />
+        <style>
+            .stick-top.sticky-top {
+            background: #0a463b !important;
+            }
+            .stick-top.sticky-top {
+            position: fixed;
+            width: 100%;
+            background: #ffffff;
+            -webkit-box-shadow: 2px 2px 4px 0px rgba(2, 45, 98, 0.1);
+            box-shadow: 2px 2px 4px 0px rgba(2, 45, 98, 0.1);
+            -webkit-transition: 0.5s ease-in-out;
+            transition: 0.5s ease-in-out;
+            z-index: 999;
+            -webkit-animation: stickySlideDown 0.65s cubic-bezier(0.23, 1, 0.32, 1) both;
+            animation: stickySlideDown 0.65s cubic-bezier(0.23, 1, 0.32, 1) both;
+            }
+        </style>
     </head>
     <body>
         <!--=================================
@@ -109,6 +126,7 @@
                     </div>
                 </div>
             </div>
+            <div class="stick-top">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
@@ -149,4 +167,5 @@
                     </div>
                 </div>
             </div>
+        </div>
         </header>
