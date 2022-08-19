@@ -40,13 +40,13 @@
         <h4>Open An Account</h4>
         <span class="decor_default"></span>
     </div>
-    <p>To make your first deposit and start earning, you have to be registered user on the website of Block Chest Capitals. You should have personal account using which you will be able to make an investment in the cryptocurrency markets, get daily profits on an ongoing basis and withdraw then as well as use affiliate link and agent's tools to increase your income. Registration process is quite simple and fast enough. Just specify your personal details and Bitcoin address. It's free and doesn't require any email confirmation or some your documents.</p>
+    <p>To make your first deposit and start earning, you have to be registered user on the website of Tradier Brokerage. You should have personal account using which you will be able to make an investment in the cryptocurrency markets, get daily profits on an ongoing basis and withdraw then as well as use affiliate link and agent's tools to increase your income. Registration process is quite simple and fast enough. Just specify your personal details and Bitcoin address. It's free and doesn't require any email confirmation or some your documents.</p>
     
     <div class="title_container">
         <h4>Deposit Funds</h4>
         <span class="decor_default"></span>
     </div>
-    <p>To make a deposit, sign in Monizone Trading Limited, go to the "Make Deposit" section, Select an investment plan, which is interesting for you, and click "Make Deposit", confirm it and you'll be redirected to the payment system website. After you logged in and effected a transaction, please, click "Return To Merchant" and you'll return to our company's website again. Your deposit will be credited to the investment plan, which you've chosen.</p>
+    <p>To make a deposit, sign in Tradier Brokerage, go to the "Make Deposit" section, Select an investment plan, which is interesting for you, and click "Make Deposit", confirm it and you'll be redirected to the payment system website. After you logged in and effected a transaction, please, click "Return To Merchant" and you'll return to our company's website again. Your deposit will be credited to the investment plan, which you've chosen.</p>
     
     <div class="title_container">
         <h4>Wait for Confirmation/Approval</h4>

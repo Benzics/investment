@@ -39,7 +39,7 @@
             <div class="accordion-section">
                 <a class="accordion-section-title" href="#accordion-3">WHEN DO I START TO EARN?</a>
                 <div id="accordion-3" class="accordion-section-content padding">
-                    <p>Your wallet will be created by a mining expert and it will be connected to blockchestcapitals mining network, a mail will be sent to you from�www.blockchain.com�containing your wallet information ( wallet ID) and a� pseudorandomly generated system password will be sent to you accordingly.</p>
+                    <p>Your wallet will be created by a mining expert and it will be connected to tradierbrokerage mining network, a mail will be sent to you from�www.blockchain.com�containing your wallet information ( wallet ID) and a� pseudorandomly generated system password will be sent to you accordingly.</p>
                 </div>
             </div>
              
@@ -57,7 +57,7 @@
     
     4.� After you must have� changed your password and also completed the security setup.
     
-    5. Go to�www.blockchestcapitals.com�to sign up, use the same email address you provided, because the email is already connected to blockchestcapitals mining network through�blockchain.com. Once you have completed your sign up process;
+    5. Go to www.tradierbrokerage.com to sign up, use the same email address you provided, because the email is already connected to tradierbrokerage mining network through�blockchain.com. Once you have completed your sign up process;
     
     6. You can now go and fund your wallet with the required amount of Bitcoin plan that you must have chosen.</p>
                 </div>
