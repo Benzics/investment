@@ -31,11 +31,14 @@ class SettingTest extends TestCase
             'currency' => '1',
             'minimum-withdrawal' => '1',
             'maximum-withdrawal' => '1000',
-            'withdrawal-charges' => '{"type" : 0, "amount" : "0"}',
+            'withdrawal-charge' => '0',
+            'withdrawal-charge-type' => '0',
             'withdrawal-time' => '1',
-            'deposit-charges' => '{"type" : 0, "amount" : "0"}',
+            'deposit-charge' => '0',
+            'deposit-charge-type' => '0',
             'admin-mail' => 'test@site.com',
             'support-mail' => 'mail@site.com',
+            'referral-bonus' => 0,
 
         ];
 

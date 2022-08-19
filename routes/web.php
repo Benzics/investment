@@ -121,6 +121,7 @@ Route::middleware(['auth', 'isadmin'])->name('admin.')->prefix('admin')->group(f
     Route::get('/withdrawals/approve/{id}', [AdminWithdrawalController::class, 'approve'])->where('id', '[0-9]+');
     Route::get('/withdrawals/decline/{id}', [AdminWithdrawalController::class, 'decline'])->where('id', '[0-9]+');
     Route::get('/settings', [SettingController::class, 'index']);
+    Route::post('/settings', [SettingController::class, 'store']);
 
     Route::resources([
         '/users' => UserController::class,
