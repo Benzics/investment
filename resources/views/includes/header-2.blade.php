@@ -95,7 +95,7 @@
                         <div class="col-12">
                             <div class="d-sm-flex">
                                 <a class="navbar-brand" href="{{url('/')}}">
-                                    <img class="img-fluid" src="{{ asset(setting('site-logo-1')) }}" alt="logo" />
+                                    <img src="{{ asset('/assets/images/bitcoin-15.png') }}" title="" style="width: 52px;"/>
                                 </a>
                                 <div id="ytWidget"></div>
                                 <script src="https://translate.yandex.net/website-widget/v1/widget.js?widgetId=ytWidget&pageLang=en&widgetTheme=light&autoMode=false" type="text/javascript"></script>
