@@ -34,7 +34,7 @@
     <p>A Bitcoin address is an identifier of 26-35 alphanumeric characters, beginning with the number 1 or 3, that represents a possible destination for a Bitcoin payment.</p>
     
     <div class="margintb v_info">
-        <p>There is address formats in common use: <span class="text-default">34Trac7fn9snS98FaOiscN46biBtkt56w</span></p>
+        <p>There is address formats in common use: <span class="text-default">1NxJbjXWMdtabcmLvp56fKJwC3VnfmioXp</span></p>
     </div>
     <div class="title_container">
         <h4>Open An Account</h4>
