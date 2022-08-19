@@ -22,7 +22,7 @@
      <h3 style="text-align: justify;">&nbsp;</h3>
      <h3 style="text-align: center;">{{ $site_name }} is a Limited Liability company</h3>
      <h3 style="text-align: center;">{{ $site_name }} INVESTMENT NETWORK</h3>
-     <h3 style="text-align: justify;">&nbsp;</h3>
+     <h3 style="text-align: justify;">&nbsp;<img src="{{ setting('site-logo-3') }}" alt="" style="width: 100%"></h3>
      <h3 style="text-align: justify;">&nbsp;</h3>
      <h3 style="text-align: justify;">This is a mining platform or pool where you invest your money in Bitcoin and your Bitcoin investment undergoes a regular mining operation 24hrs/day making it possible for you to increase your financial capacity.&nbsp;</h3>
      <h3 style="text-align: justify;">This platform helps you to stay financially relevant, it gives you a financial freedom and also, it helps you to secure a financial future.&nbsp;</h3>
