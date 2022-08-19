@@ -39,6 +39,8 @@ class SettingTest extends TestCase
             'admin-mail' => 'test@site.com',
             'support-mail' => 'mail@site.com',
             'referral-bonus' => 0,
+            'address' => 'xxx',
+            'phone' => 'xxx',
 
         ];
 

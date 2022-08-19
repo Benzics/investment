@@ -32,6 +32,8 @@ class SettingController extends Controller
             'site-logo-2',
             'site-logo-3',
             'currency',
+            'address',
+            'phone',
         ];
     }
 
@@ -62,8 +64,8 @@ class SettingController extends Controller
         
         // unset fields we won't be needing in the validation
 
-        $unset_items = ['site-logo-1', 'site-logo-2', 'site-logo-3', 'withdrawal-charges', 
-        'deposit-charges', 'deposit-notification', 'withdrawal-notification', 'investment-notification'];
+        $unset_items = ['site-logo-1', 'site-logo-2', 'site-logo-3', 'withdrawal-charges',
+        'deposit-charges', 'deposit-notification', 'withdrawal-notification', 'investment-notification',];
 
         for($i = 0; $i < count($unset_items); $i++)
         {
@@ -72,7 +74,7 @@ class SettingController extends Controller
             unset($new_set[$returned_key]);
         }
 
-        // add extra validation fiels
+        // add extra validation fields
         $new_set[] = 'withdrawal-charge';
         $new_set[] = 'deposit-charge';
 

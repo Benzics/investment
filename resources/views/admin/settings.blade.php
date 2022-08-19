@@ -43,6 +43,18 @@
                        </select>
                     </div>
                 </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="address">Contact Address <span class="text-danger">*</span> <i class="fas fa-question-circle" data-toggle="tooltip" title="Usually displayed on the site footer."></i></label>
+                        <textarea name="address" required id="address" placeholder="Site contact address" class="form-control">{{$settings['address']}}</textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="phone">Contact Phone Number <span class="text-danger">*</span> <i class="fas fa-question-circle" data-toggle="tooltip" title="Usually displayed on the site footer."></i></label>
+                        <textarea name="phone" required id="phone" placeholder="Site contact phone" class="form-control">{{$settings['phone']}}</textarea>
+                    </div>
+                </div>
             </div>
             <fieldset>
                 <legend>Withdrawal Charges <i class="fas fa-question-circle" data-toggle="tooltip" title="Amount to charge users making withdrawals, set to zero(0) if you dont want charges."></i></legend>

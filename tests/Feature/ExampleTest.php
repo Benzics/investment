@@ -2,11 +2,18 @@
 
 namespace Tests\Feature;
 
-// use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
+    use RefreshDatabase;
+    
+    public function setUp(): void 
+    {
+        parent::setUp();
+        $this->artisan('db:seed');
+    }
     /**
      * A basic test example.
      *

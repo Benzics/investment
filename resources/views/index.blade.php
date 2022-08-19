@@ -163,143 +163,50 @@
             <h1 class="tlt text-white">AFFORDABLE <span class="text-default">PACKAGES</span></h1>
             <p class="sub_tlt">CHOOSE YOUR PREFERABLE PLAN FOR INVESTMENT.</p>
             <div class="row">
-                                <div class="col-3 col-m-12">
-                    <div class="pricing_header default">
-                        <h3 class="bold">MINDFUL</h3>
-                        <h6 class="bold">9.5% AFTER 180 DAYS</h6>
-                    </div>
-                    <div class="pricing_body">
-                        <ul>
-                            <li>DAILY RETURN</li>
-                            <li>INSTANT WITHDRAWAL</li>
-                            <li>9.5% ROI EACH TIME</li>
-                        </ul>
-                        <div class="row pricing_info">
-                            <div class="col-6 col-m-6 col-sm-6" style="padding:10px 0 0 0">
-                                MINIMUM<br>$ 1000						</div>
-                            <div class="col-6 col-m-6 col-sm-6 v2" style="padding: 10px 0 0 0">
-                                MAXIMUM<br>$ 15000						</div>
-                            <div class="col-12 v3" style="padding: 0">
-                                <input type="text" value="$ 8000" id="range_1">
-                            </div>
-                            <div class="col-12" style="padding: 0">
-                                <input type="text" class="range_47" data-id="range_1" data-times="180" data-cent="9.5%" data-per="range1_per" data-total="range1_total" value="8000" data-prefix="$ " data-type="single" data-min="1000" data-max="15000" data-from="8000"/>
-                            </div>
-                            <div class="col-6 col-m-6 col-sm-6" style="padding:10px 0 0 0">
-                                PER TIME<br><span id="range1_per">$ 760</span>
-                            </div>
-                            <div class="col-6 col-m-6 col-sm-6 v2" style="padding:10px 0 0 0">
-                                TOTAL RETURN<br><span id="range1_total">$ 136800</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pricing_footer">
-                        <a href="assets/register" class="btn default round-xxlarge">SIGN UP</a>
-                    </div>
-                </div>
-                                <div class="col-3 col-m-12">
-                    <div class="pricing_header default">
-                        <h3 class="bold">CONSERVATIVE </h3>
-                        <h6 class="bold">10.5% AFTER 365 DAYS</h6>
-                    </div>
-                    <div class="pricing_body">
-                        <ul>
-                            <li>DAILY RETURN</li>
-                            <li>INSTANT WITHDRAWAL</li>
-                            <li>10.5% ROI EACH TIME</li>
-                        </ul>
-                        <div class="row pricing_info">
-                            <div class="col-6 col-m-6 col-sm-6" style="padding:10px 0 0 0">
-                                MINIMUM<br>$ 16000						</div>
-                            <div class="col-6 col-m-6 col-sm-6 v2" style="padding: 10px 0 0 0">
-                                MAXIMUM<br>$ 99000						</div>
-                            <div class="col-12 v3" style="padding: 0">
-                                <input type="text" value="$ 57500" id="range_2">
-                            </div>
-                            <div class="col-12" style="padding: 0">
-                                <input type="text" class="range_47" data-id="range_2" data-times="365" data-cent="10.5%" data-per="range2_per" data-total="range2_total" value="57500" data-prefix="$ " data-type="single" data-min="16000" data-max="99000" data-from="57500"/>
-                            </div>
-                            <div class="col-6 col-m-6 col-sm-6" style="padding:10px 0 0 0">
-                                PER TIME<br><span id="range2_per">$ 6037.5</span>
-                            </div>
-                            <div class="col-6 col-m-6 col-sm-6 v2" style="padding:10px 0 0 0">
-                                TOTAL RETURN<br><span id="range2_total">$ 2203687.5</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pricing_footer">
-                        <a href="assets/register" class="btn default round-xxlarge">SIGN UP</a>
-                    </div>
-                </div>
+                @foreach($investments as $row)
                 <div class="col-3 col-m-12">
                     <div class="pricing_header default">
-                        <h3 class="bold">BALANCED </h3>
-                        <h6 class="bold">12.5% AFTER 1095 DAYS</h6>
+                        <h3 class="bold">{{ $row->name }}</h3>
+                        <h6 class="bold">{{ $row->commission }}{{$row->commission_type == 1 ? currency_short() : '%'}} AFTER {{$row->times}} DAYS</h6>
                     </div>
                     <div class="pricing_body">
                         <ul>
-                            <li>DAILY RETURN</li>
+                            <li>{{ strtoupper(investment_days($row->type)) }} RETURN</li>
                             <li>INSTANT WITHDRAWAL</li>
-                            <li>12.5% ROI EACH TIME</li>
+                            <li>{{ $row->commission }}{{$row->commission_type == 1 ? currency_short() : '%'}} ROI EACH TIME</li>
                         </ul>
                         <div class="row pricing_info">
                             <div class="col-6 col-m-6 col-sm-6" style="padding:10px 0 0 0">
-                                MINIMUM<br>$ 100000						</div>
+                                MINIMUM<br>{{currency_symbol() . num_format($row->minimum)}}
+                            </div>
                             <div class="col-6 col-m-6 col-sm-6 v2" style="padding: 10px 0 0 0">
-                                MAXIMUM<br>$ 5000000						</div>
+                                MAXIMUM<br>{{currency_symbol() . num_format($row->maximum)}}					</div>
                             <div class="col-12 v3" style="padding: 0">
-                                <input type="text" value="$ 2550000" id="range_3">
+                                <input type="text" value="$ {{$row->minimum}}" id="range_{{$row->id}}">
                             </div>
                             <div class="col-12" style="padding: 0">
-                                <input type="text" class="range_47" data-id="range_3" data-times="1095" data-cent="12.5%" data-per="range3_per" data-total="range3_total" value="2550000" data-prefix="$ " data-type="single" data-min="100000" data-max="5000000" data-from="2550000"/>
+                                <input type="text" class="range_47" data-id="range_{{$row->id}}" data-times="{{$row->times}}" data-cent="{{$row->commission}}%"
+                                 data-per="range{{$row->id}}_per" data-total="range{{$row->id}}_total" value="{{$row->minimum}}"
+                                 data-prefix="{{currency_symbol()}} " data-type="single" data-min="{{$row->minimum}}" data-max="{{$row->maximum}}" data-from="{{$row->minimum}}"/>
                             </div>
-                            <div class="col-6 col-m-6 col-sm-6" style="padding:10px 0 0 0">
-                                PER TIME<br><span id="range3_per">$ 318750</span>
-                            </div>
-                            <div class="col-6 col-m-6 col-sm-6 v2" style="padding:10px 0 0 0">
-                                TOTAL RETURN<br><span id="range3_total">$ 349031250</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pricing_footer">
-                        <a href="assets/register" class="btn default round-xxlarge">SIGN UP</a>
-                    </div>
-                </div>
+                            @php
+                            $per_time = ($row->commission_type == 1) ? $row->commission : ($row->commission / 100) * $row->minimum;
+                            $total_return = $per_time * $row->times;
 
-				      <div class="col-3 col-m-12">
-                    <div class="pricing_header default">
-                        <h3 class="bold">BALANCED </h3>
-                        <h6 class="bold">12.5% AFTER 1095 DAYS</h6>
-                    </div>
-                    <div class="pricing_body">
-                        <ul>
-                            <li>DAILY RETURN</li>
-                            <li>INSTANT WITHDRAWAL</li>
-                            <li>12.5% ROI EACH TIME</li>
-                        </ul>
-                        <div class="row pricing_info">
+                            @endphp
                             <div class="col-6 col-m-6 col-sm-6" style="padding:10px 0 0 0">
-                                MINIMUM<br>$ 100000						</div>
-                            <div class="col-6 col-m-6 col-sm-6 v2" style="padding: 10px 0 0 0">
-                                MAXIMUM<br>$ 5000000						</div>
-                            <div class="col-12 v3" style="padding: 0">
-                                <input type="text" value="$ 2550000" id="range_3">
-                            </div>
-                            <div class="col-12" style="padding: 0">
-                                <input type="text" class="range_47" data-id="range_3" data-times="1095" data-cent="12.5%" data-per="range3_per" data-total="range3_total" value="2550000" data-prefix="$ " data-type="single" data-min="100000" data-max="5000000" data-from="2550000"/>
-                            </div>
-                            <div class="col-6 col-m-6 col-sm-6" style="padding:10px 0 0 0">
-                                PER TIME<br><span id="range3_per">$ 318750</span>
+                                PER TIME<br><span id="range{{$row->id}}_per">$ {{ $per_time }}</span>
                             </div>
                             <div class="col-6 col-m-6 col-sm-6 v2" style="padding:10px 0 0 0">
-                                TOTAL RETURN<br><span id="range3_total">$ 349031250</span>
+                                TOTAL RETURN<br><span id="range{{$row->id}}_total">$ {{ $total_return }}</span>
                             </div>
                         </div>
                     </div>
                     <div class="pricing_footer">
-                        <a href="assets/register" class="btn default round-xxlarge">SIGN UP</a>
+                        <a href="/register" class="btn default round-xxlarge">SIGN UP</a>
                     </div>
                 </div>
+                @endforeach
                     
             </div>
         </div>
