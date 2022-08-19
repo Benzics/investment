@@ -225,7 +225,7 @@
 				</ul>
 			</li>
 			<li><a href="{{ url('/contact') }}">CONTACT US</a></li>
-			<li><a href="{{ url('/affiliate_program') }}">AFFILIATE</a></li>
+			<li><a href="{{ url('/affiliate') }}">AFFILIATE</a></li>
 		</ul>
 	</div>
 </nav>

@@ -49,6 +49,9 @@
                     <li class="{{(isset($page_title) && $page_title == 'Settings' ? 'active' : '')}}">
                         <a href="{{ url('/admin/settings') }}"> Site Settings</a>
                     </li>
+                    <li>
+                        <a href="{{ url('/logout') }}">Logout</a>
+                    </li>
                 </ul>
             </nav>
         </div>

@@ -44,7 +44,16 @@ class HomeController extends Controller
     {
         $title = 'FAQ';
 
-        return view('faq' . $this->v, compact('title'));
+        $site_name = ucwords(setting('site-name'));
+        return view('faq' . $this->v, compact('title', 'site_name'));
+    }
+
+    public function affiliate()
+    {
+        $title = 'Affiliate';
+
+        $site_name = ucwords(setting('site-name'));
+        return view('affiliate' . $this->v, compact('title', 'site_name'));
     }
 
     public function contact()
