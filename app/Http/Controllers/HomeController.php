@@ -23,7 +23,7 @@ class HomeController extends Controller
     
     public function __construct()
     {
-        $this->v = env('SITE_VERSION');
+        $this->v = config('site.version');
     }
     public function index()
     {

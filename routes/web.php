@@ -58,7 +58,7 @@ Route::get('/admin/login', [AdminLoginController::class, 'index']);
 Route::post('/admin/login', [AdminLoginController::class, 'authenticate']);
 
 Route::get('/email/verify', function () {
-    return view('auth.verify-email', ['title' => 'Verify Email']);
+    return view('auth.verify-email' . config('site.version'), ['title' => 'Verify Email']);
 })->middleware('auth')->name('verification.notice');
 ;
  
