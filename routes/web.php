@@ -15,6 +15,7 @@ use App\Http\Controllers\admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\admin\DepositController as AdminDepositController;
 use App\Http\Controllers\admin\InvestmentController as AdminInvestmentController;
 use App\Http\Controllers\admin\PaymentController;
+use App\Http\Controllers\admin\SettingController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\WithdrawalController as AdminWithdrawalController;
 use App\Http\Controllers\user\ProfileController;
@@ -119,6 +120,7 @@ Route::middleware(['auth', 'isadmin'])->name('admin.')->prefix('admin')->group(f
     Route::get('/withdrawals', [AdminWithdrawalController::class, 'index']);
     Route::get('/withdrawals/approve/{id}', [AdminWithdrawalController::class, 'approve'])->where('id', '[0-9]+');
     Route::get('/withdrawals/decline/{id}', [AdminWithdrawalController::class, 'decline'])->where('id', '[0-9]+');
+    Route::get('/settings', [SettingController::class, 'index']);
 
     Route::resources([
         '/users' => UserController::class,

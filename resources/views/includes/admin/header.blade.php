@@ -46,7 +46,7 @@
                     <li class="{{(isset($page_title) && $page_title == 'Payment Settings' ? 'active' : '')}}">
                         <a href="{{ url('/admin/payment-settings') }}"> Payment Settings</a>
                     </li>
-                    <li>
+                    <li class="{{(isset($page_title) && $page_title == 'Settings' ? 'active' : '')}}">
                         <a href="{{ url('/admin/settings') }}"> Site Settings</a>
                     </li>
                 </ul>
