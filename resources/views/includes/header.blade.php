@@ -175,7 +175,7 @@
 		<div class="bodycontainer">
 			<button class="btn round default right menu"><i class="fa fa-align-right"></i></button>
 			<a href="{{ url('/') }}">
-				<img src="{{ asset(setting('site-logo-1')) }}" title="Global Options FX Trade"/>
+				<img src="{{ asset('/assets/images/bitcoin-15.png') }}" title="" style="width: 52px;"/>
 			</a>
 		</div>
 	</li>
