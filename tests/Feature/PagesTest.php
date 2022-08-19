@@ -56,5 +56,33 @@ class PagesTest extends TestCase
         $response->assertOk();
     }
 
+    
+    public function test_about_page()
+    {
+        $response = $this->get('/about');
+
+        $response->assertOk();
+    }
+
+    public function test_contact_page()
+    {
+        $response = $this->get('/contact');
+
+        $response->assertOk();
+    }
+
+    public function test_terms_page()
+    {
+        $response = $this->get('/terms');
+
+        $response->assertOk();
+    }
+
+    public function test_faq_page()
+    {
+        $response = $this->get('/faqs');
+
+        $response->assertOk();
+    }
 
 }

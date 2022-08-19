@@ -31,4 +31,35 @@ class HomeController extends Controller
 
         return view('index' . $this->v, compact('title', 'investments'));
     }
+
+    public function about()
+    {
+        $title = 'About';
+        $site_name = ucwords(setting('site-name'));
+
+        return view('about' . $this->v, compact('title', 'site_name'));
+    }
+
+    public function faq()
+    {
+        $title = 'FAQ';
+
+        return view('faq' . $this->v, compact('title'));
+    }
+
+    public function contact()
+    {
+        $title = 'Contact';
+
+        return view('contact' . $this->v, compact('title'));
+    }
+
+    public function terms()
+    {
+        $title = 'Terms';
+
+        return view('terms' . $this->v, compact('title'));
+    }
+
+    
 }
