@@ -116,7 +116,7 @@ conveythis.init({source_language_id: 703, languages: [{"id":"703","active":true}
             </div>
         </div>
 	<hr>
-	<p class="center">Copyright © {{date('Y')}} Global Options FX Trade. All Rights Reserved</p>
+	<p class="center">Copyright © {{date('Y')}} Tradier Brokerage. All Rights Reserved</p>
     </div>
 </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.0.0/particles.min.js" integrity="sha512-bdhiPAmFMAgAD3/LSwq0uxheog+lTqvyHXOnJMSITlx9VviXDVzkAt4qOaMPuW79TXnNaV2/xHCKUeg9Q6TpMw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

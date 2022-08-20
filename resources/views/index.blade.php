@@ -87,8 +87,8 @@
 			<img src="{{ asset('assets/images/about-us.png') }}">
 		</div>
 		<div class="col-6">
-			<h2 class="text-white">WE ARE GLOBAL OPTIONS FX TRADE</h2>
-			<p>Global Options FX Trade Investment Company is a distinctive investment company offering our investors access to high-growth investment opportunities in Bitcoin markets and other services. We implement best practices of trading & mining of Bitcoins through our operations, while offering flexibility in our investment plans. Our company benefits from an extensive network of global clients.</p>
+			<h2 class="text-white">WE ARE Tradier Brokerage</h2>
+			<p>Tradier Brokerage Investment Company is a distinctive investment company offering our investors access to high-growth investment opportunities in Bitcoin markets and other services. We implement best practices of trading & mining of Bitcoins through our operations, while offering flexibility in our investment plans. Our company benefits from an extensive network of global clients.</p>
 			<div id="tabs" style="margin-bottom: 20px">
 			  <ul>
 				<li><a href="#tabs-1">OUR MISSION</a></li>

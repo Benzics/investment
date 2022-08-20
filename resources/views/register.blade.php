@@ -81,7 +81,7 @@
                 <input type="password" placeholder="Confirm Password" required name="password_confirmation" style="width:100%" class="round">
             </div>
    
-            <div class="col-12 col-m-12 col-sm-12"><input type="checkbox" name="agree" required checked> I agree to Global Options FX Trade <a href="/info/terms" target="_blank">Terms and conditions</a>
+            <div class="col-12 col-m-12 col-sm-12"><input type="checkbox" name="agree" required checked> I agree to Tradier Brokerage <a href="/info/terms" target="_blank">Terms and conditions</a>
             </div>
           
             <div class="col-12 col-m-12 col-sm-12">
