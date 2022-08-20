@@ -38,7 +38,7 @@ class DepositController extends Controller
 
     public function store(Request $request, Wallet $wallet)
     {
-        Gate::authorize('fund', $wallet);
+        // Gate::authorize('fund', $wallet);
 
         $validate = $request->validate([
             'email' => 'required|email',
