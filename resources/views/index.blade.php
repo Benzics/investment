@@ -154,7 +154,7 @@
     </div>
     </div>
     </div>
-    <script src="{{ asset('assets/js/jquery-modal-video.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery-modal-video.min.js?v=2.4.6') }}"></script>
     <link rel="stylesheet" href="{{ asset('assets/css/modal-video.min.css') }}">
     <script>
         $(".js-video-button").modalVideo();
