@@ -25,6 +25,7 @@ use App\Http\Controllers\user\TestimonyController;
 use App\Http\Controllers\user\TransactionController;
 use App\Http\Controllers\user\WithdrawalController;
 use App\Services\UserService;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +50,9 @@ Route::post('/register', [RegistrationController::class, 'store']);
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::get('/logout', [LoginController::class, 'logout']);
+Route::get('/linkstorage', function () {
+    Artisan::call('storage:link');
+});
 Route::get('/get-started', function(){
     return view('get-started', ['title' => 'Get Started']);
 });
