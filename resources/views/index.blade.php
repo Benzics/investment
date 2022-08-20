@@ -148,8 +148,8 @@
             </div>
         </div>
         <div class="col-4 video-lightbox">
-			<video src="https://www.youtube.com/watch?v=dnUX4hSLUDw"></video>
-            {{-- <a href="#" class="play circle js-video-button" data-video-id="dnUX4hSLUDw"><i class="fa fa-play"></i></a>	 --}}
+			
+            <a href="#" class="play circle js-video-button" data-video-id="dnUX4hSLUDw"><i class="fa fa-play"></i></a>	
         </div>
     </div>
     </div>
