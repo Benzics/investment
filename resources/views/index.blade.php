@@ -87,7 +87,7 @@
 			<img src="{{ asset('assets/images/about-us.png') }}">
 		</div>
 		<div class="col-6">
-			<h2 class="text-white">WE ARE Tradier Brokerage</h2>
+			<h2 class="text-white">WE ARE TRADIER BROKERAGE</h2>
 			<p>Tradier Brokerage Investment Company is a distinctive investment company offering our investors access to high-growth investment opportunities in Bitcoin markets and other services. We implement best practices of trading & mining of Bitcoins through our operations, while offering flexibility in our investment plans. Our company benefits from an extensive network of global clients.</p>
 			<div id="tabs" style="margin-bottom: 20px">
 			  <ul>
@@ -105,7 +105,7 @@
 				<p>We are here because we are passionate about open, transparent markets and aim to be a major driving force in widespread adoption, we are one the bests in cryptocurrency investment.</p>
 			  </div>
 			</div>
-			<a href="info/about" class="btn default">READ MORE</a>
+			<a href="/about" class="btn default">READ MORE</a>
 		</div>
 	</div>
     </div>
