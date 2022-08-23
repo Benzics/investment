@@ -56,11 +56,11 @@ class InvestmentController extends Controller
     {
         $validate = $request->validate([
             'name' => 'required',
-            'commission' => 'required',
-            'minimum' => 'required',
-            'maximum' => 'required',
-            'type' => 'required',
-            'times' => 'required',
+            'commission' => 'required|numeric',
+            'minimum' => 'required|numeric',
+            'maximum' => 'required|numeric',
+            'type' => 'required|numeric',
+            'times' => 'required|numeric',
         ]);
 
         $data = [
@@ -124,11 +124,11 @@ class InvestmentController extends Controller
 
         $validate = $request->validate([
             'name' => 'required',
-            'commission' => 'required',
-            'minimum' => 'required',
-            'maximum' => 'required',
-            'type' => 'required',
-            'times' => 'required',
+            'commission' => 'required|numeric',
+            'minimum' => 'required|numeric',
+            'maximum' => 'required|numeric',
+            'type' => 'required|numeric',
+            'times' => 'required|numeric',
         ]);
 
         $data = [
