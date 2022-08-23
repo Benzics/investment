@@ -227,9 +227,15 @@ function num_format(float $number)
  * Formats date to a more user friendly date
  * @param $time
  */
-function friendly_date(string $time)
+function friendly_date($time)
 {
-    $date = new DateTime($time);
+    $date = new DateTime();
+
+    if($time !== null)
+    {
+        $date = new DateTime($time);
+        
+    }
 
     return $date->format('jS M Y');
 }
@@ -238,9 +244,15 @@ function friendly_date(string $time)
  * Formats time to a more user friendly time
  * @param $time
  */
-function friendly_time(string $time)
+function friendly_time($time)
 {
-    $date = new DateTime($time);
+    $date = new DateTime();
+
+    if($time !== null)
+    {
+        $date = new DateTime($time);
+        
+    }
 
     return $date->format('jS M Y - h:i:A');
 }
