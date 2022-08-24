@@ -8,9 +8,11 @@
  */
 namespace App\Http\Controllers\admin;
 
+use App\Events\WithdrawalApproved;
 use App\Http\Controllers\Controller;
 use App\Services\WithdrawalService;
 use Illuminate\Http\Request;
+use Throwable;
 
 class WithdrawalController extends Controller
 {
@@ -39,6 +41,15 @@ class WithdrawalController extends Controller
         }
 
         $this->service->approve($id);
+
+        try
+        {
+            event(new WithdrawalApproved($withdrawal));
+        }
+        catch (Throwable $e)
+        {
+            report($e);
+        }
 
         return redirect('/admin/withdrawals')->with('success', 'Withdrawal successfully marked as paid.');
     }

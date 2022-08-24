@@ -20,6 +20,8 @@ use App\Listeners\SendAdminWithdrawalNotification;
 use App\Events\DepositApproved;
 use App\Listeners\SendDepositApprovedNotification;
 use App\Listeners\SendWelcomeMessage;
+use App\Events\WithdrawalApproved;
+use App\Listeners\SendWithdrawalApprovedNotification;
 
 
 class EventServiceProvider extends ServiceProvider
@@ -49,6 +51,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         DepositApproved::class => [
             SendDepositApprovedNotification::class,
+        ],
+        WithdrawalApproved::class => [
+            SendWithdrawalApprovedNotification::class,
         ],
     ];
 
