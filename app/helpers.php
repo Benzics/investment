@@ -288,7 +288,7 @@ function investment_days(int $days) : string
  * @param int $user_id
  * @return string
  */
-function get_email(int $user_id) : string
+function get_email(int $user_id) : string|null
 {
     $user = User::where('id', $user_id)->select('email')->first();
 
