@@ -53,7 +53,7 @@ Route::get('/logout', [LoginController::class, 'logout']);
 Route::get('/linkstorage', function () {
     Artisan::call('storage:link');
 });
-Route::get('/get-started', function(){
+Route::get('/get-started', function () {
     return view('get-started', ['title' => 'Get Started']);
 });
 
@@ -63,31 +63,29 @@ Route::post('/admin/login', [AdminLoginController::class, 'authenticate']);
 
 Route::get('/email/verify', function () {
     return view('auth.verify-email' . config('site.version'), ['title' => 'Verify Email']);
-})->middleware('auth')->name('verification.notice');
-;
- 
+})->middleware('auth')->name('verification.notice');;
+
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
- 
+
     $user_service = new UserService();
     // check if user has a referrer and reward referrer
-    if($ref = $user_service->get_profile($request->user()->id)?->referrer != 0)
-    {
+    if ($ref = $user_service->get_profile($request->user()->id)?->referrer != 0) {
         $user_service->reward_referral($request->user()->id, $ref);
     }
     return redirect()->route('user.dashboard')->with('success', 'Your email has been verified.');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
- 
+
 Route::post('/email/verification-notification', function (Request $request) {
     $request->user()->sendEmailVerificationNotification();
- 
+
     return back()->with('message', 'Verification link sent! Please check your spam folder if you can\'t find message in your inbox.');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 
 // user routes
-Route::middleware(['auth', 'verified', 'investment.commission'])->name('user.')->prefix('user')->group(function(){
+Route::middleware(['auth', 'verified', 'investment.commission'])->name('user.')->prefix('user')->group(function () {
 
     Route::get('/', [DashboardController::class, 'index']);
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -113,15 +111,17 @@ Route::middleware(['auth', 'verified', 'investment.commission'])->name('user.')-
     Route::post('/image-upload', [ProfileController::class, 'photo']);
     Route::get('/change-password', [ProfileController::class, 'password']);
     Route::post('/change-password', [ProfileController::class, 'change_password']);
-    Route::get('/trade-view', [ProfileController::class, 'trade_view']); 
+    Route::get('/trade-view', [ProfileController::class, 'trade_view']);
 });
 
 // admin routes
-Route::middleware(['auth', 'isadmin'])->name('admin.')->prefix('admin')->group(function(){
+Route::middleware(['auth', 'isadmin'])->name('admin.')->prefix('admin')->group(function () {
 
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
     Route::get('/fund-wallet', [AdminDepositController::class, 'index'])->name('deposit');
     Route::post('/fund-wallet', [AdminDepositController::class, 'store']);
+    Route::get('/debit-wallet', [AdminDepositController::class, 'debit']);
+    Route::post('/debit-wallet', [AdminDepositController::class, 'debit_user']);
     Route::get('/deposits', [AdminDepositController::class, 'deposits'])->name('deposits');
     Route::get('/deposits/approve/{id}', [AdminDepositController::class, 'approve'])->where('id', '[0-9]+');
     Route::get('/deposits/decline/{id}', [AdminDepositController::class, 'decline'])->where('id', '[0-9]+');

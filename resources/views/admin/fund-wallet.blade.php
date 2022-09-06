@@ -23,7 +23,7 @@
                 <input type="text" required class="form-control" value="{{ old('amount') }}" name="amount" placeholder="Amount to add to wallet">
             </div>
             <div class="form-group">
-                <button class="btn btn-primary">Fund Wallet</button>
+                <button class="btn btn-primary">{{$page_title}}</button>
             </div>
         </form>
     </div>

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 
  * Investment script by Benzics
@@ -6,6 +7,7 @@
  * https://github.com/benzics
  * 
  */
+
 namespace App\Http\Controllers\admin;
 
 use App\Events\DepositApproved;
@@ -47,15 +49,14 @@ class DepositController extends Controller
 
         $user = User::where('email', $validate['email'])->first();
 
-        if(!$user)
-        {
+        if (!$user) {
             return back()
                 ->withInput()
                 ->withErrors(['email' => 'The supplied email address does not exist!']);
         }
 
         // get previous balance 
-        $balance = Wallet::where('user_id', $user->id)->latest()->first();
+        $balance = Wallet::where('user_id', $user->id)->latest('id')->first();
 
         $add_balance = ($balance) ? $balance->balance : 0;
         $credit = $validate['amount'];
@@ -71,21 +72,62 @@ class DepositController extends Controller
         return redirect('/admin/fund-wallet')->with(['success' => 'User wallet funded successfully']);
     }
 
+    public function debit()
+    {
+        $title = 'Debit Wallet';
+        $page_title = 'Debit Wallet';
+
+        return view('admin.fund-wallet', compact('title', 'page_title'));
+    }
+
+    public function debit_user(Request $request, Wallet $wallet)
+    {
+        // Gate::authorize('fund', $wallet);
+
+        $validate = $request->validate([
+            'email' => 'required|email',
+            'amount' => 'required|min:1|numeric',
+        ]);
+
+        $user = User::where('email', $validate['email'])->first();
+
+        if (!$user) {
+            return back()
+                ->withInput()
+                ->withErrors(['email' => 'The supplied email address does not exist!']);
+        }
+
+        // get previous balance 
+        $balance = Wallet::where('user_id', $user->id)->latest('id')->first();
+
+        $add_balance = ($balance) ? $balance->balance : 0;
+        $debit = $validate['amount'];
+
+        Wallet::create([
+            'user_id' => $user->id,
+            'debit' => $debit,
+            'type' => '6',
+            'description' => 'Wallet debit.',
+            'balance' => $add_balance - $debit
+        ]);
+
+        return redirect('/admin/debit-wallet')->with(['success' => 'User wallet debited successfully']);
+    }
+
     public function deposits()
     {
         $title = 'Deposits';
         $page_title = 'deposits';
         $deposits = $this->service->get_all_deposits();
 
-        
+
         return view('admin.deposits', compact('deposits', 'title', 'page_title'));
     }
 
     public function approve(int $id)
     {
         $deposit = $this->service->get_deposit($id);
-        if(!$deposit)
-        {
+        if (!$deposit) {
             return redirect()->route('admin.deposits')->with(['error' => 'Invalid deposit id']);
         }
 
@@ -110,15 +152,13 @@ class DepositController extends Controller
     {
 
         $deposit = $this->service->get_deposit($id);
-        if(!$deposit)
-        {
+        if (!$deposit) {
             return redirect()->route('admin.deposits')->with(['error' => 'Invalid deposit id']);
         }
 
         $this->service->decline_deposit($id);
 
         return redirect()->route('admin.deposits')->with('success', 'Deposit successfully declined.');
-
     }
 
     public function delete(Request $request)
@@ -129,8 +169,7 @@ class DepositController extends Controller
 
         $deposit = $this->service->get_deposit($id);
 
-        if(!$deposit)
-        {
+        if (!$deposit) {
             return redirect()->route('admin.deposits')->with(['error' => 'Invalid deposit id']);
         }
 
