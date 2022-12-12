@@ -20,7 +20,7 @@
             </div>
             <div class="form-group">
                 <label for="amount">Amount {{ currency_short() }} <span class="text-danger">*</span></label>
-                <input type="text" required class="form-control" value="{{ old('amount') }}" name="amount" placeholder="Amount to add to wallet">
+                <input type="text" required class="form-control" value="{{ old('amount') }}" name="amount" placeholder="Amount">
             </div>
             <div class="form-group">
                 <button class="btn btn-primary">{{$page_title}}</button>
