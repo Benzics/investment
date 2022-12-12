@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->float('commission');
             $table->integer('commission_type')->default('0');
-            $table->float('minimum');
-            $table->float('maximum');
+            $table->string('minimum');
+            $table->string('maximum');
             $table->integer('type')->default('1');
             $table->integer('times');
             $table->integer('status')->default('1');
