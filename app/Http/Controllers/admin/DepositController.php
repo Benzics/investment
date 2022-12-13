@@ -72,6 +72,49 @@ class DepositController extends Controller
         return redirect('/admin/fund-wallet')->with(['success' => 'User wallet funded successfully']);
     }
 
+
+    public function profit()
+    {
+        $title = 'Add Profit';
+        $page_title = 'Add Profit';
+
+        return view('admin.fund-wallet', compact('title', 'page_title'));
+    }
+
+    public function add_profit(Request $request, Wallet $wallet)
+    {
+        // Gate::authorize('fund', $wallet);
+
+        $validate = $request->validate([
+            'email' => 'required|email',
+            'amount' => 'required|min:1|numeric',
+        ]);
+
+        $user = User::where('email', $validate['email'])->first();
+
+        if (!$user) {
+            return back()
+                ->withInput()
+                ->withErrors(['email' => 'The supplied email address does not exist!']);
+        }
+
+        // get previous balance 
+        $balance = Wallet::where('user_id', $user->id)->latest('id')->first();
+
+        $add_balance = ($balance) ? $balance->balance : 0;
+        $credit = $validate['amount'];
+
+        Wallet::create([
+            'user_id' => $user->id,
+            'credit' => $credit,
+            'type' => '5',
+            'description' => 'Profit.',
+            'balance' => $add_balance + $credit
+        ]);
+
+        return redirect('/admin/add-profit')->with(['success' => 'Profit added to user wallet successfully']);
+    }
+
     public function debit()
     {
         $title = 'Debit Wallet';

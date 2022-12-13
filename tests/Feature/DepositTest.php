@@ -40,8 +40,24 @@ class DepositTest extends TestCase
 
         $response = $this->actingAs($this->user)->post('/admin/fund-wallet', $data);
         $response->assertValid()
+        ->assertSessionHas('success')
         ->assertRedirect('/admin/fund-wallet');
 
+    }
+
+    public function test_profit_add()
+    {
+        $data = [
+            'email' => 'admin@site.com',
+            'amount' => '20',
+        ];
+
+        
+
+        $response = $this->actingAs($this->user)->post('/admin/add-profit', $data);
+        $response->assertValid()
+        ->assertSessionHas('success')
+        ->assertRedirect('/admin/add-profit');
     }
 
     public function test_admin_deposit_approve()

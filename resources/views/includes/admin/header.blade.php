@@ -46,6 +46,9 @@
                     <li class="{{(isset($page_title) && $page_title == 'Debit Wallet' ? 'active' : '')}}">
                         <a href="{{ url('/admin/debit-wallet') }}"> Debit Wallet</a>
                     </li>
+                    <li class="{{(isset($page_title) && $page_title == 'Add Profit' ? 'active' : '')}}">
+                        <a href="{{ url('/admin/add-profit') }}"> Add Profit</a>
+                    </li>
                     <li class="{{(isset($page_title) && $page_title == 'Payment Settings' ? 'active' : '')}}">
                         <a href="{{ url('/admin/payment-settings') }}"> Payment Settings</a>
                     </li>

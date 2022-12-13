@@ -122,6 +122,8 @@ Route::middleware(['auth', 'isadmin'])->name('admin.')->prefix('admin')->group(f
     Route::post('/fund-wallet', [AdminDepositController::class, 'store']);
     Route::get('/debit-wallet', [AdminDepositController::class, 'debit']);
     Route::post('/debit-wallet', [AdminDepositController::class, 'debit_user']);
+    Route::get('/add-profit', [AdminDepositController::class, 'profit']);
+    Route::post('/add-profit', [AdminDepositController::class, 'add_profit']);
     Route::get('/deposits', [AdminDepositController::class, 'deposits'])->name('deposits');
     Route::get('/deposits/approve/{id}', [AdminDepositController::class, 'approve'])->where('id', '[0-9]+');
     Route::get('/deposits/decline/{id}', [AdminDepositController::class, 'decline'])->where('id', '[0-9]+');
