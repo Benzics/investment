@@ -19,4 +19,9 @@ class Deposit extends Model
         'total',
         'description',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

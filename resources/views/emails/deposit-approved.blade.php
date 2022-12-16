@@ -1,5 +1,5 @@
 @component('mail::message')
-# Your deposit has been approved.
+# Hello {{ $deposit->user->name }}.
 
 Congratulations,<br>
 Your deposit of <b>{{currency_symbol() . num_format($deposit->amount)}}</b> has been

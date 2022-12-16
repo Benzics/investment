@@ -87,8 +87,8 @@
 			<img src="/assets/images/exchange-icon-sw.png" class="ico-icon-w" alt="">
 		</i>
 		<div class="stats" style="padding: 0 20px;border-left: 1px solid #eeebeb;">
-			<h3 class="color-white mb-5">{{ $total_investments }}</h3>
-			<span>Total Investment(s)</span>
+			<h3 class="color-white mb-5">{{ $lastWithdrawal }}</h3>
+			<span>Last Withdrawal</span>
 		</div>
 	</div>
 </a>

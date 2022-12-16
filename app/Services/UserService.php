@@ -52,6 +52,13 @@ class UserService {
         return $withdrawals;
     }
 
+    public function getLastWithdrawal(int $user_id)
+    {
+        $withdrawals = Withdrawal::where('user_id', $user_id)->orderBy('id', 'DESC')->first();
+        $lastWithdrawal = ($withdrawals) ? $withdrawals->amount : 0;
+        return $lastWithdrawal;
+    }
+
     /**
      * Get the total investments of a user
      * @param $user_id
