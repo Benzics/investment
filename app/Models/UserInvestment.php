@@ -18,4 +18,9 @@ class UserInvestment extends Model
         'payout_times',
         'status',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

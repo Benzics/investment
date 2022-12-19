@@ -1,5 +1,5 @@
 @component('mail::message')
-# Your withdrawal has been approved.
+# Hello {{ ucwords($withdrawal->user->name) }}
 
 Congratulations,<br>
 Your withdrawal of <b>{{currency_symbol() . num_format($withdrawal->amount)}}</b> has been

@@ -1,5 +1,5 @@
 @component('mail::message')
-# Your deposit has been received successfully.
+# Hello {{ ucwords($deposit->user->name) }}.
 
 Your total deposit of <b>{{currency_symbol() . number_format($deposit->amount + $deposit->charges, 2)}}</b> has been received, and will be reviewed shortly.
 For the meantime, you can login and view your transaction history.
