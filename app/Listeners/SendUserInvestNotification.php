@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Mail;
 
-class SendUserInvestNotification
+class SendUserInvestNotification implements ShouldQueue
 {
     /**
      * Create the event listener.
