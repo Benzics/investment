@@ -54,7 +54,7 @@ class UserService {
 
     public function getLastWithdrawal(int $user_id)
     {
-        $withdrawals = Withdrawal::where('user_id', $user_id)->orderBy('id', 'DESC')->first();
+        $withdrawals = Withdrawal::where([['user_id', '=', $user_id], ['status', '=', '1']])->orderBy('id', 'DESC')->first();
         $lastWithdrawal = ($withdrawals) ? $withdrawals->amount : 0;
         return $lastWithdrawal;
     }
