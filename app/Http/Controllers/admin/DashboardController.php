@@ -15,6 +15,7 @@ use App\Models\Payment;
 use App\Models\Withdrawal;
 use App\Services\DepositService;
 use App\Services\UserService;
+use App\Services\WithdrawalService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -39,6 +40,7 @@ class DashboardController extends Controller
         $payment_methods = Payment::all();
 
         $depositService = new DepositService();
+        $withdrawService = new WithdrawalService();
 
         $hours_in =  Deposit::where([['status', '=', '1']])->whereDate('created_at', Carbon::now()->subHour())->sum('amount');
         $hours_out =  Withdrawal::where([['status', '=', '1']])->whereDate('created_at', Carbon::now()->subHour())->sum('amount');
@@ -67,18 +69,18 @@ class DashboardController extends Controller
         $deposit_november =  $depositService->dataMonth(11);
         $deposit_december =  $depositService->dataMonth(12);
 
-        $withdraw_january = 1000;
-        $withdraw_february = Withdrawal::where([['status', '=', '1']])->whereDate('created_at', Carbon::create()->month(2)->startOfYear())->sum('amount');
-        $withdraw_march =  Withdrawal::where([['status', '=', '1']])->whereDate('created_at', Carbon::create()->month(3)->startOfYear())->sum('amount');
-        $withdraw_april =  Withdrawal::where([['status', '=', '1']])->whereDate('created_at', Carbon::create()->month(4)->startOfYear())->sum('amount');
-        $withdraw_may =  Withdrawal::where([['status', '=', '1']])->whereDate('created_at', Carbon::create()->month(5)->startOfYear())->sum('amount');
-        $withdraw_june = Withdrawal::where([['status', '=', '1']])->whereDate('created_at', Carbon::create()->month(6)->startOfYear())->sum('amount');
-        $withdraw_july = Withdrawal::where([['status', '=', '1']])->whereDate('created_at', Carbon::create()->month(7)->startOfYear())->sum('amount');
-        $withdraw_august =  Withdrawal::where([['status', '=', '1']])->whereDate('created_at', Carbon::create()->month(8)->startOfYear())->sum('amount');
-        $withdraw_september =  Withdrawal::where([['status', '=', '1']])->whereDate('created_at', Carbon::create()->month(9)->startOfYear())->sum('amount');
-        $withdraw_october =  Withdrawal::where([['status', '=', '1']])->whereDate('created_at', Carbon::create()->month(10)->startOfYear())->sum('amount');
-        $withdraw_november =  Withdrawal::where([['status', '=', '1']])->whereDate('created_at', Carbon::create()->month(11)->startOfYear())->sum('amount');
-        $withdraw_december =  Withdrawal::where([['status', '=', '1']])->whereDate('created_at', Carbon::create()->month(12)->startOfYear())->sum('amount');
+        $withdraw_january = $withdrawService->dataMonth(1);
+        $withdraw_february = $withdrawService->dataMonth(2);
+        $withdraw_march =  $withdrawService->dataMonth(3);
+        $withdraw_april =  $withdrawService->dataMonth(4);
+        $withdraw_may =  $withdrawService->dataMonth(5);
+        $withdraw_june = $withdrawService->dataMonth(6);
+        $withdraw_july = $withdrawService->dataMonth(7);
+        $withdraw_august =  $withdrawService->dataMonth(8);
+        $withdraw_september =  $withdrawService->dataMonth(9);
+        $withdraw_october =  $withdrawService->dataMonth(10);
+        $withdraw_november =  $withdrawService->dataMonth(11);
+        $withdraw_december =  $withdrawService->dataMonth(12);
 
         $var_data = [
             ['month' => 'January', 'count' => $deposit_january],
