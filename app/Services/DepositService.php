@@ -84,6 +84,15 @@ class DepositService
 
 		return $deposit;
 	}
+
+	/**
+	 * Get total deposits for the provided month
+	 */
+	public function dataMonth(int $month)
+	{
+		$total = Deposit::where([['status', '=', '1']])->whereMonth('created_at', $month)->whereYear('created_at', date('Y'))->sum('amount');
+		return $total;
+	}
 }
 
 

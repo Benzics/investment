@@ -89,6 +89,14 @@ class WithdrawalService {
 		return $withdrawals;
 	}
 
+	/**
+	 * Get total withdrawals for the provided month
+	 */
+	public function dataMonth(int $month)
+	{
+		$total = Withdrawal::where([['status', '=', '1']])->whereMonth('created_at', $month)->whereYear('created_at', date('Y'))->sum('amount');
+		return $total;
+	}
 }
 
 

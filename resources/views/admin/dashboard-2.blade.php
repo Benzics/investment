@@ -184,33 +184,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.1/chart.umd.js" integrity="sha512-+Aecf3QQcWkkA8IUdym4PDvIP/ikcKdp4NCDF8PM6qr9FtqwIFCS3JAcm2+GmPMZvnlsrGv1qavSnxL8v+o86w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     var chart = document.getElementById('totalearning');
-    const data = [
-        { month: 'January', count: 10 },
-        { month: 'February', count: 20 },
-        { month: 'March', count: 15 },
-        { month: 'April', count: 25 },
-        { month: 'May', count: 22 },
-        { month: 'June', count: 30 },
-        { month: 'July', count: 28 },
-        { month: 'August', count: 11},
-        { month: 'October', count: 55},
-        { month: 'November', count: 44},
-        { month: 'December', count: 33}
-    ];
+    const data = {!! $var_data !!};
 
-    const out = [
-        { month: 'January', count: 43 },
-        { month: 'February', count: 14 },
-        { month: 'March', count: 6 },
-        { month: 'April', count: 3 },
-        { month: 'May', count: 33 },
-        { month: 'June', count: 40 },
-        { month: 'July', count: 18 },
-        { month: 'August', count: 16},
-        { month: 'October', count: 45},
-        { month: 'November', count: 34},
-        { month: 'December', count: 23}
-    ];
+    const out = {!! $withdrawal_data !!};
 
     new Chart(chart, {
         type: 'bar',
@@ -227,7 +203,7 @@
                 }
             ]
         }
-    })();
+    });
 
 </script>
 @include('includes.admin.footer')
