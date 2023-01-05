@@ -9,6 +9,10 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Deposit;
+use App\Models\Investment;
+use App\Models\Payment;
+use App\Models\Withdrawal;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 
@@ -17,16 +21,26 @@ class DashboardController extends Controller
     public function index()
     {
         $title = $page_title = 'Dashboard';
-        $user_service = new UserService();
-        $users = $user_service->get_users_count();
-        $deposits = $user_service->get_deposits_count();
-        $withdrawals = $user_service->get_withdrawals_count();
-        $investments = $user_service->get_investments_count();
-        $transactions = $user_service->get_transactions();
-        $total_deposit = num_format($user_service->total_deposits());
-        $total_investment = num_format($user_service->total_investments());
+        $userService = new UserService();
+        $users = $userService->get_users_count();
+        $active_users = $userService->activeUsers();
+        $inactive_users = $userService->inactiveUsers();
+        $deposits = $userService->get_deposits_count();
+        $withdrawals = $userService->get_withdrawals_count();
+        $investments = $userService->get_investments_count();
+        $transactions = $userService->get_transactions();
+        $total_deposit = num_format($userService->total_deposits());
+        $total_investment = num_format($userService->total_investments());
+        $investment_packages = Investment::count();
+        $pending_withdrawals = Withdrawal::where('status', 0)->count();
+        $pending_deposits = Deposit::where('status', 0)->count();
+        $payment_methods = Payment::all();
 
-        return view('admin.dashboard', compact('title', 'page_title', 'users', 'deposits', 'withdrawals', 'investments',
-         'transactions', 'total_deposit', 'total_investment'));
+        // Dashboard 2
+
+
+        return view('admin.dashboard-2', compact('title', 'page_title', 'users', 'deposits', 'withdrawals', 'investments',
+        'transactions', 'total_deposit', 'total_investment', 'active_users', 'inactive_users', 'investment_packages', 'pending_withdrawals', 'pending_deposits',
+        'payment_methods'));
     }
 }

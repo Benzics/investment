@@ -2,8 +2,11 @@
 
 use Illuminate\Support\Facades\DB;
 use App\Models\Currency;
+use App\Models\Deposit;
+use App\Models\Payment;
 use App\Models\User;
 use App\Models\Wallet;
+use App\Models\Withdrawal;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 /**
@@ -323,4 +326,20 @@ function get_balance(int $user_id)
     $balance = ($wallet) ? $wallet->balance : 0;
 
     return $balance;
+}
+
+/* Dashboard 2 helpers */
+
+function getDeposits($paymentId)
+{
+    return Deposit::where([['payment_id' , '=', $paymentId], ['status', '=', '1']])->sum('amount');
+}
+function getCurrentDeposits($paymentId)
+{
+    return Deposit::where([['payment_id' , '=', $paymentId], ['status', '=', '0']])->sum('amount');
+}
+
+function getWithdrawals($paymentId)
+{
+    return Withdrawal::where([['payment_id' , '=', $paymentId], ['status', '=', '1']])->sum('amount');
 }

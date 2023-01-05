@@ -392,6 +392,17 @@ class UserService {
         return $users;
     }
 
+    public function activeUsers() : int
+    {
+        $users = User::where('status', '1')->count();
+        return $users;
+    }
+    
+    public function inactiveUsers() : int
+    {
+        $users = User::where('status', '0')->count();
+        return $users;
+    }
     /**
      * Get the total number of active user investments
      * @return int
