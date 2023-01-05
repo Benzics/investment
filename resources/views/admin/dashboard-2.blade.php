@@ -123,9 +123,9 @@
             <tr>
                 <td><img src="{{ asset($row->image) }}" alt="{{ $row->name }}" class="thumb"></td>
              
-                <td class="text-success">${{ getDeposits($row->id) }}</td>
-                <td class="text-info">${{ getCurrentDeposits($row->id) }}</td>
-                <td class="text-danger">${{ getWithdrawals($row->id) }}</td>
+                <td class="text-success">{{ currency_symbol() . num_format(getDeposits($row->id)) }}</td>
+                <td class="text-info">{{ currency_symbol() .  num_format(getCurrentDeposits($row->id)) }}</td>
+                <td class="text-danger">{{ currency_symbol() .  num_format(getWithdrawals($row->id)) }}</td>
             </tr>
             @endforeach
            
@@ -162,20 +162,20 @@
             </thead>
             <tbody>
                 <tr>
-                    <td class="text-success">$100</td>
-                    <td class="text-danger">$144</td>
+                    <td class="text-success">{{ currency_symbol() . num_format($hours_in) }}</td>
+                    <td class="text-danger">{{ currency_symbol() . num_format($hours_out) }}</td>
 
-                    <td class="text-success">$100</td>
-                    <td class="text-danger">$144</td>
+                    <td class="text-success">{{ currency_symbol() . num_format($week_in) }}</td>
+                    <td class="text-danger">{{ currency_symbol() . num_format($week_out) }}</td>
 
-                    <td class="text-success">$100</td>
-                    <td class="text-danger">$144</td>
+                    <td class="text-success">{{ currency_symbol() . num_format($month_in) }}</td>
+                    <td class="text-danger">{{ currency_symbol() . num_format($month_out) }}</td>
 
-                    <td class="text-success">$100</td>
-                    <td class="text-danger">$144</td>
+                    <td class="text-success">{{ currency_symbol() . num_format($year_in) }}</td>
+                    <td class="text-danger">{{ currency_symbol() . num_format($year_out) }}</td>
 
-                    <td class="text-success">$100</td>
-                    <td class="text-danger">$144</td>
+                    <td class="text-success">{{ currency_symbol() . num_format($all_time_in) }}</td>
+                    <td class="text-danger">{{ currency_symbol() . num_format($all_time_out) }}</td>
                 </tr>
             </tbody>
         </table>
