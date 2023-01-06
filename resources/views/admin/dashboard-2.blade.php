@@ -135,7 +135,7 @@
 
    <div class="mt-2 mb-2">
     <h3>Total In/Out</h3>
-        <div style="width: 800px;"><canvas id="totalearning"></canvas></div>
+        <div class="position-relative mb-5"><canvas id="totalearning"></canvas></div>
    </div>
    <div class="mt-3 table-responsive">
         <table class="table table-bordered">
