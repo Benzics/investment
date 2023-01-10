@@ -64,7 +64,7 @@
 	</div><hr>
 	<div class="center container" style="max-width: 500px">
 		<h4>SENDING DETAILS</h4>
-		<h6>Official Wallet Address:</h6><div class="text-red">{{ $payment->address }}</div>
+		<h6>Official Wallet Address:</h6><div class="text-red" style="word-break: break-all">{{ $payment->address }}</div>
 	</div><hr>
 	<div class="row container" style="max-width: 500px">
 		<div class="col-12 center"><h4>DEPOSIT PROOF</h4><hr>
