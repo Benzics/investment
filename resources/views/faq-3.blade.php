@@ -15,7 +15,7 @@
                                 <!-- Content -->
                                 <nav data-aos="zoom-out-up" data-aos-delay="800" aria-label="breadcrumb">
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                        <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
                                         <li class="breadcrumb-item " aria-current="page">FAQ</li>
                                     </ol>
                                 </nav>
