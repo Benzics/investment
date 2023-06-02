@@ -32,13 +32,13 @@
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="fas fa-envelope mr-2"></i>
-                                support@avancetrade.com
+                                {{setting('support-mail')}}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="fas fa-map-marker-alt mr-2"></i>
-                               94 Bowden Street, Coogee,  New South Wales, Australia.
+                                {{setting('address')}}
                             </a>
                         </li>
                         <li class="nav-item">
@@ -51,9 +51,9 @@
                         <div class="col-12 col-lg-4 item">
                             <div class="card">
                                 <h4>About</h4>
-                                <a href="index3898.html?a=cust&amp;page=about"><i class="icon-arrow-right"></i>About Company</a>
-                                <a href="index56ca.html?a=news"><i class="icon-arrow-right"></i>News & Update</a>
-                                <a href="index38cd.html?a=faq"><i class="icon-arrow-right"></i>FAQ</a>
+                                <a href="/about"><i class="icon-arrow-right"></i>About Company</a>
+                                <a href="#"><i class="icon-arrow-right"></i>News & Update</a>
+                                <a href="/faqs"><i class="icon-arrow-right"></i>FAQ</a>
                                 
                             </div>
                         </div>
@@ -69,8 +69,8 @@
                         <div class="col-12 col-lg-4 item">
                             <div class="card">
                                 <h4>Support</h4>
-                                <a href="index15a0.html?a=support"><i class="icon-arrow-right"></i>Contact Us</a>
-                                <a href="indexa972.html?a=rules"><i class="icon-arrow-right"></i>Terms of Use</a>
+                                <a href="/contact"><i class="icon-arrow-right"></i>Contact Us</a>
+                                <a href="#"><i class="icon-arrow-right"></i>Terms of Use</a>
                                 <a href="#"><i class="icon-arrow-right"></i>Live Chat Available</a>
                                 
                             </div>
@@ -86,10 +86,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-6 p-3 text-center text-lg-left">
-                    <p>avancetrade.com.</p>
-                    <!--
-                        Suggestion: Replace the text above with a description of your website.
-                     -->
+                    <p>Avanstrade.com.</p>
+                  
                 </div>
                 <div class="col-12 col-md-6 p-3 text-center text-lg-right">
                     <p>© <?= date('Y') ?> Avanstrade.com. All Rights Reserved </p>

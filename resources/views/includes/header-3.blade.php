@@ -178,7 +178,7 @@ var cps = {};
                             <a href="#" class="nav-link"><i class="fas fa-phone-alt mr-2"></i>+44 1633 9315 71</a>
                         </li> -->
                         <li class="nav-item">
-                            <a href="mailto:support@exprofessionancetrades.com" class="nav-link"><i class="fas fa-envelope mr-2"></i>support@exprofessionancetrades.com</a>
+                            <a href="mailto:info@avanstrade.com" class="nav-link"><i class="fas fa-envelope mr-2"></i>info@avanstrade.com</a>
                         </li>
                     </ul>
 
