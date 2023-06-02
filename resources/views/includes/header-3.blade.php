@@ -207,8 +207,7 @@ var cps = {};
 
 </script>
 
-<script type="text/javascript" src="//translate.google.com/translate_a/elementa0d8.js?cb=googleTranslateElementInit"></script>
-<style>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><style>
     .goog-te-gadget img {
         display: none;
     }
