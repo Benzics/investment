@@ -11,7 +11,7 @@ namespace App\Http\Controllers\admin;
 use App\Events\WithdrawalApproved;
 use App\Http\Controllers\Controller;
 use App\Services\WithdrawalService;
-use Illuminate\Http\Request;
+use App\Services\UserService;
 use Throwable;
 
 class WithdrawalController extends Controller
@@ -64,6 +64,10 @@ class WithdrawalController extends Controller
         }
 
         $this->service->decline($id);
+
+         // when we decline a withdrawal, we refund the user
+         $userService = new UserService();
+         $userService->credit_user($withdrawal->user_id, $withdrawal->amount, 9, 'Refund for rejected withdrawal');
 
         return redirect('/admin/withdrawals')->with('success', 'Withdrawal successfully declined.');
     }
